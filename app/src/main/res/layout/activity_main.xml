@@ -20,18 +20,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageButton
-                android:layout_width="300px"
-                android:layout_height="350px"
-                android:layout_margin="3px"
+                android:layout_width="10dp"
+                android:layout_height="100dp"
+                android:layout_margin="3dp"
                 android:id="@+id/btnBlackJack"
                 android:layout_column="4"
                 android:src="@drawable/blackjack"
                 android:onClick="onBlackJackClick" />
 
             <ImageButton
-                android:layout_width="300px"
-                android:layout_height="350px"
-                android:layout_margin="3px"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="3dp"
                 android:id="@+id/btnPyramide"
                 android:layout_column="7"
                 android:src="@drawable/pyramid"

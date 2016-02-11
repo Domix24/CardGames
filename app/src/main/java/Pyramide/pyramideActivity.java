@@ -1,16 +1,19 @@
-package com.example.utilisateur.jeudepatience;
+package Pyramide;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.media.Image;
-import android.os.Message;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.utilisateur.jeudepatience.Pyramide;
+import com.example.utilisateur.jeudepatience.R;
+
 import java.lang.reflect.Field;
+
+import Utilitaire.Carte;
 
 public class pyramideActivity extends Activity {
 

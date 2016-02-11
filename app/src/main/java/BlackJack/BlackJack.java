@@ -1,4 +1,7 @@
-package com.example.utilisateur.jeudepatience;
+package BlackJack;
+
+import Utilitaire.Carte;
+import Utilitaire.JeuDeCarte;
 
 /**
  * Created by Mikael Andries-Gounant on 29/01/2016.

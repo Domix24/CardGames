@@ -37,7 +37,7 @@ public class BlackJack extends JeuAvecCartes {
         for (int i = 0; i < cartes.length; i++){
             if (cartes[i] == null && i != 0)
                 break;
-            if (cartes[i] == null && 1 == 0){
+            if (cartes[i] == null && i == 0){
                 pointage[0] = 0;
                 break;
             }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utilitaire.Carte;
+import utilitaire.JeuAvecCartes;
 import utilitaire.JeuDeCarte;
 
 /**
  * Créer par Jean-Michel Lavoie  on 29/01/2016.
  */
-public class Pyramide {
-    JeuDeCarte jeu;
+public class Pyramide extends JeuAvecCartes{
     public ArrayList<Carte[]> lstJeu = new ArrayList<>();
     List<Carte> lstStock=new ArrayList<Carte>();
     int  nbUtilisé;
@@ -74,7 +74,7 @@ public class Pyramide {
         nbUtilisé=0;
         lstJeu.clear();
         lstStock.clear();
-        jeu = new JeuDeCarte();
+        paquet = new JeuDeCarte();
 
         remplirPyramide();
         remplirStock();
@@ -95,19 +95,19 @@ public class Pyramide {
         lstJeu.add(new Carte[24]);
         for(int i=0;i<7;i++) {
             if(i==0)
-                lstJeu.get(0)[i] = jeu.PigerUneCarte();
+                lstJeu.get(0)[i] = paquet.PigerUneCarte();
             if(i<=1)
-                lstJeu.get(1)[i] = jeu.PigerUneCarte();
+                lstJeu.get(1)[i] = paquet.PigerUneCarte();
             if(i<=2)
-                lstJeu.get(2)[i] = jeu.PigerUneCarte();
+                lstJeu.get(2)[i] = paquet.PigerUneCarte();
             if(i<=3)
-                lstJeu.get(3)[i] = jeu.PigerUneCarte();
+                lstJeu.get(3)[i] = paquet.PigerUneCarte();
             if(i<=4)
-                lstJeu.get(4)[i] = jeu.PigerUneCarte();
+                lstJeu.get(4)[i] = paquet.PigerUneCarte();
             if(i<=5)
-                lstJeu.get(5)[i] = jeu.PigerUneCarte();
+                lstJeu.get(5)[i] = paquet.PigerUneCarte();
             if(i<=6) {
-                lstJeu.get(6)[i] = jeu.PigerUneCarte();
+                lstJeu.get(6)[i] = paquet.PigerUneCarte();
                 lstJeu.get(6)[i].disponible=true;
             }
         }
@@ -167,7 +167,7 @@ public class Pyramide {
     private void remplirStock()
     {
         for(int i=0;i<24;i++)
-            lstStock.add(jeu.PigerUneCarte());
+            lstStock.add(paquet.PigerUneCarte());
     }
 
     /**
@@ -351,6 +351,11 @@ public class Pyramide {
      */
     int trouverIdCarte(String nom)
     {
-        return jeu.trouverIdCarte(nom);
+        return paquet.trouverIdCarte(nom);
+    }
+
+    @Override
+    public void Initialiser(int seed) {
+
     }
 }

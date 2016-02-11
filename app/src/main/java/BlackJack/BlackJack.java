@@ -1,14 +1,14 @@
 package blackjack;
 
 import utilitaire.Carte;
+import utilitaire.JeuAvecCartes;
 import utilitaire.JeuDeCarte;
 
 /**
  * Created by Mikael Andries-Gounant on 29/01/2016.
  */
-public class BlackJack{
+public class BlackJack extends JeuAvecCartes{
 
-    JeuDeCarte paquet;
     boolean estCree = false;
     private static BlackJack instance = null;
     Carte[] cartesJoueur;
@@ -141,5 +141,10 @@ public class BlackJack{
     void reinitialiser(){
         paquet = new JeuDeCarte();
         estCree = true;
+    }
+
+    @Override
+    public void Initialiser(int seed) {
+
     }
 }

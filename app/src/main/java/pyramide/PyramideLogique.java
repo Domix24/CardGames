@@ -45,6 +45,15 @@ public class PyramideLogique {
         return pyramideArray;
     }
 
+    /**
+     * Enlève la carte de la pyramide si c'est un roi non-obstrué par une autre carte
+     */
+    public void EnleverCartes(int rangée, int colonne) {
+        if (DéterminerDisponibilité(rangée, colonne)) {
+            
+        }
+    }
+
     private void RemplirPyramide() {
         pyramideArray.add(new Carte[1]);
         pyramideArray.add(new Carte[2]);
@@ -79,7 +88,12 @@ public class PyramideLogique {
         }
     }
 
-    private boolean DétrminerDisponibilité(int rangée, int colonne) {
+    /**
+     * @param rangée Rangée dans laquelle la carte à enlever est située
+     * @param colonne Colonne dans laquelle la carte à enlever est située
+     * @return Vrai si la carte est disponible, Faux si la carte est bloquée
+     */
+    private boolean DéterminerDisponibilité(int rangée, int colonne) {
         boolean disponible = false;
 
         if (rangée < 7) {

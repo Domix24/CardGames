@@ -1,4 +1,8 @@
-package com.example.utilisateur.jeudepatience;
+package pyramide;
+
+import utilitaire.Carte;
+import utilitaire.JeuAvecCartes;
+import utilitaire.JeuDeCarte;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +10,7 @@ import java.util.List;
 /**
  * Créer par Jean-Michel Lavoie  on 29/01/2016.
  */
-public class Pyramide extends JeuAvecCartes{
+public class Pyramide extends JeuAvecCartes {
     public ArrayList<Carte[]> lstJeu = new ArrayList<>();
     List<Carte> lstStock=new ArrayList<Carte>();
     int  nbUtilisé;

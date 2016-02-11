@@ -1,9 +1,13 @@
-package com.example.utilisateur.jeudepatience;
+package blackjack;
+
+import utilitaire.Carte;
+import utilitaire.JeuAvecCartes;
+import utilitaire.JeuDeCarte;
 
 /**
  * Created by Mikael Andries-Gounant on 29/01/2016.
  */
-public class BlackJack extends JeuAvecCartes{
+public class BlackJack extends JeuAvecCartes {
 
     boolean estCree = false;
     private static BlackJack instance = null;

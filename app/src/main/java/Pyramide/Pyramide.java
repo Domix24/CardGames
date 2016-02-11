@@ -1,10 +1,10 @@
-package Pyramide;
+package pyramide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Utilitaire.Carte;
-import Utilitaire.JeuDeCarte;
+import utilitaire.Carte;
+import utilitaire.JeuDeCarte;
 
 /**
  * Créer par Jean-Michel Lavoie  on 29/01/2016.

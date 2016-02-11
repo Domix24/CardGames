@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import BlackJack.BlackJackActivity;
-import Pyramide.pyramideActivity;
+import blackjack.BlackJackActivity;
+import pyramide.pyramideActivity;
 
 public class MainActivity extends Activity {
     @Override

@@ -1,7 +1,7 @@
-package BlackJack;
+package blackjack;
 
-import Utilitaire.Carte;
-import Utilitaire.JeuDeCarte;
+import utilitaire.Carte;
+import utilitaire.JeuDeCarte;
 
 /**
  * Created by Mikael Andries-Gounant on 29/01/2016.

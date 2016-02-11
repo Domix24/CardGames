@@ -1,13 +1,13 @@
-package com.example.utilisateur.jeudepatience;
+package utilitaire;
 
 import android.graphics.Color;
 
+import com.example.utilisateur.jeudepatience.R;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Random;
 
 /**

@@ -8,12 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import pyramide.pyramideActivity;
+import utilitaire.Carte;
 import com.example.utilisateur.jeudepatience.R;
 
 import java.lang.reflect.Field;
-
-import utilitaire.Carte;
 
 public class pyramideActivity extends Activity {
 

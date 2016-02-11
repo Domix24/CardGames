@@ -108,7 +108,7 @@ public class Pyramide extends JeuAvecCartes {
                 lstJeu.get(5)[i] = paquet.PigerUneCarte();
             if(i<=6) {
                 lstJeu.get(6)[i] = paquet.PigerUneCarte();
-                lstJeu.get(6)[i].disponible=true;
+                //lstJeu.get(6)[i].disponible=true;
             }
         }
     }
@@ -133,11 +133,11 @@ public class Pyramide extends JeuAvecCartes {
         if (lstStock.size() > 0) {
             try {
                 lstJeu.get(7)[lstJeu.get(7).length] = lstStock.get(lstStock.size()-1);
-                lstJeu.get(7)[lstJeu.get(7).length].disponible = true;
+                //lstJeu.get(7)[lstJeu.get(7).length].disponible = true;
             }
             catch (Exception e) {
                 lstJeu.get(7)[0] = lstStock.get(lstStock.size()-1);
-                lstJeu.get(7)[0].disponible = true;
+                //lstJeu.get(7)[0].disponible = true;
             }
 
             lstStock.remove(lstStock.size() - 1);
@@ -190,8 +190,8 @@ public class Pyramide extends JeuAvecCartes {
         refreshDisponibilite();
         //Check si le mouvement est invalide.
         if(lstJeu.get(rangée1)[colonne1]!=null)
-            if(lstJeu.get(rangée1)[colonne1].disponible==false)
-                return false;
+            //if(lstJeu.get(rangée1)[colonne1].disponible==false)
+              //  return false;
 
         //1 carte du Stock
         if(rangée1==7)
@@ -233,8 +233,8 @@ public class Pyramide extends JeuAvecCartes {
         for(int i=0;i<6;i++)
             for(int u=0;u<=i;u++)
             {
-                if(lstJeu.get(i)[u]!=null && lstJeu.get(i)[u].disponible==true)
-                    lstComparaison.add(lstJeu.get(i)[u]);
+               // if(lstJeu.get(i)[u]!=null && lstJeu.get(i)[u].disponible==true)
+                 //   lstComparaison.add(lstJeu.get(i)[u]);
             }
         if(sélectionnerDernierAuWaste()!=null)
             lstComparaison.add(sélectionnerDernierAuWaste());
@@ -259,7 +259,7 @@ public class Pyramide extends JeuAvecCartes {
      */
     public void refreshDisponibilite()
     {
-        for(int i=0;i<6;i++)
+        /*for(int i=0;i<6;i++)
             for(int u=0;u<=i;u++)
             {
                 lstJeu.get(i)[u].disponible = true;
@@ -280,7 +280,7 @@ public class Pyramide extends JeuAvecCartes {
             }
             //Exception si aucune carte après.
             catch (Exception e){lstJeu.get(7)[i].disponible = true;}
-        }
+        }*/
     }
 
     /**
@@ -296,12 +296,12 @@ public class Pyramide extends JeuAvecCartes {
     {
         refreshDisponibilite();
         //Check si le mouvement est invalide.
-        if(lstJeu.get(rangée1)[colonne1]!=null)
+        /*if(lstJeu.get(rangée1)[colonne1]!=null)
             if(lstJeu.get(rangée1)[colonne1].disponible==false)
                 return false;
         if(lstJeu.get(rangée2)[colonne2]!=null)
             if(lstJeu.get(rangée2)[colonne2].disponible==false)
-                return false;
+                return false;*/
 
         //Valeur à 7 indique que c'est une carte dans le waste.
         if(rangée1==7)

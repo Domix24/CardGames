@@ -49,7 +49,9 @@ public class PyramideLogique {
      * Enlève la carte de la pyramide si c'est un roi non-obstrué par une autre carte
      */
     public void EnleverCartes(int rangée, int colonne) {
-        
+        if (DéterminerDisponibilité(rangée, colonne)) {
+            
+        }
     }
 
     private void RemplirPyramide() {

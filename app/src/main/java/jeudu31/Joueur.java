@@ -11,14 +11,15 @@ import utilitaire.JeuAvecCartes;
  */
 public class Joueur extends JeuAvecCartes{
     List<Carte> JeuEnMain;
-    int SommeCarrés;
-    int SommeCoeurs;
-    int SommeTrèfles;
-    int SommePiques;
+    protected int SommeCarrés;
+    protected int SommeCoeurs;
+    protected int SommeTrèfles;
+    protected int SommePiques;
     @Override
     public void Initialiser(int seed) {
 
     }
+
     public Joueur(boolean test)
     {
         JeuEnMain = new ArrayList<Carte>();

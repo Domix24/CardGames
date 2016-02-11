@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import blackjack.BlackJackActivity;
-import pyramide.pyramideActivity;
-
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

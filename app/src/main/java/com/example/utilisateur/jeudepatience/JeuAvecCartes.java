@@ -1,4 +1,4 @@
-package utilitaire;
+package com.example.utilisateur.jeudepatience;
 
 /**
  * Created by Nakourou on 2016-02-11.

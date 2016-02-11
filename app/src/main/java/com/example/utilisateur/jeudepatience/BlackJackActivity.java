@@ -1,4 +1,4 @@
-package blackjack;
+package com.example.utilisateur.jeudepatience;
 
         import android.app.Activity;
         import android.os.Bundle;
@@ -6,10 +6,6 @@ package blackjack;
         import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
-
-        import com.example.utilisateur.jeudepatience.R;
-
-        import utilitaire.Carte;
 
 public class BlackJackActivity extends Activity {
     int indexJoueur;

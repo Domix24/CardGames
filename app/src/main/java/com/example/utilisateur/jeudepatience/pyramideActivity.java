@@ -1,4 +1,4 @@
-package pyramide;
+package com.example.utilisateur.jeudepatience;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -8,12 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import pyramide.pyramideActivity;
-import com.example.utilisateur.jeudepatience.R;
-
 import java.lang.reflect.Field;
-
-import utilitaire.Carte;
 
 public class pyramideActivity extends Activity {
 

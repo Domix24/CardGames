@@ -17,10 +17,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="blackjack.BlackJackActivity"
+            android:name=".BlackJackActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation"></activity>
-        <activity android:name="pyramide.pyramideActivity"></activity>
+        <activity android:name=".pyramideActivity"></activity>
     </application>
 
 </manifest>

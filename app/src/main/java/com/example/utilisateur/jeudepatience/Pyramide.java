@@ -1,11 +1,7 @@
-package pyramide;
+package com.example.utilisateur.jeudepatience;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import utilitaire.Carte;
-import utilitaire.JeuAvecCartes;
-import utilitaire.JeuDeCarte;
 
 /**
  * Créer par Jean-Michel Lavoie  on 29/01/2016.

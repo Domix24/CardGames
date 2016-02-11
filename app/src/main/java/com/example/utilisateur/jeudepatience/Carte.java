@@ -1,4 +1,4 @@
-package utilitaire;
+package com.example.utilisateur.jeudepatience;
 
 
 

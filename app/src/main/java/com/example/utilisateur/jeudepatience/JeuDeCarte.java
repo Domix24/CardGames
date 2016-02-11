@@ -1,8 +1,6 @@
-package utilitaire;
+package com.example.utilisateur.jeudepatience;
 
 import android.graphics.Color;
-
-import com.example.utilisateur.jeudepatience.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

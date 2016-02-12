@@ -45,6 +45,10 @@ public class PyramideLogique {
         return pyramideArray;
     }
 
+    public int GetNombreStock() {
+        return lstStock.size();
+    }
+
     /**
      * Enlève la carte de la pyramide si c'est un roi non-obstrué par une autre carte
      * @param rangée
@@ -157,5 +161,13 @@ public class PyramideLogique {
         return disponible;
     }
 
+    /**
+     * Retourne l'id de la carte (ex: pour pouvoir afficher l'image associée à la carte)
+     * @param nom Le nom de l'objet carte
+     * @return L'ID de la carte
+     */
+    public int trouverIdCarte(String nom) {
+        return paquet.trouverIdCarte(nom);
+    }
 
 }

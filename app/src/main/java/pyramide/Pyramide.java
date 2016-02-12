@@ -1,4 +1,8 @@
-package com.example.utilisateur.jeudepatience;
+package pyramide;
+
+import utilitaire.Carte;
+import utilitaire.JeuAvecCartes;
+import utilitaire.JeuDeCarte;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +10,7 @@ import java.util.List;
 /**
  * Créer par Jean-Michel Lavoie  on 29/01/2016.
  */
-public class Pyramide {
-    JeuDeCarte jeu;
+public class Pyramide extends JeuAvecCartes {
     public ArrayList<Carte[]> lstJeu = new ArrayList<>();
     List<Carte> lstStock=new ArrayList<Carte>();
     int  nbUtilisé;
@@ -71,7 +74,7 @@ public class Pyramide {
         nbUtilisé=0;
         lstJeu.clear();
         lstStock.clear();
-        jeu = new JeuDeCarte();
+        paquet = new JeuDeCarte();
 
         remplirPyramide();
         remplirStock();
@@ -92,20 +95,20 @@ public class Pyramide {
         lstJeu.add(new Carte[24]);
         for(int i=0;i<7;i++) {
             if(i==0)
-                lstJeu.get(0)[i] = jeu.PigerUneCarte();
+                lstJeu.get(0)[i] = paquet.PigerUneCarte();
             if(i<=1)
-                lstJeu.get(1)[i] = jeu.PigerUneCarte();
+                lstJeu.get(1)[i] = paquet.PigerUneCarte();
             if(i<=2)
-                lstJeu.get(2)[i] = jeu.PigerUneCarte();
+                lstJeu.get(2)[i] = paquet.PigerUneCarte();
             if(i<=3)
-                lstJeu.get(3)[i] = jeu.PigerUneCarte();
+                lstJeu.get(3)[i] = paquet.PigerUneCarte();
             if(i<=4)
-                lstJeu.get(4)[i] = jeu.PigerUneCarte();
+                lstJeu.get(4)[i] = paquet.PigerUneCarte();
             if(i<=5)
-                lstJeu.get(5)[i] = jeu.PigerUneCarte();
+                lstJeu.get(5)[i] = paquet.PigerUneCarte();
             if(i<=6) {
-                lstJeu.get(6)[i] = jeu.PigerUneCarte();
-                lstJeu.get(6)[i].disponible=true;
+                lstJeu.get(6)[i] = paquet.PigerUneCarte();
+                //lstJeu.get(6)[i].disponible=true;
             }
         }
     }
@@ -130,11 +133,11 @@ public class Pyramide {
         if (lstStock.size() > 0) {
             try {
                 lstJeu.get(7)[lstJeu.get(7).length] = lstStock.get(lstStock.size()-1);
-                lstJeu.get(7)[lstJeu.get(7).length].disponible = true;
+                //lstJeu.get(7)[lstJeu.get(7).length].disponible = true;
             }
             catch (Exception e) {
                 lstJeu.get(7)[0] = lstStock.get(lstStock.size()-1);
-                lstJeu.get(7)[0].disponible = true;
+                //lstJeu.get(7)[0].disponible = true;
             }
 
             lstStock.remove(lstStock.size() - 1);
@@ -164,7 +167,7 @@ public class Pyramide {
     private void remplirStock()
     {
         for(int i=0;i<24;i++)
-            lstStock.add(jeu.PigerUneCarte());
+            lstStock.add(paquet.PigerUneCarte());
     }
 
     /**
@@ -187,8 +190,8 @@ public class Pyramide {
         refreshDisponibilite();
         //Check si le mouvement est invalide.
         if(lstJeu.get(rangée1)[colonne1]!=null)
-            if(lstJeu.get(rangée1)[colonne1].disponible==false)
-                return false;
+            //if(lstJeu.get(rangée1)[colonne1].disponible==false)
+              //  return false;
 
         //1 carte du Stock
         if(rangée1==7)
@@ -230,8 +233,8 @@ public class Pyramide {
         for(int i=0;i<6;i++)
             for(int u=0;u<=i;u++)
             {
-                if(lstJeu.get(i)[u]!=null && lstJeu.get(i)[u].disponible==true)
-                    lstComparaison.add(lstJeu.get(i)[u]);
+               // if(lstJeu.get(i)[u]!=null && lstJeu.get(i)[u].disponible==true)
+                 //   lstComparaison.add(lstJeu.get(i)[u]);
             }
         if(sélectionnerDernierAuWaste()!=null)
             lstComparaison.add(sélectionnerDernierAuWaste());
@@ -256,7 +259,7 @@ public class Pyramide {
      */
     public void refreshDisponibilite()
     {
-        for(int i=0;i<6;i++)
+        /*for(int i=0;i<6;i++)
             for(int u=0;u<=i;u++)
             {
                 lstJeu.get(i)[u].disponible = true;
@@ -277,7 +280,7 @@ public class Pyramide {
             }
             //Exception si aucune carte après.
             catch (Exception e){lstJeu.get(7)[i].disponible = true;}
-        }
+        }*/
     }
 
     /**
@@ -293,12 +296,12 @@ public class Pyramide {
     {
         refreshDisponibilite();
         //Check si le mouvement est invalide.
-        if(lstJeu.get(rangée1)[colonne1]!=null)
+        /*if(lstJeu.get(rangée1)[colonne1]!=null)
             if(lstJeu.get(rangée1)[colonne1].disponible==false)
                 return false;
         if(lstJeu.get(rangée2)[colonne2]!=null)
             if(lstJeu.get(rangée2)[colonne2].disponible==false)
-                return false;
+                return false;*/
 
         //Valeur à 7 indique que c'est une carte dans le waste.
         if(rangée1==7)
@@ -348,6 +351,11 @@ public class Pyramide {
      */
     int trouverIdCarte(String nom)
     {
-        return jeu.trouverIdCarte(nom);
+        return paquet.trouverIdCarte(nom);
+    }
+
+    @Override
+    public void Initialiser(int seed) {
+
     }
 }

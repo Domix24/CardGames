@@ -1,4 +1,4 @@
-package com.example.utilisateur.jeudepatience;
+package blackjack;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,11 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import utilitaire.Carte;
+
+import com.example.utilisateur.jeudepatience.R;
+
 public class BlackJackActivity extends Activity {
-    boolean estTermine = false;
     BlackJack jeu = BlackJack.avoirInstance();
     TextView pointsJoueur;
     TextView pointsCroupier;
+    Toast message;
 
     @Override
     /**
@@ -25,6 +29,8 @@ public class BlackJackActivity extends Activity {
         setContentView(R.layout.activity_black_jack);
         pointsJoueur = (TextView) findViewById(R.id.lblPointsJoueur);
         pointsCroupier = (TextView) findViewById(R.id.lblPointsCroupier);
+        message = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+
         if (!jeu.estCree) {
             reinitialiserLeJeu();
         } else
@@ -37,48 +43,19 @@ public class BlackJackActivity extends Activity {
      * @param v Le bouton cliqué
      */
     public void onHitClick(View v) {
-        if (!estTermine) {
-            ImageView image = (ImageView) findViewById(R.id.imgCarte1);
-            switch (jeu.indexJoueur) {
-                case 0:
-                    image = (ImageView) findViewById(R.id.imgCarte1);
-                    break;
-                case 1:
-                    image = (ImageView) findViewById(R.id.imgCarte2);
-                    break;
-                case 2:
-                    image = (ImageView) findViewById(R.id.imgCarte3);
-                    break;
-                case 3:
-                    image = (ImageView) findViewById(R.id.imgCarte4);
-                    break;
-                case 4:
-                    image = (ImageView) findViewById(R.id.imgCarte5);
-                    break;
-                case 5:
-                    image = (ImageView) findViewById(R.id.imgCarte6);
-                    break;
-                case 6:
-                    image = (ImageView) findViewById(R.id.imgCarte7);
-                    break;
-                case 7:
-                    image = (ImageView) findViewById(R.id.imgCarte8);
-                    break;
-                case 8:
-                    image = (ImageView) findViewById(R.id.imgCarte9);
-                    break;
-            }
+        if (!jeu.estTermine) {
             Carte nouvelleCarte = jeu.pigerUneCarte();
-            if (nouvelleCarte != null)
-            {
+            if (nouvelleCarte != null) {
                 jeu.jouerPourJoueur(nouvelleCarte);
-                image.setVisibility(View.VISIBLE);
-                image.setImageResource(jeu.trouverIdCarte(nouvelleCarte.nom));
+                mettreÀJourAffichage();
                 mettreÀJourPoints();
+                if (jeu.estTermine){
+                    afficherGagnant();
+                }
             }
-
-        } else
+        } else{
             reinitialiserLeJeu();
+        }
     }
 
     /**
@@ -87,16 +64,33 @@ public class BlackJackActivity extends Activity {
      * @param v le bouton cliqué
      */
     public void onHoldClick(View v) {
-        if (!estTermine) {
+        if (!jeu.estTermine) {
             jeu.faireJouerCroupier();
+            mettreÀJourPoints();
+            mettreÀJourAffichage();
+            if (jeu.estTermine){
+                afficherGagnant();
+            }
+        }
+        else{
+            reinitialiserLeJeu();
         }
     }
 
     /**
+     * Permet d'afficher le résutat de la partie.
+     */
+    private void afficherGagnant(){
+        jeu.determinerGagnant();
+        message.setText(jeu.message);
+        message.show();
+    }
+    /**
      * Réinitialiser tout les paramètres du jeu.
      */
     private void reinitialiserLeJeu() {
-        estTermine = false;
+        jeu.cartesJoueur = new Carte[9];
+        jeu.cartesCroupier = new Carte[9];
         jeu.reinitialiser();
 
         effacerImage();
@@ -116,97 +110,23 @@ public class BlackJackActivity extends Activity {
     private void passerPremieresCartes() {
 
         // Première carte du joueur
-        ImageView image = (ImageView) findViewById(R.id.imgCarte1);
         Carte nouvelleCarte = jeu.pigerUneCarte();
-        jeu.jouerPourJoueur(nouvelleCarte);
         if (nouvelleCarte != null && jeu.indexJoueur < 12) {
-            image.setVisibility(View.VISIBLE);
-            image.setImageResource(jeu.trouverIdCarte(nouvelleCarte.nom));
+            jeu.jouerPourJoueur(nouvelleCarte);
         }
         // Première carte du croupier
-        image = (ImageView) findViewById(R.id.imgDealer1);
         nouvelleCarte = jeu.pigerUneCarte();
-        jeu.jouerPourCroupier(nouvelleCarte);
         if (nouvelleCarte != null) {
-            image.setVisibility(View.VISIBLE);
-            image.setImageResource(jeu.trouverIdCarte(nouvelleCarte.nom));
+            jeu.jouerPourCroupier(nouvelleCarte);
         }
 
         // Deuxième carte du joueur
-        image = (ImageView) findViewById(R.id.imgCarte2);
         nouvelleCarte = jeu.pigerUneCarte();
-        jeu.jouerPourJoueur(nouvelleCarte);
-
         if (nouvelleCarte != null) {
-            image.setVisibility(View.VISIBLE);
-            image.setImageResource(jeu.trouverIdCarte(nouvelleCarte.nom));
+            jeu.jouerPourJoueur(nouvelleCarte);
         }
         mettreÀJourPoints();
         mettreÀJourAffichage();
-    }
-
-    /**
-     * Le croupier joue jusqu'à ce que son score soit plus haut ou égale que le score du joueur.
-     */
-    private void faireJouerCroupier() {
-        while (pointJoueur > pointCroupier && jeu.indexCroupier < 12) {
-            ImageView image = (ImageView) findViewById(R.id.imgDealer1);
-            switch (jeu.indexCroupier) {
-                case 0:
-                    image = (ImageView) findViewById(R.id.imgDealer1);
-                    break;
-                case 1:
-                    image = (ImageView) findViewById(R.id.imgDealer2);
-                    break;
-                case 2:
-                    image = (ImageView) findViewById(R.id.imgDealer3);
-                    break;
-                case 3:
-                    image = (ImageView) findViewById(R.id.imgDealer4);
-                    break;
-                case 4:
-                    image = (ImageView) findViewById(R.id.imgDealer5);
-                    break;
-                case 5:
-                    image = (ImageView) findViewById(R.id.imgDealer6);
-                    break;
-                case 6:
-                    image = (ImageView) findViewById(R.id.imgDealer7);
-                    break;
-                case 7:
-                    image = (ImageView) findViewById(R.id.imgDealer8);
-                    break;
-                case 8:
-                    image = (ImageView) findViewById(R.id.imgDealer9);
-                    break;
-            }
-            Carte nouvelleCarte = jeu.pigerUneCarte();
-            if (nouvelleCarte != null) {
-                jeu.cartesCroupier[jeu.indexCroupier++] = nouvelleCarte;
-                image.setVisibility(View.VISIBLE);
-                image.setImageResource(jeu.trouverIdCarte(nouvelleCarte.nom));
-            }
-            jeu.calculerPoints();
-            //jeu.pointageCroupier = jeu.calculerPoints(jeu.cartesCroupier);
-            if (jeu.pointageCroupier[1] > 21)
-                pointCroupier = jeu.pointageCroupier[0];
-            else
-                pointCroupier = jeu.pointageCroupier[1];
-            mettreÀJourPoints();
-        }
-        estTermine = true;
-        int gagnant = jeu.determinerGagnant();
-        switch (gagnant) {
-            case 0:
-                Toast.makeText(getApplicationContext(), "Vous avez gagné !", Toast.LENGTH_LONG).show();
-                break;
-            case 1:
-                Toast.makeText(getApplicationContext(), "Vous avez perdu :(", Toast.LENGTH_LONG).show();
-                break;
-            case 2:
-                Toast.makeText(getApplicationContext(), "Match nul :/", Toast.LENGTH_LONG).show();
-                break;
-        }
     }
 
     /**
@@ -215,7 +135,7 @@ public class BlackJackActivity extends Activity {
     private void replacerJeu() {
         mettreÀJourAffichage();
         if (jeu.cartesCroupier.length >= 2) {
-            estTermine = true;
+            jeu.estTermine = true;
         }
         mettreÀJourPoints();
     }
@@ -283,11 +203,10 @@ public class BlackJackActivity extends Activity {
     /**
      * Affiche toutes les cartes
      */
-    private void mettreÀJourAffichage(){
+    private void mettreÀJourAffichage() {
         effacerImage();
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 12; i++) {
             if (jeu.cartesJoueur[i] == null && i != 0) {
-                jeu.indexJoueur = i - 1;
                 break;
             }
             if (jeu.cartesJoueur[i] == null && i == 0) {
@@ -327,9 +246,8 @@ public class BlackJackActivity extends Activity {
             image.setImageResource(jeu.trouverIdCarte(jeu.cartesJoueur[i].nom));
             image.setVisibility(View.VISIBLE);
         }
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 12; i++) {
             if (jeu.cartesCroupier[i] == null && i != 0) {
-                jeu.indexCroupier = i - 1;
                 break;
             }
             if (jeu.cartesCroupier[i] == null && i == 0) {
@@ -370,6 +288,7 @@ public class BlackJackActivity extends Activity {
             image.setVisibility(View.VISIBLE);
         }
     }
+
     /**
      * Méthode qui va afficher et mettre a jour les points du joueur et du croupier.
      */

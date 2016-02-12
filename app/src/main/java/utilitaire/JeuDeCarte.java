@@ -1,13 +1,13 @@
-package com.example.utilisateur.jeudepatience;
+package utilitaire;
 
 import android.graphics.Color;
 
+import com.example.utilisateur.jeudepatience.R;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -108,10 +108,13 @@ public class JeuDeCarte extends ArrayList<Carte> {
     {
         return dictionnaire.get(nom);
     }
+
     public ArrayList<Carte> RetourneCartesRestantes()
     {
         return (ArrayList<Carte>)this.clone();
     }
+
+
     public void OrdonnerCartes()
     {
         ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
@@ -154,6 +157,18 @@ public class JeuDeCarte extends ArrayList<Carte> {
             this.add(ct);
         paquetmélangeur.clear();
 
+    }
+
+    /**
+     * Méthode pour donnée à un paquet de cartes une ordre décider d'avance pour les tests
+     * @param cartes
+     */
+    public void PlacerJeuCarte(ArrayList<Carte> cartes)
+    {
+        this.clear();
+        for (Carte carte: cartes) {
+            this.add(carte);
+        }
     }
 
     /**

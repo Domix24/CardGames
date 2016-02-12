@@ -2,9 +2,11 @@ package com.example.utilisateur.jeudepatience;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import blackjack.BlackJackActivity;
+import pyramide.pyramideActivity;
 
 public class MainActivity extends Activity {
     @Override

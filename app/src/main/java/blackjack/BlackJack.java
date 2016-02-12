@@ -1,37 +1,47 @@
-package com.example.utilisateur.jeudepatience;
+package blackjack;
+
+import utilitaire.Carte;
+import utilitaire.JeuAvecCartes;
+import utilitaire.JeuDeCarte;
 
 /**
  * Created by Mikael Andries-Gounant on 29/01/2016.
  */
-public class BlackJack{
+public class BlackJack extends JeuAvecCartes {
 
-    JeuDeCarte paquet;
-    boolean estCree = false;
+    public boolean estCree = false;
     private static BlackJack instance = null;
-    Carte[] cartesJoueur;
-    Carte[] cartesCroupier;
-    int indexJoueur;
-    int indexCroupier;
-    int[] pointageJoueur;
-    int[] pointageCroupier;
+    public Carte[] cartesJoueur;
+    public Carte[] cartesCroupier;
+    public int indexJoueur;
+    public int indexCroupier;
+    public int[] pointageJoueur;
+    public int[] pointageCroupier;
+    public boolean estTermine = false;
+    public String message = "";
 
-    private  BlackJack()
-    {
+    private BlackJack() {
         paquet = new JeuDeCarte();
     }
-    public static BlackJack avoirInstance(){
-        if (instance == null){
+
+    /**
+     * Permet d'avoir l'instance du jeu
+     * @return l'instance du jeu BlackJack
+     */
+    public static BlackJack avoirInstance() {
+        if (instance == null) {
             instance = new BlackJack();
         }
 
         return instance;
     }
+
     /**
      * Méthode qui calcule les points des joueurs.
+     *
      * @return le pointage sans compter les as dans le premier index et le pointage en comptant les as dans le deuxième
      */
-    void calculerPoints()
-    {
+    public void calculerPoints() {
         pointageJoueur = new int[2];
         pointageCroupier = new int[2];
         calculerPointsCroupier();
@@ -47,6 +57,9 @@ public class BlackJack{
         for (int i = 0; i < cartesJoueur.length; i++) {
             if (cartesJoueur[i] == null && i != 0)
                 break;
+            if (cartesJoueur[i] == null && i == 0) {
+                pointageJoueur[0] = 0;
+            }
             if (cartesJoueur[i] == null && i == 0) {
                 pointageJoueur[0] = 0;
                 break;
@@ -92,7 +105,7 @@ public class BlackJack{
     /**
      * Méthode qui calcule les points du croupier
      */
-    private void calculerPointsCroupier(){
+    private void calculerPointsCroupier() {
         boolean aUnAs = false;
         boolean aDeuxAs = false;
         for (int i = 0; i < cartesCroupier.length; i++) {
@@ -139,56 +152,63 @@ public class BlackJack{
         } else
             pointageCroupier[1] = 50;
     }
+
     /**
      * Calculer les points, puis détermine le gagnant
-     * @return 0 si le joueur gagne 1 si le croupier gagne et 2 si c'est un match nul
+     * Change le message pour savoir qui est le gagnant.
      */
-    int determinerGagnant()
-    {
+    public void determinerGagnant() {
+        calculerPoints();
         int plusHautScoreJoueur;
         int plusHautScoreCroupier;
-
+        estTermine = true;
         if (pointageJoueur[1] > 21)
             plusHautScoreJoueur = pointageJoueur[0];
         else
-        plusHautScoreJoueur = pointageJoueur[1];
+            plusHautScoreJoueur = pointageJoueur[1];
         if (pointageCroupier[1] > 21)
             plusHautScoreCroupier = pointageCroupier[0];
         else
-        plusHautScoreCroupier = pointageCroupier[1];
-        if (plusHautScoreCroupier > 21)
-            return 0;
-        else if (plusHautScoreJoueur == plusHautScoreCroupier)
-            return 2;
+            plusHautScoreCroupier = pointageCroupier[1];
+
+        if (plusHautScoreJoueur > 21)
+            message = "Vous avez perdu :(";
+        else if (plusHautScoreCroupier > 21)
+            message = "Vous avez Gagné :) !";
         else if (plusHautScoreJoueur > plusHautScoreCroupier)
-            return 0;
+            message = "Vous avez Gagné :) !";
+        else if (plusHautScoreJoueur == plusHautScoreCroupier)
+            message = "Égalité !";
+        else if (plusHautScoreCroupier > plusHautScoreJoueur){
+            message = "Vous avez perdu :(";
+        }
         else
-            return 1;
+            estTermine = false;
     }
 
     /**
      * Méthode qui permet de trouver l'id d'une image pour une carte
+     *
      * @param nom le champ nom de l'objet carte
      * @return l'id de la ressource d'image correspondant à la carte
      */
-    int trouverIdCarte(String nom)
-    {
+    public int trouverIdCarte(String nom) {
         return paquet.trouverIdCarte(nom);
     }
 
     /**
      * Permet de piger une carte.
+     *
      * @return la carte sur le dessus du paquet.
      */
-    Carte pigerUneCarte()
-    {
+    public Carte pigerUneCarte() {
         return paquet.PigerUneCarte();
     }
 
     /**
      * Permet de reinitialiser le paquet de carte.
      */
-    void reinitialiser(){
+    public void reinitialiser() {
         paquet = new JeuDeCarte();
         estCree = true;
         indexJoueur = 0;
@@ -197,16 +217,29 @@ public class BlackJack{
         cartesCroupier = new Carte[9];
         pointageJoueur = new int[2];
         pointageCroupier = new int[2];
+        estTermine = false;
+        message = "";
     }
-    void faireJouerCroupier(){
-        int pointsCroupier = 0;
-        if (pointageCroupier[1] > 21)
-            pointsCroupier = pointageCroupier[0];
-        else
-            pointsCroupier = pointageCroupier[1];
-        while(pointsCroupier < 17 && indexCroupier < 12){
-            Carte nouvelleCarte = pigerUneCarte();
-            if (nouvelleCarte)
+
+    public void faireJouerCroupier() {
+        if (!estTermine) {
+            int pointsCroupier = 0;
+            if (pointageCroupier[1] > 21)
+                pointsCroupier = pointageCroupier[0];
+            else
+                pointsCroupier = pointageCroupier[1];
+            while (pointsCroupier < 17 && indexCroupier < 12) {
+                Carte nouvelleCarte = pigerUneCarte();
+                if (nouvelleCarte != null) {
+                    jouerPourCroupier(nouvelleCarte);
+                    if (pointageCroupier[1] > 21)
+                        pointsCroupier = pointageCroupier[0];
+                    else
+                        pointsCroupier = pointageCroupier[1];
+                }
+            }
+            estTermine = true;
+            determinerGagnant();
         }
     }
 
@@ -215,33 +248,34 @@ public class BlackJack{
      *
      * @param carte la carte qui a été pigé
      */
-    void jouerPourJoueur(Carte carte) {
-        if (carte != null && indexJoueur < 12) {
-            cartesJoueur[indexJoueur++] = carte;
-            if (pointageJoueur[0] == 21 || pointageJoueur[1] == 21)
-                //faireJouerCroupier();
-            if (pointageJoueur[0] > 21) {
-                //Toast.makeText(getApplicationContext(), "Vous avez perdu :(", Toast.LENGTH_LONG).show();
-                //estTermine = true;
+    public void jouerPourJoueur(Carte carte) {
+        if (!estTermine) {
+            if (carte != null && indexJoueur < 12) {
+                cartesJoueur[indexJoueur++] = carte;
+                calculerPoints();
+                if (pointageJoueur[0] == 21 || pointageJoueur[1] == 21)
+                    faireJouerCroupier();
+                if (pointageJoueur[0] > 21) {
+                    estTermine = true;
+                }
             }
-            calculerPoints();
         }
     }
+
     /**
      * Méthode qui joue pour le croupier (ajoute la carte au tableau de cartes, compte les points.
      *
      * @param carte la carte qui a été pigé
      */
-    void jouerPourCroupier(Carte carte) {
+    public void jouerPourCroupier(Carte carte) {
         if (carte != null && indexCroupier < 12) {
             cartesCroupier[indexCroupier++] = carte;
-            if (pointageCroupier[0] == 21 || pointageCroupier[1] == 21)
-                //faireJouerCroupier();
-                if (pointageCroupier[0] > 21) {
-                    //Toast.makeText(getApplicationContext(), "Vous avez perdu :(", Toast.LENGTH_LONG).show();
-                    //estTermine = true;
-                }
             calculerPoints();
         }
+    }
+
+    @Override
+    public void Initialiser(int seed) {
+
     }
 }

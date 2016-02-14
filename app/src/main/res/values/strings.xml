@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">KittyGames</string>
+    <string name="app_name">JeuChatton</string>
+    <string name="local_test">Localisation Français!</string>
+
+
+
+    <string name="blackjack_hit">Prochaine</string>
+    <string name="blackjack_hold">Garde</string>
 </resources>

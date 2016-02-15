@@ -9,6 +9,7 @@ import blackjack.BlackJackActivity;
 import jeudu31.JeuDu31Logique;
 import jeudu31.JeuDu31activite;
 import pyramide.pyramideActivity;
+import video.poker.VideoPokerActivity;
 
 public class MainActivity extends Activity {
     @Override
@@ -23,6 +24,10 @@ public class MainActivity extends Activity {
     public void onPyramidClick(View v){
         Intent ouvrirPyramid = new Intent(this, pyramideActivity.class);
         startActivity(ouvrirPyramid);
+    }
+    public void onVideoPokerClick(View v){
+        Intent ouvrirVideoPoker = new Intent(this, VideoPokerActivity.class);
+        startActivity(ouvrirVideoPoker);
     }
     public void onJeuDu31Click(View v)
     {

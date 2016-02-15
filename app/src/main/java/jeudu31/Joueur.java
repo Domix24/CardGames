@@ -1,6 +1,5 @@
 package jeudu31;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import utilitaire.Carte;
@@ -40,7 +39,7 @@ public class Joueur extends JeuAvecCartes {
     {
         Cogne=false;
         for(int i=0;i<3;i++)
-            ajouterCarteALaMain(paquet.PigerUneCarte());
+            ajouterCarteALaMain(paquet.pigerUneCarte());
 
     }
     public List<Carte> avoirLaMain()
@@ -96,7 +95,7 @@ public class Joueur extends JeuAvecCartes {
         SommeCoeurs=0;
         SommePiques=0;
         SommeTrèfles=0;
-        JeuEnMain.OrdonnerCartesDécroissant();
+        JeuEnMain.ordonnerCartesDécroissant();
         for(Carte ct: JeuEnMain)
         {
             switch(ct.typeCarte) {
@@ -181,6 +180,7 @@ public class Joueur extends JeuAvecCartes {
     {
         if(détecterMêmeValeur())
             return 31;
+        calculerSommeMêmeCouleur();
         if(SommeCarrés>=SommeTrèfles && SommeCarrés>=SommePiques && SommeCarrés>=SommeCoeurs)
             return SommeCarrés;
         if(SommePiques>=SommeCarrés && SommePiques>=SommeTrèfles && SommePiques>=SommeCoeurs)

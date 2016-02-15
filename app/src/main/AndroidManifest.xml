@@ -7,9 +7,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.NoTitleBar"
-        >
-        <activity android:name=".MainActivity">
+        android:theme="@android:style/Theme.NoTitleBar">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,9 +20,15 @@
         </activity>
         <activity
             android:name="blackjack.BlackJackActivity"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation"></activity>
-        <activity android:name="pyramide.pyramideActivity"></activity>
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="pyramide.pyramideActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="jeudu31.JeuDu31activite"
+            android:label="@string/title_activity_jeudu31activite"></activity>
     </application>
 
 </manifest>

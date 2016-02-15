@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageButton
-                android:layout_width="10dp"
-                android:layout_height="100dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
                 android:layout_margin="3dp"
                 android:id="@+id/btnBlackJack"
                 android:layout_column="4"
@@ -29,12 +29,21 @@
                 android:onClick="onBlackJackClick" />
 
             <ImageButton
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
                 android:layout_margin="3dp"
                 android:id="@+id/btnPyramide"
                 android:layout_column="7"
                 android:src="@drawable/pyramid"
+                android:onClick="onPyramidClick" />
+
+            <ImageButton
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btnSolitaire"
+                android:layout_column="7"
+                android:src="@drawable/solitaire"
                 android:onClick="onPyramidClick" />
 
 
@@ -61,6 +70,74 @@
                 android:id="@+id/lblPyramid"
                 android:layout_column="7"
                 android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Solitaire"
+                android:id="@+id/lblSolitaire"
+                android:layout_column="7"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow>
+            <ImageButton
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btnVideoPoker"
+                android:layout_column="4"
+                android:src="@drawable/blackjack"
+                android:onClick="onBlackJackClick" />
+
+            <ImageButton
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btnJeu5"
+                android:layout_column="7"
+                android:src="@drawable/pyramid"
+                android:onClick="onJeuDu31Click" />
+
+            <ImageButton
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btnJeu6"
+                android:layout_column="7"
+                android:src="@drawable/solitaire"
+                android:onClick="onPyramidClick" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Video Poker"
+                android:id="@+id/lblVideoPoker"
+                android:layout_column="4"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Jeu du 31"
+                android:id="@+id/lblJeu5"
+                android:layout_column="7"
+                android:onClick="onJeuDu31Click"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Iconnue"
+                android:id="@+id/lblJeu6"
+                android:layout_column="7"
+                android:textAlignment="center" />
+
         </TableRow>
     </TableLayout>
 </RelativeLayout>

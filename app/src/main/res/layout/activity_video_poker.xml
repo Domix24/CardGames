@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/blackjackbackground">
+    android:background="@drawable/pokerbackground">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -16,36 +16,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
                 android:id="@+id/imgVideo1"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
                 android:onClick="onCardVideoClick" />
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
                 android:id="@+id/imgVideo2"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
                 android:onClick="onCardVideoClick" />
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
                 android:id="@+id/imgVideo3"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
                 android:onClick="onCardVideoClick" />
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
                 android:id="@+id/imgVideo4"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
                 android:onClick="onCardVideoClick" />
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
                 android:id="@+id/imgVideo5"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
@@ -59,7 +59,17 @@
                 android:layout_height="wrap_content"
                 android:text="Valider"
                 android:id="@+id/btnValiderVideo"
-                android:layout_column="1"
+                android:layout_column="2"
+                android:layout_span="3"
+                android:layout_gravity="bottom"
+                android:onClick="onValiderVideoClick" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rejouer"
+                android:id="@+id/btnRejouer"
+                android:layout_column="2"
+                android:layout_span="3"
                 android:layout_gravity="bottom"
                 android:onClick="onValiderVideoClick" />
             </TableRow>

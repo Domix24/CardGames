@@ -55,7 +55,7 @@ public class BlackJack extends JeuAvecCartes {
      */
     private void calculerPointsJoueur() {
         boolean aUnAs = false;
-        boolean aDeuxAs = false;
+        boolean aCompterAs = false;
         for (int i = 0; i < cartesJoueur.length; i++) {
             if (cartesJoueur[i] == null && i != 0)
                 break;
@@ -70,8 +70,8 @@ public class BlackJack extends JeuAvecCartes {
                 pointageJoueur[0] += 10;
             else
                 pointageJoueur[0] += cartesJoueur[i].numero;
-            if (cartesJoueur[i].numero == 1 && aUnAs) {
-                aDeuxAs = true;
+            if (cartesJoueur[i].numero == 1) {
+                aUnAs = true;
             }
             if (cartesJoueur[i].numero == 1)
                 aUnAs = true;
@@ -82,25 +82,16 @@ public class BlackJack extends JeuAvecCartes {
                     break;
                 if (cartesJoueur[i].numero >= 10)
                     pointageJoueur[1] += 10;
-                else if (cartesJoueur[i].numero == 1)
+                else if (cartesJoueur[i].numero == 1 && !aCompterAs){
                     pointageJoueur[1] += 11;
+                    aCompterAs = true;
+                }
+
                 else
                     pointageJoueur[1] += cartesJoueur[i].numero;
             }
-        } else if (aDeuxAs) {
-            boolean estPremierAs = true;
-            for (int i = 0; i < cartesJoueur.length; i++) {
-                if (cartesJoueur[i] == null)
-                    break;
-                if (cartesJoueur[i].numero >= 10)
-                    pointageJoueur[1] += 10;
-                else if (cartesJoueur[i].numero == 1 && estPremierAs) {
-                    pointageJoueur[1] += 11;
-                    estPremierAs = false;
-                } else
-                    pointageJoueur[1] += cartesJoueur[i].numero;
-            }
-        } else
+        }
+        else
             pointageJoueur[1] = 50;
     }
 
@@ -130,11 +121,10 @@ public class BlackJack extends JeuAvecCartes {
                     break;
                 if (cartesCroupier[i].numero >= 10)
                     pointageCroupier[1] += 10;
-                else if (cartesCroupier[i].numero == 1 && !aCompterAs){
+                else if (cartesCroupier[i].numero == 1 && !aCompterAs) {
                     aCompterAs = true;
                     pointageCroupier[1] += 11;
-                }
-                else
+                } else
                     pointageCroupier[1] += cartesCroupier[i].numero;
             }
         } else
@@ -162,24 +152,19 @@ public class BlackJack extends JeuAvecCartes {
         if (plusHautScoreJoueur > 21) {
             message = "Vous avez perdu :(";
             drapeauFinPartie = 1;
-        }
-        else if (plusHautScoreCroupier > 21) {
+        } else if (plusHautScoreCroupier > 21) {
             message = "Vous avez Gagné :) !";
             drapeauFinPartie = 3;
-        }
-        else if (plusHautScoreJoueur > plusHautScoreCroupier) {
+        } else if (plusHautScoreJoueur > plusHautScoreCroupier) {
             message = "Vous avez Gagné :) !";
             drapeauFinPartie = 3;
-        }
-        else if (plusHautScoreJoueur == plusHautScoreCroupier) {
+        } else if (plusHautScoreJoueur == plusHautScoreCroupier) {
             message = "Égalité !";
             drapeauFinPartie = 2;
-        }
-        else if (plusHautScoreCroupier > plusHautScoreJoueur){
+        } else if (plusHautScoreCroupier > plusHautScoreJoueur) {
             message = "Vous avez perdu :(";
             drapeauFinPartie = 1;
-        }
-        else
+        } else
             estTermine = false;
     }
 

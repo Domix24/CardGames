@@ -29,7 +29,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
             Carte carteTemp4  = new Carte(i+1,Color.RED,0,"" + type.Coeur + ""+ (i+1), type.Coeur);
             add(carteTemp4);
         }
-        MélangerPaquet();
+        mélangerPaquet();
         remplirDictionnaire();
     }
 
@@ -115,7 +115,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
     }
 
 
-    public void OrdonnerCartesCroissant()
+    public void ordonnerCartesCroissant()
     {
         ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
         if(this.size()>1) {
@@ -138,7 +138,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
             }
         }
     }
-    public void OrdonnerCartesDécroissant()
+    public void ordonnerCartesDécroissant()
     {
         ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
         if(this.size()>1) {
@@ -161,7 +161,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
             }
         }
     }
-    public void MélangerPaquet()
+    public void mélangerPaquet()
     {
         List<Carte> paquetmélangeur = new ArrayList<Carte>();
         Random rng = new Random();
@@ -186,7 +186,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
      * Méthode pour donnée à un paquet de cartes une ordre décider d'avance pour les tests
      * @param cartes
      */
-    public void PlacerJeuCarte(ArrayList<Carte> cartes)
+    public void placerJeuCarte(ArrayList<Carte> cartes)
     {
         this.clear();
         for (Carte carte: cartes) {
@@ -198,7 +198,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
      * 
      * @return retourne la carte sur le dessus et refait le paquet avec la carte en moins. Si aucune carte n'a été pigée, retourne null.
      */
-    public Carte PigerUneCarte() {
+    public Carte pigerUneCarte() {
         Carte carteTemporaire = null;
         if (this.size()>0) {
             carteTemporaire=this.get(this.size()-1);

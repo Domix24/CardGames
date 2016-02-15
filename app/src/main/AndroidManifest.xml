@@ -27,7 +27,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"></activity>
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
-        <activity android:name="pyramide.pyramideActivity" />
         <activity android:name="video.poker.VideoPokerActivity"></activity>
     </application>
 

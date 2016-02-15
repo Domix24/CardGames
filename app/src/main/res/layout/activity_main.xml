@@ -72,10 +72,10 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="5dp"
-                android:id="@+id/btnSolitaire"
+                android:id="@+id/btnVideoPoker"
                 android:layout_column="1"
                 android:src="@drawable/solitaire"
-                android:onClick="onPyramidClick" />
+                android:onClick="onVideoPokerClick" />
             <ImageButton
                 android:layout_width="120dp"
                 android:layout_height="120dp"

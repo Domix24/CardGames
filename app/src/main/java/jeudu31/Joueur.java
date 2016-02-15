@@ -1,6 +1,5 @@
 package jeudu31;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import utilitaire.Carte;
@@ -50,7 +49,7 @@ public class Joueur extends JeuAvecCartes{
         {
             for(int i=0;i<3;i++)
             {
-                JeuEnMain.add(paquet.PigerUneCarte());
+                JeuEnMain.add(paquet.pigerUneCarte());
             }
         }
     }
@@ -101,7 +100,7 @@ public class Joueur extends JeuAvecCartes{
         SommeCoeurs=0;
         SommePiques=0;
         SommeTrèfles=0;
-        JeuEnMain.OrdonnerCartesDécroissant();
+        JeuEnMain.ordonnerCartesDécroissant();
         for(Carte ct: JeuEnMain)
         {
             switch(ct.typeCarte) {

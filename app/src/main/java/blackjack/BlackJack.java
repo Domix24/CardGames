@@ -202,7 +202,7 @@ public class BlackJack extends JeuAvecCartes {
      * @return la carte sur le dessus du paquet.
      */
     public Carte pigerUneCarte() {
-        return paquet.PigerUneCarte();
+        return paquet.pigerUneCarte();
     }
 
     /**

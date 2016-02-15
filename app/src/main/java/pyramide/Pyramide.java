@@ -95,19 +95,19 @@ public class Pyramide extends JeuAvecCartes {
         lstJeu.add(new Carte[24]);
         for(int i=0;i<7;i++) {
             if(i==0)
-                lstJeu.get(0)[i] = paquet.PigerUneCarte();
+                lstJeu.get(0)[i] = paquet.pigerUneCarte();
             if(i<=1)
-                lstJeu.get(1)[i] = paquet.PigerUneCarte();
+                lstJeu.get(1)[i] = paquet.pigerUneCarte();
             if(i<=2)
-                lstJeu.get(2)[i] = paquet.PigerUneCarte();
+                lstJeu.get(2)[i] = paquet.pigerUneCarte();
             if(i<=3)
-                lstJeu.get(3)[i] = paquet.PigerUneCarte();
+                lstJeu.get(3)[i] = paquet.pigerUneCarte();
             if(i<=4)
-                lstJeu.get(4)[i] = paquet.PigerUneCarte();
+                lstJeu.get(4)[i] = paquet.pigerUneCarte();
             if(i<=5)
-                lstJeu.get(5)[i] = paquet.PigerUneCarte();
+                lstJeu.get(5)[i] = paquet.pigerUneCarte();
             if(i<=6) {
-                lstJeu.get(6)[i] = paquet.PigerUneCarte();
+                lstJeu.get(6)[i] = paquet.pigerUneCarte();
                 //lstJeu.get(6)[i].disponible=true;
             }
         }
@@ -167,7 +167,7 @@ public class Pyramide extends JeuAvecCartes {
     private void remplirStock()
     {
         for(int i=0;i<24;i++)
-            lstStock.add(paquet.PigerUneCarte());
+            lstStock.add(paquet.pigerUneCarte());
     }
 
     /**

@@ -16,7 +16,7 @@ public class PyramideLogique {
     private List<Carte> lstStock;
     private List<Carte> lstWaste;
 
-    public void PyramideLogique() {
+    public PyramideLogique() {
         CommencerNouvellePartie();
     }
 
@@ -26,8 +26,8 @@ public class PyramideLogique {
     public void CommencerNouvellePartie() {
         paquet = new JeuDeCarte();
         pyramideArray = new ArrayList<Carte[]>();
-        lstStock.clear();
-        lstWaste.clear();
+        lstStock = new ArrayList<Carte>();
+        lstWaste = new ArrayList<Carte>();
         EnvoyerPaquetAPyramide();
         RemplirStock();
     }
@@ -65,14 +65,20 @@ public class PyramideLogique {
      * Enlève la carte de la pyramide si c'est un roi non-obstrué par une autre carte
      * @param rangée
      * @param colonne
+     * @return True si la carte a été enlevée de la pyramide, false sinon
      */
-    public void EnleverCartes(int rangée, int colonne) {
+    public boolean EnleverCartes(int rangée, int colonne) {
+        boolean carteEnlevée = false;
+
         if (pyramideArray.get(rangée)[colonne] != null &&
                 pyramideArray.get(rangée)[colonne].numero == 13) {
             if (DéterminerDisponibilité(rangée, colonne)) {
                 pyramideArray.get(rangée)[colonne] = null;
+                carteEnlevée = true;
             }
         }
+
+        return carteEnlevée;
     }
 
     /**
@@ -82,8 +88,11 @@ public class PyramideLogique {
      * @param colonne1 Colonne de la première carte
      * @param rangée2 Rangée de la deuxième carte
      * @param colonne2 Colonne de la deuxième carte
+     * @return True si les cartes ont été enlevées, False sinon
      */
-    public void EnleverCartes(int rangée1, int colonne1, int rangée2, int colonne2) {
+    public boolean EnleverCartes(int rangée1, int colonne1, int rangée2, int colonne2) {
+        boolean cartesEnlevées = false;
+
         if (pyramideArray.get(rangée1)[colonne1] != null &&
                 pyramideArray.get(rangée2)[colonne2] != null) {
 
@@ -94,9 +103,31 @@ public class PyramideLogique {
 
                     pyramideArray.get(rangée1)[colonne1] = null;
                     pyramideArray.get(rangée2)[colonne2] = null;
+
+                    cartesEnlevées = true;
                 }
             }
         }
+
+        return cartesEnlevées;
+    }
+
+    /**
+     * Vérifie si la partie est terminée. Elle est terminée soit par une victoire ou une défaite
+     * Elle n'est pas terminée s'il reste des mouvements possibles
+     * @return True si partie terminée, faux sinon
+     */
+    public boolean vérifierFinPartie() {
+        boolean partieTerminée = false;
+        boolean pyramideVide = false;
+
+
+        // Si la pyramide est vide, la partie est gagnée
+        do {
+
+        } while (pyramideVide);
+
+        return false;
     }
 
     /**

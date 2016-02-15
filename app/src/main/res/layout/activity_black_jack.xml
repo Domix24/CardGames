@@ -16,51 +16,46 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgEndos"
-                android:layout_column="1"
                 android:src="@drawable/back"
                 android:layout_gravity="bottom"/>
+
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer1"
-                android:layout_column="1"
                 android:src="@drawable/spades_a"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer2"
-                android:layout_column="2"
                 android:src="@drawable/spades_2"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer3"
-                android:layout_column="3"
                 android:src="@drawable/spades_3"
                 android:layout_gravity="bottom"/>
+
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer4"
-                android:layout_column="4"
                 android:src="@drawable/spades_4"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer5"
-                android:layout_column="5"
-                android:src="@drawable/spades_5"
+                android:src="@drawable/spades_4"
                 android:layout_gravity="bottom"/>
-
 
         </TableRow>
         <TableRow
@@ -68,37 +63,37 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer6"
                 android:layout_column="2"
                 android:src="@drawable/spades_6"
                 android:layout_gravity="top"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer7"
                 android:layout_column="3"
                 android:src="@drawable/spades_7"
                 android:layout_gravity="top"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer8"
                 android:layout_column="4"
                 android:src="@drawable/spades_8"
                 android:layout_gravity="top"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgDealer9"
                 android:layout_column="5"
                 android:src="@drawable/spades_9"
                 android:layout_gravity="top"/>
-            </TableRow>
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -110,7 +105,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Ses points: "
                 android:id="@+id/lblCroupier"
-                android:layout_column="7" />
+                android:layout_column="8"
+                android:layout_marginLeft="50dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -118,7 +114,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="0 points"
                 android:id="@+id/lblPointsCroupier"
-                android:layout_column="8" />
+                android:layout_column="9" />
 
         </TableRow>
 
@@ -132,7 +128,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Vos points: "
                 android:id="@+id/lblJoueur"
-                android:layout_column="7" />
+                android:layout_column="8"
+                android:layout_marginLeft="50dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -140,19 +137,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="0 points"
                 android:id="@+id/lblPointsJoueur"
-                android:layout_column="8" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+                android:layout_column="9" />
         </TableRow>
 
         <TableRow
@@ -160,53 +145,55 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte1"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte2"
                 android:layout_column="2"
                 android:src="@drawable/spades_2"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte3"
                 android:layout_column="3"
                 android:src="@drawable/spades_3"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte4"
                 android:layout_column="4"
                 android:src="@drawable/spades_4"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte5"
                 android:layout_column="5"
                 android:src="@drawable/spades_5"
                 android:layout_gravity="bottom"/>
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hit"
                 android:layout_gravity="bottom"
                 android:id="@+id/btnHit"
-                android:layout_column="6"
-                android:onClick="onHitClick" />
+                android:layout_column="8"
+                android:onClick="onHitClick"
+                android:layout_marginLeft="50dp"
+               />
 
 
         </TableRow>
@@ -215,45 +202,46 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte6"
                 android:layout_column="1"
                 android:src="@drawable/spades_6"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte7"
                 android:layout_column="2"
                 android:src="@drawable/spades_7"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte8"
                 android:layout_column="3"
                 android:src="@drawable/spades_8"
                 android:layout_gravity="bottom"/>
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
                 android:id="@+id/imgCarte9"
                 android:layout_column="4"
                 android:src="@drawable/spades_9"
                 android:layout_gravity="bottom"/>
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hold"
                 android:id="@+id/btnHold"
-                android:layout_column="6"
+                android:layout_column="8"
                 android:layout_gravity="bottom"
-                android:onClick="onHoldClick" />
+                android:onClick="onHoldClick"
+                android:layout_marginLeft="50dp"/>
         </TableRow>
     </TableLayout>
 </RelativeLayout>

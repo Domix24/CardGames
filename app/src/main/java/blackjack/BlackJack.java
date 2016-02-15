@@ -19,6 +19,7 @@ public class BlackJack extends JeuAvecCartes {
     public int[] pointageCroupier;
     public boolean estTermine = false;
     public String message = "";
+    public int drapeauFinPartie = 0;
 
     private BlackJack() {
         paquet = new JeuDeCarte();
@@ -26,6 +27,7 @@ public class BlackJack extends JeuAvecCartes {
 
     /**
      * Permet d'avoir l'instance du jeu
+     *
      * @return l'instance du jeu BlackJack
      */
     public static BlackJack avoirInstance() {
@@ -107,7 +109,7 @@ public class BlackJack extends JeuAvecCartes {
      */
     private void calculerPointsCroupier() {
         boolean aUnAs = false;
-        boolean aDeuxAs = false;
+        boolean aCompterAs = false;
         for (int i = 0; i < cartesCroupier.length; i++) {
             if (cartesCroupier[i] == null && i != 0)
                 break;
@@ -119,9 +121,6 @@ public class BlackJack extends JeuAvecCartes {
                 pointageCroupier[0] += 10;
             else
                 pointageCroupier[0] += cartesCroupier[i].numero;
-            if (cartesCroupier[i].numero == 1 && aUnAs) {
-                aDeuxAs = true;
-            }
             if (cartesCroupier[i].numero == 1)
                 aUnAs = true;
         }
@@ -131,22 +130,11 @@ public class BlackJack extends JeuAvecCartes {
                     break;
                 if (cartesCroupier[i].numero >= 10)
                     pointageCroupier[1] += 10;
-                else if (cartesCroupier[i].numero == 1)
+                else if (cartesCroupier[i].numero == 1 && !aCompterAs){
+                    aCompterAs = true;
                     pointageCroupier[1] += 11;
+                }
                 else
-                    pointageCroupier[1] += cartesCroupier[i].numero;
-            }
-        } else if (aDeuxAs) {
-            boolean estPremierAs = true;
-            for (int i = 0; i < cartesCroupier.length; i++) {
-                if (cartesCroupier[i] == null)
-                    break;
-                if (cartesCroupier[i].numero >= 10)
-                    pointageCroupier[1] += 10;
-                else if (cartesCroupier[i].numero == 1 && estPremierAs) {
-                    pointageCroupier[1] += 11;
-                    estPremierAs = false;
-                } else
                     pointageCroupier[1] += cartesCroupier[i].numero;
             }
         } else
@@ -158,7 +146,7 @@ public class BlackJack extends JeuAvecCartes {
      * Change le message pour savoir qui est le gagnant.
      */
     public void determinerGagnant() {
-        calculerPoints();
+
         int plusHautScoreJoueur;
         int plusHautScoreCroupier;
         estTermine = true;
@@ -171,16 +159,25 @@ public class BlackJack extends JeuAvecCartes {
         else
             plusHautScoreCroupier = pointageCroupier[1];
 
-        if (plusHautScoreJoueur > 21)
+        if (plusHautScoreJoueur > 21) {
             message = "Vous avez perdu :(";
-        else if (plusHautScoreCroupier > 21)
+            drapeauFinPartie = 1;
+        }
+        else if (plusHautScoreCroupier > 21) {
             message = "Vous avez Gagné :) !";
-        else if (plusHautScoreJoueur > plusHautScoreCroupier)
+            drapeauFinPartie = 3;
+        }
+        else if (plusHautScoreJoueur > plusHautScoreCroupier) {
             message = "Vous avez Gagné :) !";
-        else if (plusHautScoreJoueur == plusHautScoreCroupier)
+            drapeauFinPartie = 3;
+        }
+        else if (plusHautScoreJoueur == plusHautScoreCroupier) {
             message = "Égalité !";
+            drapeauFinPartie = 2;
+        }
         else if (plusHautScoreCroupier > plusHautScoreJoueur){
             message = "Vous avez perdu :(";
+            drapeauFinPartie = 1;
         }
         else
             estTermine = false;
@@ -239,6 +236,7 @@ public class BlackJack extends JeuAvecCartes {
                 }
             }
             estTermine = true;
+            calculerPoints();
             determinerGagnant();
         }
     }
@@ -278,4 +276,5 @@ public class BlackJack extends JeuAvecCartes {
     public void Initialiser(int seed) {
 
     }
+
 }

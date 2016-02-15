@@ -9,11 +9,12 @@ import utilitaire.JeuDeCarte;
  */
 public class VideoPoker extends JeuAvecCartes {
     private static VideoPoker instance = null;
-    JeuDeCarte paquetPremier = null;
-    JeuDeCarte paquetFinal = null;
+    JeuDeCarte paquetPremier = new JeuDeCarte();
+    JeuDeCarte paquetFinal = new JeuDeCarte();
     boolean aPremièresCartes = false;
     int nbCartesGardées = 0;
-    boolean estCree = true;
+    boolean estCree = false;
+    boolean aValider = false;
 
     /**
      * Constructeur
@@ -38,10 +39,13 @@ public class VideoPoker extends JeuAvecCartes {
 
     public void reinitialiserJeu() {
         paquet = new JeuDeCarte();
-        paquetFinal = null;
-        paquetPremier = null;
+        paquetFinal.clear();
+        paquetPremier.clear();
         aPremièresCartes = false;
         nbCartesGardées = 0;
+        estCree = true;
+        aValider = false;
+        passerCartes();
     }
 
     /**
@@ -66,19 +70,22 @@ public class VideoPoker extends JeuAvecCartes {
      * Lorsque le joueur a décidé quel cartes il voulait garder, garder les cartes, en passer d'autres et vérifier les points
      */
     public JeuDeCarte validerCartes(JeuDeCarte cartes) {
-        for (int i = 0; i < 5; i++) {
-            if (cartes.get(i) != null) {
-                paquetFinal.add(cartes.get(i));
-                nbCartesGardées++;
-            } else {
-                break;
+        if (!aValider){
+            for (int i = 0; i < 5; i++) {
+                if (cartes.get(i).nom != "null") {
+                    paquetFinal.add(cartes.get(i));
+                    nbCartesGardées++;
+                }
             }
+            aValider = true;
+            passerCartes();
+            int nbJetons = compterPoints();
+            return paquetFinal;
         }
-        passerCartes();
-        int nbJetons = compterPoints();
-        return paquetFinal;
-    }
+        else
+            return null;
 
+    }
     private int compterPoints() {
         int nbJetons = 0;
         paquetFinal.ordonnerCartesCroissant();

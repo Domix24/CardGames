@@ -209,35 +209,20 @@ public class PyramideLogique {
      * @return Vrai si la carte est disponible, Faux si la carte est bloquée
      */
     private boolean DéterminerDisponibilité(int rangée, int colonne) {
-        boolean disponible = false;
+        boolean disponible = true;
 
-        if (rangée < 7) {
-            if (rangée == 7) {
-                if (colonne >= 0 && colonne < 7)
-                    disponible = true;
-            }
-            else {
-                // vérifier si les deux cartes en dessous sont encore là
-                // Si l'index n'existe pas, il n'y a donc pas de carte (catch)
-                try {
-                    Carte c = pyramideArray.get(rangée + 1)[colonne];
-                    if (pyramideArray.get(rangée + 1)[colonne] != null)
-                        disponible = false;
-                }
-                catch (Exception e) {
-                    disponible = true;
-                }
-
-                if (disponible == true) {
-                    try {
-                        if (pyramideArray.get(rangée + 1)[colonne + 1] != null)
-                            disponible = false;
-                    } catch (Exception e) {
-                        disponible = true;
-                    }
-                }
-            }
+        if (rangée > 6 || rangée < 0) {
+            disponible = false;
         }
+        else if (rangée < 6) {
+            // vérifier si les deux cartes en dessous sont encore là
+            if (pyramideArray.get(rangée + 1)[colonne] != null)
+                disponible = false;
+
+            if (pyramideArray.get(rangée + 1)[colonne + 1] != null)
+                disponible = false;
+        }
+
 
         return disponible;
     }

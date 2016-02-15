@@ -67,6 +67,15 @@
                 android:id="@+id/btnValiderVideo"
                 android:layout_gravity="bottom"
                 android:onClick="onValiderVideoClick" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rejouer"
+                android:layout_span="3"
+                android:layout_column="1"
+                android:id="@+id/btnRejouer"
+                android:layout_gravity="bottom"
+                android:onClick="onValiderVideoClick" />
             </TableRow>
     </TableLayout>
 </RelativeLayout>

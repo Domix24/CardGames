@@ -99,6 +99,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
         dictionnaire.put("Pique13", R.drawable.spades_k);
     }
 
+
     /**
      * Méthode qui permet de trouver l'id d'une image pour une carte
      * @param nom le champ nom de l'objet carte

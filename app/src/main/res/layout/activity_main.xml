@@ -18,27 +18,27 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageButton
-                android:layout_width="10dp"
-                android:layout_height="100dp"
-                android:layout_margin="3dp"
-                android:id="@+id/btnBlackJack"
-                android:layout_column="4"
-                android:src="@drawable/blackjack"
-                android:onClick="onBlackJackClick" />
+            android:layout_height="match_parent"></TableRow>
 
-            <ImageButton
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="3dp"
-                android:id="@+id/btnPyramide"
-                android:layout_column="7"
-                android:src="@drawable/pyramid"
-                android:onClick="onPyramidClick" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
 
-        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -47,20 +47,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="BlackJack"
-                android:id="@+id/lblBlackJack"
-                android:layout_column="4"
-                android:textAlignment="center" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Pyramide"
-                android:id="@+id/lblPyramid"
-                android:layout_column="7"
-                android:textAlignment="center" />
+                android:text="@string/local_test"
+                android:id="@+id/textView"
+                android:layout_column="1" />
         </TableRow>
     </TableLayout>
 </RelativeLayout>

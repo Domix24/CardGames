@@ -115,7 +115,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
     }
 
 
-    public void OrdonnerCartes()
+    public void OrdonnerCartesCroissant()
     {
         ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
         if(this.size()>1) {
@@ -129,6 +129,29 @@ public class JeuDeCarte extends ArrayList<Carte> {
                         this.set(u, paquetTemoin.get(u));
                     }
                     if (paquetTemoin.get(i).sorte < paquetTemoin.get(u).sorte) {
+                        paquetTemoin.set(u,paquetTemoin.get(i));
+                        paquetTemoin.set(i, this.get(u));
+                        this.set(i, paquetTemoin.get(i));
+                        this.set(u, paquetTemoin.get(u));
+                    }
+                }
+            }
+        }
+    }
+    public void OrdonnerCartesDécroissant()
+    {
+        ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
+        if(this.size()>1) {
+            for (int i = 0; i < this.size(); i++) {
+                for(int u=0;u<this.size();u++) {
+                    //SI ma carte actuel est > que ma carte précédente , swapper actuel et précédente.
+                    if (paquetTemoin.get(i).numero > paquetTemoin.get(u).numero) {
+                        paquetTemoin.set(u,paquetTemoin.get(i));
+                        paquetTemoin.set(i, this.get(u));
+                        this.set(i, paquetTemoin.get(i));
+                        this.set(u, paquetTemoin.get(u));
+                    }
+                    if (paquetTemoin.get(i).sorte > paquetTemoin.get(u).sorte) {
                         paquetTemoin.set(u,paquetTemoin.get(i));
                         paquetTemoin.set(i, this.get(u));
                         this.set(i, paquetTemoin.get(i));

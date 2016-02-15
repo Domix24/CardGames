@@ -45,6 +45,51 @@ public class PyramideLogique {
         return pyramideArray;
     }
 
+    public int GetNombreStock() {
+        return lstStock.size();
+    }
+
+    /**
+     * Enlève la carte de la pyramide si c'est un roi non-obstrué par une autre carte
+     * @param rangée
+     * @param colonne
+     */
+    public void EnleverCartes(int rangée, int colonne) {
+        if (pyramideArray.get(rangée)[colonne] != null &&
+                pyramideArray.get(rangée)[colonne].numero == 13) {
+            if (DéterminerDisponibilité(rangée, colonne)) {
+                pyramideArray.get(rangée)[colonne] = null;
+            }
+        }
+    }
+
+    /**
+     * Enlève les deux cartes de la pyramide si elles ont un total de valeurs de 13
+     * et qu'elles sont ni l'une ni l'autre obstruée
+     * @param rangée1 Rangée de la première carte
+     * @param colonne1 Colonne de la première carte
+     * @param rangée2 Rangée de la deuxième carte
+     * @param colonne2 Colonne de la deuxième carte
+     */
+    public void EnleverCartes(int rangée1, int colonne1, int rangée2, int colonne2) {
+        if (pyramideArray.get(rangée1)[colonne1] != null &&
+                pyramideArray.get(rangée2)[colonne2] != null) {
+
+            if ((pyramideArray.get(rangée1)[colonne1].numero + pyramideArray.get(rangée2)[colonne2].numero) == 13) {
+
+                if (DéterminerDisponibilité(rangée1, colonne1) == true &&
+                        DéterminerDisponibilité(rangée2, colonne2) == true) {
+
+                    pyramideArray.get(rangée1)[colonne1] = null;
+                    pyramideArray.get(rangée2)[colonne2] = null;
+                }
+            }
+        }
+    }
+
+    /**
+     * Remplir les 7 rangées de la pyramide avec les cartes du paquet
+     */
     private void RemplirPyramide() {
         pyramideArray.add(new Carte[1]);
         pyramideArray.add(new Carte[2]);
@@ -79,7 +124,12 @@ public class PyramideLogique {
         }
     }
 
-    private boolean DétrminerDisponibilité(int rangée, int colonne) {
+    /**
+     * @param rangée Rangée dans laquelle la carte à enlever est située
+     * @param colonne Colonne dans laquelle la carte à enlever est située
+     * @return Vrai si la carte est disponible, Faux si la carte est bloquée
+     */
+    private boolean DéterminerDisponibilité(int rangée, int colonne) {
         boolean disponible = false;
 
         if (rangée < 7) {
@@ -111,5 +161,13 @@ public class PyramideLogique {
         return disponible;
     }
 
+    /**
+     * Retourne l'id de la carte (ex: pour pouvoir afficher l'image associée à la carte)
+     * @param nom Le nom de l'objet carte
+     * @return L'ID de la carte
+     */
+    public int trouverIdCarte(String nom) {
+        return paquet.trouverIdCarte(nom);
+    }
 
 }

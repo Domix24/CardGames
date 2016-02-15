@@ -63,6 +63,10 @@ public class VideoPokerActivity extends Activity {
         jeu.validerCartes(carteValider);
         replacerJeu();
     }
+    public void onRecommencerClick(View v) {
+        jeu.reinitialiserJeu();
+        replacerJeu();
+    }
     public void onCardVideoClick(View v) {
         switch(v.getId()){
             case R.id.imgVideo1:

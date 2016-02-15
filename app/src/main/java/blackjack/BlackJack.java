@@ -26,6 +26,7 @@ public class BlackJack extends JeuAvecCartes {
 
     /**
      * Permet d'avoir l'instance du jeu
+     *
      * @return l'instance du jeu BlackJack
      */
     public static BlackJack avoirInstance() {
@@ -107,7 +108,7 @@ public class BlackJack extends JeuAvecCartes {
      */
     private void calculerPointsCroupier() {
         boolean aUnAs = false;
-        boolean aDeuxAs = false;
+        boolean aCompterAs = false;
         for (int i = 0; i < cartesCroupier.length; i++) {
             if (cartesCroupier[i] == null && i != 0)
                 break;
@@ -119,9 +120,6 @@ public class BlackJack extends JeuAvecCartes {
                 pointageCroupier[0] += 10;
             else
                 pointageCroupier[0] += cartesCroupier[i].numero;
-            if (cartesCroupier[i].numero == 1 && aUnAs) {
-                aDeuxAs = true;
-            }
             if (cartesCroupier[i].numero == 1)
                 aUnAs = true;
         }
@@ -131,22 +129,11 @@ public class BlackJack extends JeuAvecCartes {
                     break;
                 if (cartesCroupier[i].numero >= 10)
                     pointageCroupier[1] += 10;
-                else if (cartesCroupier[i].numero == 1)
+                else if (cartesCroupier[i].numero == 1 && !aCompterAs){
+                    aCompterAs = true;
                     pointageCroupier[1] += 11;
+                }
                 else
-                    pointageCroupier[1] += cartesCroupier[i].numero;
-            }
-        } else if (aDeuxAs) {
-            boolean estPremierAs = true;
-            for (int i = 0; i < cartesCroupier.length; i++) {
-                if (cartesCroupier[i] == null)
-                    break;
-                if (cartesCroupier[i].numero >= 10)
-                    pointageCroupier[1] += 10;
-                else if (cartesCroupier[i].numero == 1 && estPremierAs) {
-                    pointageCroupier[1] += 11;
-                    estPremierAs = false;
-                } else
                     pointageCroupier[1] += cartesCroupier[i].numero;
             }
         } else
@@ -179,10 +166,9 @@ public class BlackJack extends JeuAvecCartes {
             message = "Vous avez Gagné :) !";
         else if (plusHautScoreJoueur == plusHautScoreCroupier)
             message = "Égalité !";
-        else if (plusHautScoreCroupier > plusHautScoreJoueur){
+        else if (plusHautScoreCroupier > plusHautScoreJoueur) {
             message = "Vous avez perdu :(";
-        }
-        else
+        } else
             estTermine = false;
     }
 

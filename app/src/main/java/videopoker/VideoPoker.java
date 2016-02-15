@@ -49,12 +49,12 @@ public class VideoPoker extends JeuAvecCartes {
     private void passerCartes() {
         if (aPremièresCartes) {
             for (int i = nbCartesGardées; i < 5; i++) {
-                paquetFinal.add(paquet.PigerUneCarte());
+                paquetFinal.add(paquet.pigerUneCarte());
             }
         } else {
             aPremièresCartes = true;
             for (int i = 0; i < 5; i++) {
-                paquetPremier[i] = paquet.PigerUneCarte();
+                paquetPremier[i] = paquet.pigerUneCarte();
             }
         }
     }
@@ -77,7 +77,7 @@ public class VideoPoker extends JeuAvecCartes {
 
     private int compterPoints() {
         int nbJetons = 0;
-        paquetFinal.OrdonnerCartesCroissant();
+        paquetFinal.ordonnerCartesCroissant();
         if (siValetouMieux()) {
             nbJetons = 10;
         }
@@ -211,8 +211,8 @@ public class VideoPoker extends JeuAvecCartes {
      * @return vrai si c'est une couleur, faux sinon
      */
     private boolean siCouleur() {
-        if (paquetFinal.get(0).couleur == paquetFinal.get(1).couleur && paquetFinal.get(1).couleur == paquetFinal.get(2).couleur &&
-                paquetFinal.get(2).couleur == paquetFinal.get(3).couleur && paquetFinal.get(3).couleur == paquetFinal.get(4).couleur)
+        if (paquetFinal.get(0).sorte == paquetFinal.get(1).sorte && paquetFinal.get(1).sorte == paquetFinal.get(2).sorte &&
+                paquetFinal.get(2).sorte == paquetFinal.get(3).sorte && paquetFinal.get(3).sorte == paquetFinal.get(4).sorte)
             return true;
         return false;
     }
@@ -299,7 +299,7 @@ public class VideoPoker extends JeuAvecCartes {
     }
 
     private boolean siSuiteCouleurRoyal() {
-        int couleur = paquetFinal.get(0).couleur;
+        int couleur = paquetFinal.get(0).sorte;
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
                 if (!(paquetFinal.get(i).numero == 1 && paquetFinal.get(1).numero == 10)) {
@@ -307,7 +307,7 @@ public class VideoPoker extends JeuAvecCartes {
                 }
             } else if (!(paquetFinal.get(i).numero == paquetFinal.get(i + 1).numero + 1)) {
                 return false;
-            } else if (paquetFinal.get(i).couleur != couleur || paquetFinal.get(i + 1).couleur != couleur)
+            } else if (paquetFinal.get(i).sorte != couleur || paquetFinal.get(i + 1).sorte != couleur)
                 return false;
         }
         return true;

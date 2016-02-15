@@ -1,7 +1,5 @@
 package dom.solitaire;
 
-import android.app.Notification;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -49,7 +47,7 @@ public class Solitaire extends JeuAvecCartes {
 
         paquet = new JeuDeCarte();
 
-        paquet.MélangerPaquet();
+        paquet.mélangerPaquet();
 
         InitialiserTableau();
     }
@@ -58,14 +56,14 @@ public class Solitaire extends JeuAvecCartes {
      * Pige une nouvelle carte et remet le waste dans le paquet si plus de carte
      */
     public void PigerNouvelleCarte() {
-        Carte carte = paquet.PigerUneCarte();
+        Carte carte = paquet.pigerUneCarte();
 
         if(carte == null)
         {
             while(!waste.isEmpty()) {
                 paquet.add(waste.poll());
             }
-            carte = paquet.PigerUneCarte();
+            carte = paquet.pigerUneCarte();
         }
     }
 
@@ -103,7 +101,7 @@ public class Solitaire extends JeuAvecCartes {
         for(int i = 0; i < TABLEAU_COLUMNS_COUNT; i++) {
             tableau[i] = new ArrayList<>();
             for(int j = 0 ; j < i+2; j++) {
-                tableau[i].add(new CarteColonne(paquet.PigerUneCarte(), j == i+1));
+                tableau[i].add(new CarteColonne(paquet.pigerUneCarte(), j == i+1));
             }
         }
     }

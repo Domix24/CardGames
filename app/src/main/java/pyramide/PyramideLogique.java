@@ -28,23 +28,35 @@ public class PyramideLogique {
         pyramideArray = new ArrayList<Carte[]>();
         lstStock.clear();
         lstWaste.clear();
-        RemplirPyramide();
+        EnvoyerPaquetAPyramide();
         RemplirStock();
     }
 
+    /**
+     * Envoyer la carte du dessus du stock sur le dessus du waste
+     */
     public void EnvoyerCarteAuWaste() {
         lstWaste.add(lstStock.get(lstStock.size() - 1));
         lstStock.remove(lstStock.size() - 1);
     }
 
+    /**
+     * @return La carte sur le dessus du waste pour pouvoir l'afficher et s'en servir dans les paires
+     */
     public Carte GetCarteDessusWaste() {
         return lstWaste.get(lstWaste.size() - 1);
     }
 
+    /**
+     * @return L'array d'array de cartes représentant la pyramide (pour pouvoir l'afficher)
+     */
     public ArrayList<Carte[]> GetCartesPyramide() {
         return pyramideArray;
     }
 
+    /**
+     * @return Le nombre de cartes dans la liste du stock
+     */
     public int GetNombreStock() {
         return lstStock.size();
     }
@@ -88,39 +100,75 @@ public class PyramideLogique {
     }
 
     /**
-     * Remplir les 7 rangées de la pyramide avec les cartes du paquet
+     * Piger 28 cartes du paquet et les envoyer dans la pyramide
      */
-    private void RemplirPyramide() {
-        pyramideArray.add(new Carte[1]);
-        pyramideArray.add(new Carte[2]);
-        pyramideArray.add(new Carte[3]);
-        pyramideArray.add(new Carte[4]);
-        pyramideArray.add(new Carte[5]);
-        pyramideArray.add(new Carte[6]);
-        pyramideArray.add(new Carte[7]);
+    private void EnvoyerPaquetAPyramide() {
+        // Vérifier que le paquet est "neuf"
+        if (paquet.size() == 52) {
+            List<Carte> lstTemp = new ArrayList<Carte>();
 
-        for(int i=0;i<7;i++) {
-            if (i == 0)
-                pyramideArray.get(0)[i] = paquet.PigerUneCarte();
-            if (i <= 1)
-                pyramideArray.get(1)[i] = paquet.PigerUneCarte();
-            if (i <= 2)
-                pyramideArray.get(2)[i] = paquet.PigerUneCarte();
-            if (i <= 3)
-                pyramideArray.get(3)[i] = paquet.PigerUneCarte();
-            if (i <= 4)
-                pyramideArray.get(4)[i] = paquet.PigerUneCarte();
-            if (i <= 5)
-                pyramideArray.get(5)[i] = paquet.PigerUneCarte();
-            if (i <= 6) {
-                pyramideArray.get(6)[i] = paquet.PigerUneCarte();
+
+            for (int i = 0; i < 28; i++) {
+                lstTemp.add(paquet.pigerUneCarte());
+            }
+
+            RemplirPyramide(lstTemp);
+        }
+    }
+
+    /**
+     * Remplir les 7 rangées de la pyramide avec les cartes du paquet
+     * @param lstpyramide La liste des 28 cartes à mettre dans la pyramide
+     */
+    private void RemplirPyramide(List<Carte> lstpyramide) {
+        if (lstpyramide.size() == 28) {
+            pyramideArray.add(new Carte[1]);
+            pyramideArray.add(new Carte[2]);
+            pyramideArray.add(new Carte[3]);
+            pyramideArray.add(new Carte[4]);
+            pyramideArray.add(new Carte[5]);
+            pyramideArray.add(new Carte[6]);
+            pyramideArray.add(new Carte[7]);
+
+            for (int i = 0; i < 7; i++) {
+                if (i == 0) {
+                    pyramideArray.get(0)[i] = lstpyramide.get(lstpyramide.size() - 1);
+                    lstpyramide.remove(lstpyramide.size() - 1);
+                }
+                if (i <= 1) {
+                    pyramideArray.get(1)[i] = lstpyramide.get(lstpyramide.size() - 1);
+                    lstpyramide.remove(lstpyramide.size() - 1);
+                }
+                if (i <= 2) {
+                    pyramideArray.get(2)[i] = lstpyramide.get(lstpyramide.size() - 1);
+                    lstpyramide.remove(lstpyramide.size() - 1);
+                }
+                if (i <= 3) {
+                    pyramideArray.get(3)[i] = lstpyramide.get(lstpyramide.size() - 1);
+                    lstpyramide.remove(lstpyramide.size() - 1);
+                }
+                if (i <= 4) {
+                    pyramideArray.get(4)[i] = lstpyramide.get(lstpyramide.size() - 1);
+                    lstpyramide.remove(lstpyramide.size() - 1);
+                }
+                if (i <= 5) {
+                    pyramideArray.get(5)[i] = lstpyramide.get(lstpyramide.size() - 1);
+                    lstpyramide.remove(lstpyramide.size() - 1);
+                }
+                if (i <= 6) {
+                    pyramideArray.get(6)[i] = lstpyramide.get(lstpyramide.size() - 1);
+                    lstpyramide.remove(lstpyramide.size() - 1);
+                }
             }
         }
     }
 
+    /**
+     * Rempli le stock avec les 24 cartes restantes dans le paquet
+     */
     private void RemplirStock() {
         for (int i = 0; i < 24; i++) {
-            lstStock.add(paquet.PigerUneCarte());
+            lstStock.add(paquet.pigerUneCarte());
         }
     }
 

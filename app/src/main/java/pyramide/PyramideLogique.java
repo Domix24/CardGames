@@ -28,7 +28,7 @@ public class PyramideLogique {
         pyramideArray = new ArrayList<Carte[]>();
         lstStock.clear();
         lstWaste.clear();
-        RemplirPyramide();
+        EnvoyerPaquetAPyramide();
         RemplirStock();
     }
 

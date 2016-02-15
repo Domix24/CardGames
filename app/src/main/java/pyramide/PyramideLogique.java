@@ -220,6 +220,7 @@ public class PyramideLogique {
                 // vérifier si les deux cartes en dessous sont encore là
                 // Si l'index n'existe pas, il n'y a donc pas de carte (catch)
                 try {
+                    Carte c = pyramideArray.get(rangée + 1)[colonne];
                     if (pyramideArray.get(rangée + 1)[colonne] != null)
                         disponible = false;
                 }
@@ -227,12 +228,13 @@ public class PyramideLogique {
                     disponible = true;
                 }
 
-                try {
-                    if (pyramideArray.get(rangée + 1)[colonne + 1] != null)
-                        disponible = false;
-                }
-                catch (Exception e) {
-                    disponible = true;
+                if (disponible == true) {
+                    try {
+                        if (pyramideArray.get(rangée + 1)[colonne + 1] != null)
+                            disponible = false;
+                    } catch (Exception e) {
+                        disponible = true;
+                    }
                 }
             }
         }

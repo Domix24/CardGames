@@ -77,7 +77,7 @@ public class VideoPoker extends JeuAvecCartes {
 
     private int compterPoints() {
         int nbJetons = 0;
-        paquetFinal.OrdonnerCartes();
+        paquetFinal.OrdonnerCartesCroissant();
         if (siValetouMieux()) {
             nbJetons = 10;
         }

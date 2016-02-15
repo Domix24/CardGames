@@ -109,7 +109,7 @@ public class PyramideLogique {
 
 
             for (int i = 0; i < 28; i++) {
-                lstTemp.add(paquet.PigerUneCarte());
+                lstTemp.add(paquet.pigerUneCarte());
             }
 
             RemplirPyramide(lstTemp);
@@ -168,7 +168,7 @@ public class PyramideLogique {
      */
     private void RemplirStock() {
         for (int i = 0; i < 24; i++) {
-            lstStock.add(paquet.PigerUneCarte());
+            lstStock.add(paquet.pigerUneCarte());
         }
     }
 

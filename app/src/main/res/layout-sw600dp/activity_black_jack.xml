@@ -205,8 +205,9 @@
                 android:text="@string/blackjack_hit"
                 android:layout_gravity="bottom"
                 android:id="@+id/btnHit"
-                android:layout_column="6"
-                android:onClick="onHitClick" />
+                android:layout_column="7"
+                android:onClick="onHitClick"
+                />
 
 
         </TableRow>
@@ -251,7 +252,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/blackjack_hold"
                 android:id="@+id/btnHold"
-                android:layout_column="6"
+                android:layout_column="7"
                 android:layout_gravity="bottom"
                 android:onClick="onHoldClick" />
         </TableRow>

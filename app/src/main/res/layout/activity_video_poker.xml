@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/blackjackbackground">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:id="@+id/imgVideo1"
+                android:layout_column="1"
+                android:src="@drawable/spades_a"
+                android:onClick="onCardVideoClick" />
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:id="@+id/imgVideo2"
+                android:layout_column="1"
+                android:src="@drawable/spades_a"
+                android:onClick="onCardVideoClick" />
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:id="@+id/imgVideo3"
+                android:layout_column="1"
+                android:src="@drawable/spades_a"
+                android:onClick="onCardVideoClick" />
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:id="@+id/imgVideo4"
+                android:layout_column="1"
+                android:src="@drawable/spades_a"
+                android:onClick="onCardVideoClick" />
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:id="@+id/imgVideo5"
+                android:layout_column="1"
+                android:src="@drawable/spades_a"
+                android:onClick="onCardVideoClick" />
+            </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valider"
+                android:id="@+id/btnValiderVideo"
+                android:layout_column="1"
+                android:layout_gravity="bottom"
+                android:onClick="onValiderVideoClick" />
+            </TableRow>
+    </TableLayout>
+</RelativeLayout>

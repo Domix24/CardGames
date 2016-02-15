@@ -16,6 +16,7 @@ public class Joueur extends JeuAvecCartes{
     protected int SommeCoeurs;
     protected int SommeTrèfles;
     protected int SommePiques;
+    protected boolean Cogne;
     @Override
     public void Initialiser(int seed) {
 
@@ -42,6 +43,7 @@ public class Joueur extends JeuAvecCartes{
      */
     public Joueur(boolean test)
     {
+        Cogne=false;
         JeuEnMain = new JeuDeCarte();
         JeuEnMain.clear();
         if(!test)
@@ -67,6 +69,13 @@ public class Joueur extends JeuAvecCartes{
             JeuEnMain.remove(ct);
     }
 
+    /**
+     * Le joueur Cogne pour exprimer son intention de finir la manche.
+     */
+    public void Cogner()
+    {
+        Cogne=true;
+    }
     /**
      *
      * @return Retourne si oui ou non le joueur a plafonné sa valeur de carte.

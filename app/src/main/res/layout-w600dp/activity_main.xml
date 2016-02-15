@@ -89,7 +89,7 @@
                 android:id="@+id/btnVideoPoker"
                 android:layout_column="4"
                 android:src="@drawable/blackjack"
-                android:onClick="onBlackJackClick" />
+                android:onClick="onVideoPokerClick" />
 
             <ImageButton
                 android:layout_width="180dp"

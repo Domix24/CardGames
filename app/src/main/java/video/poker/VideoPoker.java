@@ -1,4 +1,4 @@
-package videopoker;
+package video.poker;
 
 import utilitaire.Carte;
 import utilitaire.JeuAvecCartes;
@@ -9,10 +9,11 @@ import utilitaire.JeuDeCarte;
  */
 public class VideoPoker extends JeuAvecCartes {
     private static VideoPoker instance = null;
-    Carte[] paquetPremier = null;
+    JeuDeCarte paquetPremier = null;
     JeuDeCarte paquetFinal = null;
     boolean aPremièresCartes = false;
     int nbCartesGardées = 0;
+    boolean estCree = true;
 
     /**
      * Constructeur
@@ -46,26 +47,28 @@ public class VideoPoker extends JeuAvecCartes {
     /**
      * Passe les cartes, si le joueur n'a pas encore eu de cartes, passé 5 cartes sinon passé les cartes qui manquent
      */
-    private void passerCartes() {
+    private JeuDeCarte passerCartes() {
         if (aPremièresCartes) {
             for (int i = nbCartesGardées; i < 5; i++) {
                 paquetFinal.add(paquet.pigerUneCarte());
             }
+            return paquetFinal;
         } else {
             aPremièresCartes = true;
             for (int i = 0; i < 5; i++) {
-                paquetPremier[i] = paquet.pigerUneCarte();
+                paquetPremier.add(paquet.pigerUneCarte());
             }
+            return paquetPremier;
         }
     }
 
     /**
      * Lorsque le joueur a décidé quel cartes il voulait garder, garder les cartes, en passer d'autres et vérifier les points
      */
-    public void validerCartes(Carte[] cartes) {
+    public JeuDeCarte validerCartes(JeuDeCarte cartes) {
         for (int i = 0; i < 5; i++) {
-            if (cartes[i] != null) {
-                paquetFinal.add(cartes[i]);
+            if (cartes.get(i) != null) {
+                paquetFinal.add(cartes.get(i));
                 nbCartesGardées++;
             } else {
                 break;
@@ -73,6 +76,7 @@ public class VideoPoker extends JeuAvecCartes {
         }
         passerCartes();
         int nbJetons = compterPoints();
+        return paquetFinal;
     }
 
     private int compterPoints() {
@@ -313,6 +317,15 @@ public class VideoPoker extends JeuAvecCartes {
         return true;
     }
 
+    /**
+     * Méthode qui permet de trouver l'id d'une image pour une carte
+     *
+     * @param nom le champ nom de l'objet carte
+     * @return l'id de la ressource d'image correspondant à la carte
+     */
+    public int trouverIdCarte(String nom) {
+        return paquet.trouverIdCarte(nom);
+    }
     @Override
     public void Initialiser(int seed) {
 

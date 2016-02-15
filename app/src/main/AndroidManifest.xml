@@ -15,15 +15,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name="blackjack.BlackJackActivity"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation"></activity>
-        <activity android:name="pyramide.pyramideActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="pyramide.pyramideActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="jeudu31.JeuDu31activite"
+            android:label="@string/title_activity_jeudu31activite"></activity>
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
         <activity android:name="video.poker.VideoPokerActivity"></activity>

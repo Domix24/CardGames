@@ -116,7 +116,7 @@
                 android:id="@+id/btnJeux"
                 android:layout_column="1"
                 android:src="@drawable/solitaire"
-                android:onClick="onPyramidClick" />
+                android:onClick="onJeuDu31Click" />
             <ImageButton
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -132,9 +132,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="inconnue"
+                android:text="Jeu du 31"
                 android:id="@+id/lblJeu5"
                 android:layout_column="1"
+                android:onClick="onJeuDu31Click"
                 android:textAlignment="center" />
 
             <TextView

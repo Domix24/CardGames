@@ -19,6 +19,7 @@ public class BlackJack extends JeuAvecCartes {
     public int[] pointageCroupier;
     public boolean estTermine = false;
     public String message = "";
+    public int drapeauFinPartie = 0;
 
     private BlackJack() {
         paquet = new JeuDeCarte();
@@ -158,7 +159,7 @@ public class BlackJack extends JeuAvecCartes {
      * Change le message pour savoir qui est le gagnant.
      */
     public void determinerGagnant() {
-        calculerPoints();
+
         int plusHautScoreJoueur;
         int plusHautScoreCroupier;
         estTermine = true;
@@ -171,16 +172,25 @@ public class BlackJack extends JeuAvecCartes {
         else
             plusHautScoreCroupier = pointageCroupier[1];
 
-        if (plusHautScoreJoueur > 21)
+        if (plusHautScoreJoueur > 21) {
             message = "Vous avez perdu :(";
-        else if (plusHautScoreCroupier > 21)
+            drapeauFinPartie = 1;
+        }
+        else if (plusHautScoreCroupier > 21) {
             message = "Vous avez Gagné :) !";
-        else if (plusHautScoreJoueur > plusHautScoreCroupier)
+            drapeauFinPartie = 3;
+        }
+        else if (plusHautScoreJoueur > plusHautScoreCroupier) {
             message = "Vous avez Gagné :) !";
-        else if (plusHautScoreJoueur == plusHautScoreCroupier)
+            drapeauFinPartie = 3;
+        }
+        else if (plusHautScoreJoueur == plusHautScoreCroupier) {
             message = "Égalité !";
+            drapeauFinPartie = 2;
+        }
         else if (plusHautScoreCroupier > plusHautScoreJoueur){
             message = "Vous avez perdu :(";
+            drapeauFinPartie = 1;
         }
         else
             estTermine = false;
@@ -239,6 +249,7 @@ public class BlackJack extends JeuAvecCartes {
                 }
             }
             estTermine = true;
+            calculerPoints();
             determinerGagnant();
         }
     }
@@ -278,4 +289,5 @@ public class BlackJack extends JeuAvecCartes {
     public void Initialiser(int seed) {
 
     }
+
 }

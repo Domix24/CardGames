@@ -278,4 +278,5 @@ public class BlackJack extends JeuAvecCartes {
     public void Initialiser(int seed) {
 
     }
+
 }

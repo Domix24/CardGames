@@ -90,7 +90,7 @@
                 android:layout_gravity="left"
                 android:id="@+id/btnVideoPoker"
                 android:layout_column="4"
-                android:src="@drawable/blackjack"
+                android:src="@drawable/videopoker"
                 android:onClick="onBlackJackClick" />
 
             <ImageView

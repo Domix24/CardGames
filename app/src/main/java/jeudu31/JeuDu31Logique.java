@@ -31,9 +31,49 @@ public class JeuDu31Logique extends JeuAvecCartes {
         joueurCourant=0;
         lstJoueurs = new ArrayList<Joueur>();
         lstJoueurs.add(new Joueur());
+        lstJoueurs.add(new Joueur());
         paquetTémoin = new ArrayList<Carte>();
+        simulerUneManche();
+    }
+    public void simulerUneManche()
+    {
+        int nbrTour=lstJoueurs.size()-1;
+        while(perdant==null && nbrTour!=0) {
+            if(cogneur!=-1)
+                nbrTour--;
+            jouerUnePige();
+            pigerUneCarteAVue();
+            jouerUnChoix(lstJoueurs.get(joueurCourant).JeuEnMain.get(0));
+            if(lstJoueurs.get(joueurCourant).plafonne()) {
+                détermineGagnant();
+                déterminePerdant();
+                nbrTour=0;
+            }
+            if(lstJoueurs.get(joueurCourant).Cogne)
+                annoncerFinDeManche();
+            if(cogneur!=-1 && nbrTour==0)
+            {
+                détermineGagnant();
+                déterminePerdant();
+            }
+            joueurSuivant();
+        }
+        recommencer(lstJoueurs.size());
     }
 
+    /**
+     *
+     * @return Retourne true si l'opération s'est bien déroulée.
+     */
+    public boolean pigerUneCarteAVue()
+    {
+        if(paquetTémoin.size()>0) {
+            lstJoueurs.get(joueurCourant).ajouterCarteALaMain(paquetTémoin.get(paquetTémoin.size() - 1));
+            paquetTémoin.remove(paquetTémoin.size() - 1);
+            return true;
+        }
+        return false;
+    }
     /**
      *  Remet à 0 toutes les variables qui sont spécifiques à une manche.
      * @param nbrJoueurs Nombre de joueurs qui vont jouer dans la manche.
@@ -57,8 +97,8 @@ public class JeuDu31Logique extends JeuAvecCartes {
      */
     public boolean jouerUnePige()
     {
-        if(lstJoueurs.get(joueurCourant).Cogne)
-            if(lstJoueurs.get(joueurCourant).ajouterCarteALaMain(paquet.PigerUneCarte()))
+        if(lstJoueurs.get(joueurCourant).Cogne==false)
+            if(lstJoueurs.get(joueurCourant).ajouterCarteALaMain(paquet.pigerUneCarte()))
                 return true;
         return  false;
     }
@@ -70,7 +110,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
      */
     public boolean jouerUnChoix(Carte ct)
     {
-        if(lstJoueurs.get(joueurCourant).Cogne)
+        if(lstJoueurs.get(joueurCourant).Cogne==false)
             if(lstJoueurs.get(joueurCourant).enleverCarteALaMain(ct)) {
                 paquetTémoin.add(ct);
                 return true;
@@ -79,7 +119,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
     }
 
     /**
-     * Annonce son intentino de finir la manche courante.
+     * Annonce son intention de finir la manche courante.
      */
     public void annoncerFinDeManche()
     {
@@ -88,11 +128,14 @@ public class JeuDu31Logique extends JeuAvecCartes {
     }
 
     /**
-     *  PAsser au joueur suivant.
+     *  Passer au joueur suivant.
      */
     public void joueurSuivant()
     {
-        joueurCourant++;
+        if(joueurCourant+1<lstJoueurs.size()-1)
+            joueurCourant++;
+        else
+            joueurCourant=0;
     }
 
     /**

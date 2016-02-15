@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import blackjack.BlackJackActivity;
+import jeudu31.JeuDu31Logique;
+import jeudu31.JeuDu31activite;
 import pyramide.pyramideActivity;
 
 public class MainActivity extends Activity {
@@ -21,5 +23,10 @@ public class MainActivity extends Activity {
     public void onPyramidClick(View v){
         Intent ouvrirPyramid = new Intent(this, pyramideActivity.class);
         startActivity(ouvrirPyramid);
+    }
+    public void onJeuDu31Click(View v)
+    {
+        Intent ouvrierJeuDu31 = new Intent(this, JeuDu31activite.class);
+        startActivity(ouvrierJeuDu31);
     }
 }

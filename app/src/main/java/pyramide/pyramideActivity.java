@@ -152,4 +152,43 @@ public class pyramideActivity extends Activity {
         }
         catch(Exception e){}
     }
+
+
+    public void Restart(View v)
+    {
+        jeuDePyramide.CommencerNouvellePartie();
+        TextView lblStock = (TextView)findViewById(R.id.cartesStock);
+        int nbCartesStock = jeuDePyramide.GetNombreStock();
+        lblStock.setText(Integer.toString(nbCartesStock));
+        if (estCrée){
+            Toast.makeText(getApplicationContext(), "Partie terminée.", Toast.LENGTH_LONG).show();
+        }
+        for(int i =0;i< jeuDePyramide.GetCartesPyramide().size();i++)
+            for(int j=0;j<jeuDePyramide.GetCartesPyramide().get(i).length;j++)
+                try{
+                    Carte carteAAfficher =jeuDePyramide.GetCartesPyramide().get(i)[j];
+                    String tag = "R" +Integer.toString(i,0)+"C"+Integer.toString(j,0);
+                    for(Field f: campos)
+                    {
+                        if(tag.contains(f.getName())) {
+                            ImageView img=(ImageView)this.findViewById(this.getBaseContext().getResources().getIdentifier("R" + i + "C" + j
+                                    , "id", this.getBaseContext().getPackageName()));
+                            if (carteAAfficher == null) {
+                                img.setImageDrawable(null);
+                                img.setClickable(false);
+                            }
+                            else {
+                                img.setImageResource(jeuDePyramide.trouverIdCarte(carteAAfficher.nom));
+                                img.setClickable(true);
+                            }
+                        }
+                    }
+                }catch(Exception e){}
+        ImageView image = (ImageView)findViewById(R.id.R7C0);
+        try {
+            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.GetCarteDessusWaste().nom));
+            image.setClickable(true);
+        }
+        catch(Exception e){}
+    }
 }

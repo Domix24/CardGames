@@ -156,17 +156,17 @@ public class pyramideActivity extends Activity {
 
     public void Restart(View v)
     {
-        jeuDePyramide.recommencer();
+        jeuDePyramide.CommencerNouvellePartie();
         TextView lblStock = (TextView)findViewById(R.id.cartesStock);
-        int nbCartesStock = jeuDePyramide.cartesRestantes();
+        int nbCartesStock = jeuDePyramide.GetNombreStock();
         lblStock.setText(Integer.toString(nbCartesStock));
         if (estCrée){
             Toast.makeText(getApplicationContext(), "Partie terminée.", Toast.LENGTH_LONG).show();
         }
-        for(int i =0;i<jeuDePyramide.lstJeu.size();i++)
-            for(int j=0;j<jeuDePyramide.lstJeu.get(i).length;j++)
+        for(int i =0;i< jeuDePyramide.GetCartesPyramide().size();i++)
+            for(int j=0;j<jeuDePyramide.GetCartesPyramide().get(i).length;j++)
                 try{
-                    Carte carteAAfficher =jeuDePyramide.lstJeu.get(i)[j];
+                    Carte carteAAfficher =jeuDePyramide.GetCartesPyramide().get(i)[j];
                     String tag = "R" +Integer.toString(i,0)+"C"+Integer.toString(j,0);
                     for(Field f: campos)
                     {
@@ -186,7 +186,7 @@ public class pyramideActivity extends Activity {
                 }catch(Exception e){}
         ImageView image = (ImageView)findViewById(R.id.R7C0);
         try {
-            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.sélectionnerDernierAuWaste().nom));
+            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.GetCarteDessusWaste().nom));
             image.setClickable(true);
         }
         catch(Exception e){}

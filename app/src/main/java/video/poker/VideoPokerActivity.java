@@ -14,8 +14,7 @@ import utilitaire.JeuDeCarte;
 
 public class VideoPokerActivity extends Activity {
     JeuDeCarte cartePresente = null;
-    JeuDeCarte carteValider = null;
-
+    JeuDeCarte carteValider = new JeuDeCarte();
     VideoPoker jeu = VideoPoker.avoirInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +28,12 @@ public class VideoPokerActivity extends Activity {
     }
     private void reinitialiserJeu(){
         jeu.reinitialiserJeu();
+        carteValider.clear();
+        mettreCarteANull(carteValider);
+        replacerJeu();
     }
     private void replacerJeu(){
-        if (jeu.aPremièresCartes){
+        if (jeu.aValider){
             placerCartes(jeu.paquetFinal);
             cartePresente = jeu.paquetFinal;
         }
@@ -80,8 +82,14 @@ public class VideoPokerActivity extends Activity {
                 break;
         }
     }
+    private void mettreCarteANull(JeuDeCarte cartes){
+        Carte cartenull = new Carte(1,1,1,"null", JeuDeCarte.type.Carre);
+        for (int i = 0; i < 5; i++){
+            cartes.add(cartenull);
+        }
+    }
     private void validerCarte(Carte carte, int index){
-        if (carteValider.get(index) == null){
+        if (carteValider.get(index).nom == "null"){
             carteValider.set(index, carte);
         }
         else

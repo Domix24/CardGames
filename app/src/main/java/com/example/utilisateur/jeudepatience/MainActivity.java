@@ -7,6 +7,7 @@ import android.view.View;
 
 import blackjack.BlackJackActivity;
 import pyramide.pyramideActivity;
+import video.poker.VideoPokerActivity;
 
 public class MainActivity extends Activity {
     @Override
@@ -21,5 +22,9 @@ public class MainActivity extends Activity {
     public void onPyramidClick(View v){
         Intent ouvrirPyramid = new Intent(this, pyramideActivity.class);
         startActivity(ouvrirPyramid);
+    }
+    public void onVideoPokerClick(View v){
+        Intent ouvrirVideoPoker = new Intent(this, VideoPokerActivity.class);
+        startActivity(ouvrirVideoPoker);
     }
 }

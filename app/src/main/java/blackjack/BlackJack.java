@@ -9,138 +9,269 @@ import utilitaire.JeuDeCarte;
  */
 public class BlackJack extends JeuAvecCartes {
 
-    boolean estCree = false;
+    public boolean estCree = false;
     private static BlackJack instance = null;
-    Carte[] cartesJoueur;
-    Carte[] cartesCroupier;
-    private  BlackJack()
-    {
+    public Carte[] cartesJoueur;
+    public Carte[] cartesCroupier;
+    public int indexJoueur;
+    public int indexCroupier;
+    public int[] pointageJoueur;
+    public int[] pointageCroupier;
+    public boolean estTermine = false;
+    public String message = "";
+
+    private BlackJack() {
         paquet = new JeuDeCarte();
     }
-    public static BlackJack avoirInstance(){
-        if (instance == null){
+
+    /**
+     * Permet d'avoir l'instance du jeu
+     * @return l'instance du jeu BlackJack
+     */
+    public static BlackJack avoirInstance() {
+        if (instance == null) {
             instance = new BlackJack();
         }
 
         return instance;
     }
+
     /**
-     * Méthode qui calcule les points d'une main.
-     * @param cartes les cartes pour calculer les points
+     * Méthode qui calcule les points des joueurs.
+     *
      * @return le pointage sans compter les as dans le premier index et le pointage en comptant les as dans le deuxième
      */
-    int[] calculerPoints(Carte[] cartes)
-    {
-        int[] pointage = new int[2];
+    public void calculerPoints() {
+        pointageJoueur = new int[2];
+        pointageCroupier = new int[2];
+        calculerPointsCroupier();
+        calculerPointsJoueur();
+    }
+
+    /**
+     * Méthode qui calcule les points du joueur
+     */
+    private void calculerPointsJoueur() {
         boolean aUnAs = false;
         boolean aDeuxAs = false;
-        for (int i = 0; i < cartes.length; i++){
-            if (cartes[i] == null && i != 0)
+        for (int i = 0; i < cartesJoueur.length; i++) {
+            if (cartesJoueur[i] == null && i != 0)
                 break;
-            if (cartes[i] == null && i == 0){
-                pointage[0] = 0;
+            if (cartesJoueur[i] == null && i == 0) {
+                pointageJoueur[0] = 0;
+            }
+            if (cartesJoueur[i] == null && i == 0) {
+                pointageJoueur[0] = 0;
                 break;
             }
-            if (cartes[i].numero >= 10)
-                pointage[0] += 10;
+            if (cartesJoueur[i].numero >= 10)
+                pointageJoueur[0] += 10;
             else
-                pointage[0] += cartes[i].numero;
-            if (cartes[i].numero == 1 && aUnAs){
+                pointageJoueur[0] += cartesJoueur[i].numero;
+            if (cartesJoueur[i].numero == 1 && aUnAs) {
                 aDeuxAs = true;
             }
-            if (cartes[i].numero == 1)
+            if (cartesJoueur[i].numero == 1)
                 aUnAs = true;
         }
-        if (aUnAs){
-            for (int i = 0; i < cartes.length; i++){
-                if (cartes[i] == null)
+        if (aUnAs) {
+            for (int i = 0; i < cartesJoueur.length; i++) {
+                if (cartesJoueur[i] == null)
                     break;
-                if (cartes[i].numero >= 10)
-                    pointage[1] += 10;
-                else if(cartes[i].numero == 1)
-                    pointage[1] += 11;
+                if (cartesJoueur[i].numero >= 10)
+                    pointageJoueur[1] += 10;
+                else if (cartesJoueur[i].numero == 1)
+                    pointageJoueur[1] += 11;
                 else
-                    pointage[1] += cartes[i].numero;
+                    pointageJoueur[1] += cartesJoueur[i].numero;
             }
-        }
-        else if (aDeuxAs){
+        } else if (aDeuxAs) {
             boolean estPremierAs = true;
-            for (int i = 0; i < cartes.length; i++){
-                if (cartes[i] == null)
+            for (int i = 0; i < cartesJoueur.length; i++) {
+                if (cartesJoueur[i] == null)
                     break;
-                if (cartes[i].numero >= 10)
-                    pointage[1] += 10;
-                else if(cartes[i].numero == 1 && estPremierAs)
-                {
-                    pointage[1] += 11;
+                if (cartesJoueur[i].numero >= 10)
+                    pointageJoueur[1] += 10;
+                else if (cartesJoueur[i].numero == 1 && estPremierAs) {
+                    pointageJoueur[1] += 11;
                     estPremierAs = false;
-                }
-                else
-                    pointage[1] += cartes[i].numero;
+                } else
+                    pointageJoueur[1] += cartesJoueur[i].numero;
             }
-        }
-        else
-        pointage[1] = 50;
+        } else
+            pointageJoueur[1] = 50;
+    }
 
-        return pointage;
+    /**
+     * Méthode qui calcule les points du croupier
+     */
+    private void calculerPointsCroupier() {
+        boolean aUnAs = false;
+        boolean aDeuxAs = false;
+        for (int i = 0; i < cartesCroupier.length; i++) {
+            if (cartesCroupier[i] == null && i != 0)
+                break;
+            if (cartesCroupier[i] == null && i == 0) {
+                pointageCroupier[0] = 0;
+                break;
+            }
+            if (cartesCroupier[i].numero >= 10)
+                pointageCroupier[0] += 10;
+            else
+                pointageCroupier[0] += cartesCroupier[i].numero;
+            if (cartesCroupier[i].numero == 1 && aUnAs) {
+                aDeuxAs = true;
+            }
+            if (cartesCroupier[i].numero == 1)
+                aUnAs = true;
+        }
+        if (aUnAs) {
+            for (int i = 0; i < cartesCroupier.length; i++) {
+                if (cartesCroupier[i] == null)
+                    break;
+                if (cartesCroupier[i].numero >= 10)
+                    pointageCroupier[1] += 10;
+                else if (cartesCroupier[i].numero == 1)
+                    pointageCroupier[1] += 11;
+                else
+                    pointageCroupier[1] += cartesCroupier[i].numero;
+            }
+        } else if (aDeuxAs) {
+            boolean estPremierAs = true;
+            for (int i = 0; i < cartesCroupier.length; i++) {
+                if (cartesCroupier[i] == null)
+                    break;
+                if (cartesCroupier[i].numero >= 10)
+                    pointageCroupier[1] += 10;
+                else if (cartesCroupier[i].numero == 1 && estPremierAs) {
+                    pointageCroupier[1] += 11;
+                    estPremierAs = false;
+                } else
+                    pointageCroupier[1] += cartesCroupier[i].numero;
+            }
+        } else
+            pointageCroupier[1] = 50;
     }
 
     /**
      * Calculer les points, puis détermine le gagnant
-     * @param cartesJoueur les cartes du joueur
-     * @param cartesCroupier les cartes du croupier
-     * @return 0 si le joueur gagne 1 si le croupier gagne et 2 si c'est un match nul
+     * Change le message pour savoir qui est le gagnant.
      */
-    int determinerGagnant(Carte[] cartesJoueur, Carte[] cartesCroupier)
-    {
-        int[] pointageJoueur = calculerPoints(cartesJoueur);
-        int[] pointageCroupier = calculerPoints(cartesCroupier);
+    public void determinerGagnant() {
+        calculerPoints();
         int plusHautScoreJoueur;
         int plusHautScoreCroupier;
-
+        estTermine = true;
         if (pointageJoueur[1] > 21)
             plusHautScoreJoueur = pointageJoueur[0];
         else
-        plusHautScoreJoueur = pointageJoueur[1];
+            plusHautScoreJoueur = pointageJoueur[1];
         if (pointageCroupier[1] > 21)
             plusHautScoreCroupier = pointageCroupier[0];
         else
-        plusHautScoreCroupier = pointageCroupier[1];
-        if (plusHautScoreCroupier > 21)
-            return 0;
-        else if (plusHautScoreJoueur == plusHautScoreCroupier)
-            return 2;
+            plusHautScoreCroupier = pointageCroupier[1];
+
+        if (plusHautScoreJoueur > 21)
+            message = "Vous avez perdu :(";
+        else if (plusHautScoreCroupier > 21)
+            message = "Vous avez Gagné :) !";
         else if (plusHautScoreJoueur > plusHautScoreCroupier)
-            return 0;
+            message = "Vous avez Gagné :) !";
+        else if (plusHautScoreJoueur == plusHautScoreCroupier)
+            message = "Égalité !";
+        else if (plusHautScoreCroupier > plusHautScoreJoueur){
+            message = "Vous avez perdu :(";
+        }
         else
-            return 1;
+            estTermine = false;
     }
 
     /**
      * Méthode qui permet de trouver l'id d'une image pour une carte
+     *
      * @param nom le champ nom de l'objet carte
      * @return l'id de la ressource d'image correspondant à la carte
      */
-    int trouverIdCarte(String nom)
-    {
+    public int trouverIdCarte(String nom) {
         return paquet.trouverIdCarte(nom);
     }
 
     /**
      * Permet de piger une carte.
+     *
      * @return la carte sur le dessus du paquet.
      */
-    Carte pigerUneCarte()
-    {
+    public Carte pigerUneCarte() {
         return paquet.PigerUneCarte();
     }
 
     /**
      * Permet de reinitialiser le paquet de carte.
      */
-    void reinitialiser(){
+    public void reinitialiser() {
         paquet = new JeuDeCarte();
         estCree = true;
+        indexJoueur = 0;
+        indexCroupier = 0;
+        cartesJoueur = new Carte[9];
+        cartesCroupier = new Carte[9];
+        pointageJoueur = new int[2];
+        pointageCroupier = new int[2];
+        estTermine = false;
+        message = "";
+    }
+
+    public void faireJouerCroupier() {
+        if (!estTermine) {
+            int pointsCroupier = 0;
+            if (pointageCroupier[1] > 21)
+                pointsCroupier = pointageCroupier[0];
+            else
+                pointsCroupier = pointageCroupier[1];
+            while (pointsCroupier < 17 && indexCroupier < 12) {
+                Carte nouvelleCarte = pigerUneCarte();
+                if (nouvelleCarte != null) {
+                    jouerPourCroupier(nouvelleCarte);
+                    if (pointageCroupier[1] > 21)
+                        pointsCroupier = pointageCroupier[0];
+                    else
+                        pointsCroupier = pointageCroupier[1];
+                }
+            }
+            estTermine = true;
+            determinerGagnant();
+        }
+    }
+
+    /**
+     * Méthode qui joue pour un joueur (ajoute la carte au tableau de cartes, compte les points.
+     *
+     * @param carte la carte qui a été pigé
+     */
+    public void jouerPourJoueur(Carte carte) {
+        if (!estTermine) {
+            if (carte != null && indexJoueur < 12) {
+                cartesJoueur[indexJoueur++] = carte;
+                calculerPoints();
+                if (pointageJoueur[0] == 21 || pointageJoueur[1] == 21)
+                    faireJouerCroupier();
+                if (pointageJoueur[0] > 21) {
+                    estTermine = true;
+                }
+            }
+        }
+    }
+
+    /**
+     * Méthode qui joue pour le croupier (ajoute la carte au tableau de cartes, compte les points.
+     *
+     * @param carte la carte qui a été pigé
+     */
+    public void jouerPourCroupier(Carte carte) {
+        if (carte != null && indexCroupier < 12) {
+            cartesCroupier[indexCroupier++] = carte;
+            calculerPoints();
+        }
     }
 
     @Override

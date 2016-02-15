@@ -101,26 +101,26 @@ public class PyramideLogique {
 
         for(int i=0;i<7;i++) {
             if (i == 0)
-                pyramideArray.get(0)[i] = paquet.PigerUneCarte();
+                pyramideArray.get(0)[i] = paquet.pigerUneCarte();
             if (i <= 1)
-                pyramideArray.get(1)[i] = paquet.PigerUneCarte();
+                pyramideArray.get(1)[i] = paquet.pigerUneCarte();
             if (i <= 2)
-                pyramideArray.get(2)[i] = paquet.PigerUneCarte();
+                pyramideArray.get(2)[i] = paquet.pigerUneCarte();
             if (i <= 3)
-                pyramideArray.get(3)[i] = paquet.PigerUneCarte();
+                pyramideArray.get(3)[i] = paquet.pigerUneCarte();
             if (i <= 4)
-                pyramideArray.get(4)[i] = paquet.PigerUneCarte();
+                pyramideArray.get(4)[i] = paquet.pigerUneCarte();
             if (i <= 5)
-                pyramideArray.get(5)[i] = paquet.PigerUneCarte();
+                pyramideArray.get(5)[i] = paquet.pigerUneCarte();
             if (i <= 6) {
-                pyramideArray.get(6)[i] = paquet.PigerUneCarte();
+                pyramideArray.get(6)[i] = paquet.pigerUneCarte();
             }
         }
     }
 
     private void RemplirStock() {
         for (int i = 0; i < 24; i++) {
-            lstStock.add(paquet.PigerUneCarte());
+            lstStock.add(paquet.pigerUneCarte());
         }
     }
 

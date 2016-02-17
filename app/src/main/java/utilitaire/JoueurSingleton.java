@@ -21,6 +21,7 @@ public class JoueurSingleton {
      */
     public static JoueurSingleton getInstance() {
         if (instance == null) {
+            instance = new JoueurSingleton();
             initialiserJoueur();
         }
         return instance;

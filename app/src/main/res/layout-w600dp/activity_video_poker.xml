@@ -75,7 +75,7 @@
                 android:layout_column="1"
                 android:id="@+id/btnRejouer"
                 android:layout_gravity="bottom"
-                android:onClick="onValiderVideoClick" />
+                android:onClick="onRecommencerClick" />
             </TableRow>
     </TableLayout>
 </RelativeLayout>

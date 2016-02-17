@@ -56,6 +56,7 @@ public class PyramideLogique {
             sommeArgent-=sommeIncrémentielle;
         return sommeArgent;
     }
+    
     /**
      * Méthode commençant une nouvelle partie
      */

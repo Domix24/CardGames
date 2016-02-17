@@ -11,9 +11,9 @@ import utilitaire.JeuDeCarte;
  * Created by Jean-michel Lavoie on 15/02/2016.
  */
 public class JeuDu31Logique extends JeuAvecCartes {
-    List<Joueur> lstJoueurs;
-    List<Joueur> lstGagnants;
-    Joueur perdant;
+    List<JoueurDu31> lstJoueurs;
+    List<JoueurDu31> lstGagnants;
+    JoueurDu31 perdant;
     int joueurCourant;
     int cogneur;
     List<Carte> paquetTémoin;
@@ -29,9 +29,9 @@ public class JeuDu31Logique extends JeuAvecCartes {
     {
         cogneur=-1;
         joueurCourant=0;
-        lstJoueurs = new ArrayList<Joueur>();
-        lstJoueurs.add(new Joueur());
-        lstJoueurs.add(new Joueur());
+        lstJoueurs = new ArrayList<JoueurDu31>();
+        lstJoueurs.add(new JoueurDu31());
+        lstJoueurs.add(new JoueurDu31());
         paquetTémoin = new ArrayList<Carte>();
         simulerUneManche();
     }
@@ -88,7 +88,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         paquetTémoin.clear();
         paquet= new JeuDeCarte();
         for(int i=0;i<nbrJoueurs;i++)
-            lstJoueurs.add(new Joueur());
+            lstJoueurs.add(new JoueurDu31());
     }
 
     /**
@@ -140,10 +140,11 @@ public class JeuDu31Logique extends JeuAvecCartes {
 
     /**
      * Ordonne les joueurs selon leur score actuel.
+     * Facilite la prise de décision.
      */
     public void ordonnerCroissantJoueursSelonValeur()
     {
-        ArrayList<Joueur> joueurTémoin = new ArrayList<Joueur>();
+        ArrayList<JoueurDu31> joueurTémoin = new ArrayList<JoueurDu31>();
         if(lstJoueurs.size()>1) {
             for (int i = 0; i < lstJoueurs.size(); i++)
                 joueurTémoin.add(lstJoueurs.get(i));

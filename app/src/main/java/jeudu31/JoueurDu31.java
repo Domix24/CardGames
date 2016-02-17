@@ -9,7 +9,7 @@ import utilitaire.JeuDeCarte;
 /**
  * Created by Jean-Michel Lavoie on 11/02/2016.
  */
-public class Joueur extends JeuAvecCartes {
+public class JoueurDu31 extends JeuAvecCartes {
     JeuDeCarte JeuEnMain;
     protected int SommeCarrés;
     protected int SommeCoeurs;
@@ -35,17 +35,28 @@ public class Joueur extends JeuAvecCartes {
      le plus haut ramasse tout
      si égalité on split le lot.
      */
-    public Joueur()
+    public JoueurDu31()
     {
         Cogne=false;
         for(int i=0;i<3;i++)
             ajouterCarteALaMain(paquet.pigerUneCarte());
 
     }
+
+    /**
+     *
+     * @return les cartes du joueur.
+     */
     public List<Carte> avoirLaMain()
     {
         return JeuEnMain;
     }
+
+    /**
+     *
+     * @param ct ajoute la carte dans la main du joueur
+     * @return retourne le résultat de l'opération
+     */
     public boolean ajouterCarteALaMain(Carte ct)
     {
         if(!JeuEnMain.contains(ct) && ct!=null) {
@@ -54,6 +65,12 @@ public class Joueur extends JeuAvecCartes {
         }
         return false;
     }
+
+    /**
+     *
+     * @param ct ajoute la carte à la main
+     * @return retounre le résultat de l'opération.
+     */
     public boolean enleverCarteALaMain(Carte ct)
     {
         if(JeuEnMain.contains(ct) && ct!=null) {

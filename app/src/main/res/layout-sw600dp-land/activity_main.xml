@@ -99,7 +99,7 @@
                 android:layout_gravity="center"
                 android:id="@+id/btnPyramide2"
                 android:layout_column="7"
-                android:src="@drawable/pyramide"
+                android:src="@drawable/jeu31"
                 android:onClick="onPyramidClick" />
 
             <ImageView
@@ -108,8 +108,7 @@
                 android:layout_gravity="right"
                 android:id="@+id/btnSolitaire2"
                 android:layout_column="7"
-                android:src="@drawable/solitaire"
-                android:onClick="onPyramidClick" />
+                android:src="@drawable/inconnue" />
         </TableRow>
         <TableRow>
             <TextView
@@ -124,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Allo boys"
+                android:text="Jeu du 31"
                 android:id="@+id/lblJeu5"
                 android:layout_column="7"
                 android:textAlignment="center" />
@@ -133,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="                Inconnu"
+                android:text="Inconnue"
                 android:gravity="right"
                 android:id="@+id/lblJeu6"
                 android:layout_column="7"

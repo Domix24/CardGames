@@ -115,7 +115,7 @@
                 android:layout_margin="5dp"
                 android:id="@+id/btnJeu5"
                 android:layout_column="1"
-                android:src="@drawable/solitaire"
+                android:src="@drawable/jeu31"
                 android:onClick="onJeuDu31Click" />
             <ImageButton
                 android:layout_width="120dp"
@@ -123,8 +123,7 @@
                 android:layout_margin="5dp"
                 android:id="@+id/btnJeu6"
                 android:layout_column="1"
-                android:src="@drawable/solitaire"
-                android:onClick="onPyramidClick"
+                android:src="@drawable/inconnue"
                 android:layout_gravity="right|center"/>
         </TableRow>
         <TableRow>

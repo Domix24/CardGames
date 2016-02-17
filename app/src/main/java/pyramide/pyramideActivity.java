@@ -49,21 +49,8 @@ public class pyramideActivity extends Activity {
     public void OnClickStock(View v) {
         jeuDePyramide.envoyerCarteAuWaste();
 
+        afficherPyramide();
 
-        TextView lblStock = (TextView)findViewById(R.id.cartesStock);
-        int nbCartesStock = jeuDePyramide.getNombreStock();
-        lblStock.setText(Integer.toString(nbCartesStock));
-
-        ImageView image = (ImageView)findViewById(R.id.R7C0);
-        try {
-            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
-        }
-        catch(Exception e){}
-
-        if (nbCartesStock == 0) {
-            image = (ImageView) findViewById(R.id.stock);
-            image.setImageDrawable(null);
-        }
         jeuDePyramide.vérifierFinPartie();
     }
 
@@ -152,7 +139,24 @@ public class pyramideActivity extends Activity {
             image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
             image.setClickable(true);
         }
-        catch(Exception e){}
+        catch(Exception e){
+            image.setImageDrawable(null);
+            image.setClickable(false);
+        }
+        image = (ImageView)findViewById(R.id.stock);
+
+        if (jeuDePyramide.getNombreStock() == 0) {;
+            image.setImageDrawable(null);
+            image.setClickable(false);
+        }
+        else {
+            image.setImageResource(R.drawable.back);
+            image.setClickable(true);
+        }
+
+        TextView lblStock = (TextView)findViewById(R.id.cartesStock);
+        int nbCartesStock = jeuDePyramide.getNombreStock();
+        lblStock.setText(Integer.toString(nbCartesStock));
     }
 
 
@@ -160,41 +164,9 @@ public class pyramideActivity extends Activity {
      * Au click, commence une nouvelle partie
      * @param v
      */
-    public void Restart(View v)
-    {
+    public void Restart(View v) {
         jeuDePyramide.commencerNouvellePartie();
-        TextView lblStock = (TextView)findViewById(R.id.cartesStock);
-        int nbCartesStock = jeuDePyramide.getNombreStock();
-        lblStock.setText(Integer.toString(nbCartesStock));
-        if (estCrée){
-            Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
-        }
-        for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++)
-            for(int j=0;j<jeuDePyramide.getCartesPyramide().get(i).length;j++)
-                try{
-                    Carte carteAAfficher =jeuDePyramide.getCartesPyramide().get(i)[j];
-                    String tag = "R" +Integer.toString(i,0)+"C"+Integer.toString(j,0);
-                    for(Field f: campos)
-                    {
-                        if(tag.contains(f.getName())) {
-                            ImageView img=(ImageView)this.findViewById(this.getBaseContext().getResources().getIdentifier("R" + i + "C" + j
-                                    , "id", this.getBaseContext().getPackageName()));
-                            if (carteAAfficher == null) {
-                                img.setImageDrawable(null);
-                                img.setClickable(false);
-                            }
-                            else {
-                                img.setImageResource(jeuDePyramide.trouverIdCarte(carteAAfficher.nom));
-                                img.setClickable(true);
-                            }
-                        }
-                    }
-                }catch(Exception e){}
-        ImageView image = (ImageView)findViewById(R.id.R7C0);
-        try {
-            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
-            image.setClickable(true);
-        }
-        catch(Exception e){}
+
+        afficherPyramide();
     }
 }

@@ -23,7 +23,7 @@ public class BlackJack extends JeuAvecCartes {
     public int[] pointageJoueur;
     public int[] pointageCroupier;
     public boolean estTermine = false;
-    public String message = "";
+    public int message = 0;
     public int drapeauFinPartie = 0;
     public BlackJackActivity context = null;
 
@@ -156,19 +156,19 @@ public class BlackJack extends JeuAvecCartes {
             plusHautScoreCroupier = pointageCroupier[1];
 
         if (plusHautScoreJoueur > 21) {
-            message = context.getString(R.string.blackjack_perdu);
+            message = R.string.blackjack_perdu;
             drapeauFinPartie = 1;
         } else if (plusHautScoreCroupier > 21) {
-            message = context.getString(R.string.blackjack_gagnier);
+            message = R.string.blackjack_gagnier;
             drapeauFinPartie = 3;
         } else if (plusHautScoreJoueur > plusHautScoreCroupier) {
-            message = context.getString(R.string.blackjack_gagnier);
+            message = R.string.blackjack_gagnier;
             drapeauFinPartie = 3;
         } else if (plusHautScoreJoueur == plusHautScoreCroupier) {
-            message = context.getString(R.string.blackjack_egaliter);
+            message = R.string.blackjack_egaliter;
             drapeauFinPartie = 2;
         } else if (plusHautScoreCroupier > plusHautScoreJoueur) {
-            message = context.getString(R.string.blackjack_perdu);
+            message = R.string.blackjack_perdu;
             drapeauFinPartie = 1;
         } else
             estTermine = false;
@@ -206,7 +206,7 @@ public class BlackJack extends JeuAvecCartes {
         pointageJoueur = new int[2];
         pointageCroupier = new int[2];
         estTermine = false;
-        message = "";
+        message = 0;
     }
 
     public void faireJouerCroupier() {

@@ -80,8 +80,10 @@ public class BlackJackActivity extends Activity {
      */
     private void afficherGagnant(){
         jeu.determinerGagnant();
-        message.setText(jeu.message);
-        message.show();
+        if(jeu.message != 0) {
+            message.setText(getString(jeu.message));
+            message.show();
+        }
     }
     /**
      * Réinitialiser tout les paramètres du jeu.

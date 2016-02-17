@@ -23,11 +23,13 @@ public class VideoPokerActivity extends Activity {
 
         if (!jeu.estCree) {
             reinitialiserJeu();
+
         } else
             replacerJeu();
     }
     private void reinitialiserJeu(){
         jeu.reinitialiserJeu();
+        jeu.passerCartes();
         carteValider.clear();
         mettreCarteANull(carteValider);
         replacerJeu();

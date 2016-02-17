@@ -16,6 +16,7 @@ public class JoueurDu31 extends JeuAvecCartes {
     protected int SommeTrèfles;
     protected int SommePiques;
     protected boolean Cogne;
+    protected String nom;
 
     /**
      * As vaut 11
@@ -37,12 +38,16 @@ public class JoueurDu31 extends JeuAvecCartes {
      */
     public JoueurDu31()
     {
+        nom="";
         Cogne=false;
         for(int i=0;i<3;i++)
             ajouterCarteALaMain(paquet.pigerUneCarte());
 
     }
-
+    public void Setnom(String nom)
+    {
+        this.nom=nom;
+    }
     /**
      *
      * @return les cartes du joueur.

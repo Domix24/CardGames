@@ -97,7 +97,7 @@
                 android:layout_margin="3dp"
                 android:id="@+id/btnJeu5"
                 android:layout_column="7"
-                android:src="@drawable/pyramide"
+                android:src="@drawable/jeu31"
                 android:onClick="onJeuDu31Click" />
 
             <ImageButton
@@ -106,8 +106,7 @@
                 android:layout_margin="3dp"
                 android:id="@+id/btnJeu6"
                 android:layout_column="7"
-                android:src="@drawable/solitaire"
-                android:onClick="onPyramidClick" />
+                android:src="@drawable/inconnue"/>
         </TableRow>
         <TableRow>
             <TextView

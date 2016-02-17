@@ -23,11 +23,13 @@ public class VideoPokerActivity extends Activity {
 
         if (!jeu.estCree) {
             reinitialiserJeu();
+
         } else
             replacerJeu();
     }
     private void reinitialiserJeu(){
         jeu.reinitialiserJeu();
+        jeu.passerCartes();
         carteValider.clear();
         mettreCarteANull(carteValider);
         replacerJeu();
@@ -65,6 +67,7 @@ public class VideoPokerActivity extends Activity {
     }
     public void onRecommencerClick(View v) {
         jeu.reinitialiserJeu();
+        jeu.passerCartes();
         replacerJeu();
     }
     public void onCardVideoClick(View v) {

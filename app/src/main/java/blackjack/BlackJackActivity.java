@@ -27,6 +27,7 @@ public class BlackJackActivity extends Activity {
         pointsJoueur = (TextView) findViewById(R.id.lblPointsJoueur);
         pointsCroupier = (TextView) findViewById(R.id.lblPointsCroupier);
         message = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+        jeu.context = this;
 
         if (!jeu.estCree) {
             reinitialiserLeJeu();
@@ -79,8 +80,10 @@ public class BlackJackActivity extends Activity {
      */
     private void afficherGagnant(){
         jeu.determinerGagnant();
-        message.setText(jeu.message);
-        message.show();
+        if(jeu.message != 0) {
+            message.setText(getString(jeu.message));
+            message.show();
+        }
     }
     /**
      * Réinitialiser tout les paramètres du jeu.
@@ -93,8 +96,8 @@ public class BlackJackActivity extends Activity {
         effacerImage();
 
         // Reinitialiser les textes
-        pointsJoueur.setText("0 points");
-        pointsCroupier.setText("0 points");
+        pointsJoueur.setText("0"+getString(R.string.blackjack_points));
+        pointsCroupier.setText("0"+getString(R.string.blackjack_points));
 
         // Commencer le jeu
         passerPremieresCartes();
@@ -121,6 +124,11 @@ public class BlackJackActivity extends Activity {
         nouvelleCarte = jeu.pigerUneCarte();
         if (nouvelleCarte != null) {
             jeu.jouerPourJoueur(nouvelleCarte);
+        }
+        // Deuxième carte du croupier
+        nouvelleCarte = jeu.pigerUneCarte();
+        if (nouvelleCarte != null) {
+            jeu.jouerPourCroupier(nouvelleCarte);
         }
         mettreÀJourPoints();
         mettreÀJourAffichage();
@@ -294,17 +302,17 @@ public class BlackJackActivity extends Activity {
 
         // Calculer les points du croupier
         if (jeu.pointageCroupier[1] > 21) {
-            pointsCroupier.setText(jeu.pointageCroupier[0] + " points");
+            pointsCroupier.setText(jeu.pointageCroupier[0] +" "+getString(R.string.blackjack_points));
         } else {
-            pointsCroupier.setText(jeu.pointageCroupier[0] + " / " + jeu.pointageCroupier[1] + " points");
+            pointsCroupier.setText(jeu.pointageCroupier[0] + " / " + jeu.pointageCroupier[1] + " "+getString(R.string.blackjack_points));
         }
 
         // Calculer les points du joueur
         jeu.pointageJoueur = jeu.pointageJoueur;
         if (jeu.pointageJoueur[1] > 21) {
-            pointsJoueur.setText(jeu.pointageJoueur[0] + " points");
+            pointsJoueur.setText(jeu.pointageJoueur[0] + " "+getString(R.string.blackjack_points));
         } else {
-            pointsJoueur.setText(jeu.pointageJoueur[0] + " / " + jeu.pointageJoueur[1] + " points");
+            pointsJoueur.setText(jeu.pointageJoueur[0] + " / " + jeu.pointageJoueur[1] + " "+getString(R.string.blackjack_points));
         }
     }
 }

@@ -1,5 +1,10 @@
 package blackjack;
 
+import android.content.Context;
+import android.content.res.Resources;
+
+import com.example.utilisateur.jeudepatience.R;
+
 import utilitaire.Carte;
 import utilitaire.JeuAvecCartes;
 import utilitaire.JeuDeCarte;
@@ -18,8 +23,9 @@ public class BlackJack extends JeuAvecCartes {
     public int[] pointageJoueur;
     public int[] pointageCroupier;
     public boolean estTermine = false;
-    public String message = "";
+    public int message = 0;
     public int drapeauFinPartie = 0;
+    public BlackJackActivity context = null;
 
     private BlackJack() {
         paquet = new JeuDeCarte();
@@ -150,19 +156,19 @@ public class BlackJack extends JeuAvecCartes {
             plusHautScoreCroupier = pointageCroupier[1];
 
         if (plusHautScoreJoueur > 21) {
-            message = "Vous avez perdu :(";
+            message = R.string.blackjack_perdu;
             drapeauFinPartie = 1;
         } else if (plusHautScoreCroupier > 21) {
-            message = "Vous avez Gagné :) !";
+            message = R.string.blackjack_gagnier;
             drapeauFinPartie = 3;
         } else if (plusHautScoreJoueur > plusHautScoreCroupier) {
-            message = "Vous avez Gagné :) !";
+            message = R.string.blackjack_gagnier;
             drapeauFinPartie = 3;
         } else if (plusHautScoreJoueur == plusHautScoreCroupier) {
-            message = "Égalité !";
+            message = R.string.blackjack_egaliter;
             drapeauFinPartie = 2;
         } else if (plusHautScoreCroupier > plusHautScoreJoueur) {
-            message = "Vous avez perdu :(";
+            message = R.string.blackjack_perdu;
             drapeauFinPartie = 1;
         } else
             estTermine = false;
@@ -200,7 +206,7 @@ public class BlackJack extends JeuAvecCartes {
         pointageJoueur = new int[2];
         pointageCroupier = new int[2];
         estTermine = false;
-        message = "";
+        message = 0;
     }
 
     public void faireJouerCroupier() {

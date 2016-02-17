@@ -5,7 +5,7 @@ import utilitaire.JeuAvecCartes;
 import utilitaire.JeuDeCarte;
 
 /**
- * Created by Mikael Andries-Gounant on 12/02/2016.
+ * Créé par Mikael Andries-Gounant le 12/02/2016.
  */
 public class VideoPoker extends JeuAvecCartes {
     private static VideoPoker instance = null;
@@ -45,13 +45,13 @@ public class VideoPoker extends JeuAvecCartes {
         nbCartesGardées = 0;
         estCree = true;
         aValider = false;
-        passerCartes();
+
     }
 
     /**
      * Passe les cartes, si le joueur n'a pas encore eu de cartes, passé 5 cartes sinon passé les cartes qui manquent
      */
-    private JeuDeCarte passerCartes() {
+    public JeuDeCarte passerCartes() {
         if (aPremièresCartes) {
             for (int i = nbCartesGardées; i < 5; i++) {
                 paquetFinal.add(paquet.pigerUneCarte());

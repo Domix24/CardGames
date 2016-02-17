@@ -6,6 +6,7 @@ import java.util.List;
 import utilitaire.Carte;
 import utilitaire.JeuAvecCartes;
 import utilitaire.JeuDeCarte;
+import utilitaire.JoueurSingleton;
 
 /**
  * Created by Jean-michel Lavoie on 15/02/2016.
@@ -13,7 +14,9 @@ import utilitaire.JeuDeCarte;
 public class JeuDu31Logique extends JeuAvecCartes {
     List<JoueurDu31> lstJoueurs;
     List<JoueurDu31> lstGagnants;
+    JoueurSingleton idJoueur;
     JoueurDu31 perdant;
+    float sommeArgent;
     int joueurCourant;
     int cogneur;
     List<Carte> paquetTémoin;
@@ -27,16 +30,27 @@ public class JeuDu31Logique extends JeuAvecCartes {
      */
     public void JeuDu31Logique()
     {
-        cogneur=-1;
-        joueurCourant=0;
+        int nbrJoueur=3;
         lstJoueurs = new ArrayList<JoueurDu31>();
-        lstJoueurs.add(new JoueurDu31());
-        lstJoueurs.add(new JoueurDu31());
         paquetTémoin = new ArrayList<Carte>();
+        idJoueur=JoueurSingleton.getInstance();
+        recommencer(nbrJoueur);
         simulerUneManche();
+    }
+
+    /**
+     * Mise une somme et les joueurs fictifs misent la même somme.
+     * @param txtSomme Valeur du textbox.
+     */
+    public void miserUneSomme(String txtSomme)
+    {
+        sommeArgent = idJoueur.getMontant(Float.parseFloat(txtSomme));
+        sommeArgent+=sommeArgent*lstJoueurs.size();
+
     }
     public void simulerUneManche()
     {
+        miserUneSomme("75");
         int nbrTour=lstJoueurs.size()-1;
         while(perdant==null && nbrTour!=0) {
             if(cogneur!=-1)
@@ -81,14 +95,16 @@ public class JeuDu31Logique extends JeuAvecCartes {
     public void recommencer(int nbrJoueurs)
     {
         lstGagnants.clear();
+        lstJoueurs.clear();
         cogneur=-1;
+        sommeArgent=0;
         joueurCourant=0;
         perdant=null;
-        lstJoueurs.clear();
         paquetTémoin.clear();
         paquet= new JeuDeCarte();
         for(int i=0;i<nbrJoueurs;i++)
             lstJoueurs.add(new JoueurDu31());
+        lstJoueurs.get(0).Setnom(idJoueur.getNom());
     }
 
     /**
@@ -173,8 +189,20 @@ public class JeuDu31Logique extends JeuAvecCartes {
             if(lstJoueurs.get(i).retournePlusHauteValeur()==plusHauteValeur) {
                 lstGagnants.add(lstJoueurs.get(i));
             }
+        ajouterMontant();
     }
 
+    /**
+     * Ajoute le montant dans le lot divisé par le nbr de gagnant.
+     */
+    public void ajouterMontant()
+    {
+        for(JoueurDu31 joueur : lstJoueurs)
+        {
+            if(joueur.nom==idJoueur.getNom())
+                idJoueur.AddMontant(sommeArgent/lstGagnants.size());
+        }
+    }
     /**
      * Prend le joueur avec le plus basse valeur.
      */

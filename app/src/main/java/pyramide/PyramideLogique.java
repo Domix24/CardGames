@@ -17,25 +17,25 @@ public class PyramideLogique {
     private List<Carte> lstWaste;
 
     public PyramideLogique() {
-        CommencerNouvellePartie();
+        commencerNouvellePartie();
     }
 
     /**
      * Méthode commençant une nouvelle partie
      */
-    public void CommencerNouvellePartie() {
+    public void commencerNouvellePartie() {
         paquet = new JeuDeCarte();
         pyramideArray = new ArrayList<Carte[]>();
         lstStock = new ArrayList<Carte>();
         lstWaste = new ArrayList<Carte>();
-        EnvoyerPaquetAPyramide();
-        RemplirStock();
+        envoyerPaquetAPyramide();
+        remplirStock();
     }
 
     /**
      * Envoyer la carte du dessus du stock sur le dessus du waste
      */
-    public void EnvoyerCarteAuWaste() {
+    public void envoyerCarteAuWaste() {
         lstWaste.add(lstStock.get(lstStock.size() - 1));
         lstStock.remove(lstStock.size() - 1);
     }
@@ -43,40 +43,52 @@ public class PyramideLogique {
     /**
      * @return La carte sur le dessus du waste pour pouvoir l'afficher et s'en servir dans les paires
      */
-    public Carte GetCarteDessusWaste() {
+    public Carte getCarteDessusWaste() {
         return lstWaste.get(lstWaste.size() - 1);
     }
 
     /**
      * @return L'array d'array de cartes représentant la pyramide (pour pouvoir l'afficher)
      */
-    public ArrayList<Carte[]> GetCartesPyramide() {
+    public ArrayList<Carte[]> getCartesPyramide() {
         return pyramideArray;
     }
 
     /**
      * @return Le nombre de cartes dans la liste du stock
      */
-    public int GetNombreStock() {
+    public int getNombreStock() {
         return lstStock.size();
     }
 
     /**
      * Enlève la carte de la pyramide si c'est un roi non-obstrué par une autre carte
+     * Pour cliquer le waste, passer rangée 7, colonne pas importante
      * @param rangée
      * @param colonne
      * @return True si la carte a été enlevée de la pyramide, false sinon
      */
-    public boolean EnleverCartes(int rangée, int colonne) {
+    public boolean enleverCartes(int rangée, int colonne) {
         boolean carteEnlevée = false;
 
-        if (pyramideArray.get(rangée)[colonne] != null &&
-                pyramideArray.get(rangée)[colonne].numero == 13) {
-            if (DéterminerDisponibilité(rangée, colonne)) {
-                pyramideArray.get(rangée)[colonne] = null;
-                carteEnlevée = true;
+        try { // Si le try plante, c'est que un paramètre en dehors de la pyramide a été passé
+            if (rangée <= 7 && rangée >= 0) {
+                if (rangée == 7) { // Rangée 7 est le waste
+                    if (lstWaste.get(lstWaste.size() - 1).numero == 13) {
+                        enleverDessusWaste();
+                        carteEnlevée = true;
+                    }
+                } else {
+                    if (pyramideArray.get(rangée)[colonne] != null &&
+                            pyramideArray.get(rangée)[colonne].numero == 13) {
+                        if (déterminerDisponibilité(rangée, colonne)) {
+                            pyramideArray.get(rangée)[colonne] = null;
+                            carteEnlevée = true;
+                        }
+                    }
+                }
             }
-        }
+        } catch (Exception e) {} // Si le try plante, c'est que un paramètre en dehors de la pyramide a été passé
 
         return carteEnlevée;
     }
@@ -84,30 +96,56 @@ public class PyramideLogique {
     /**
      * Enlève les deux cartes de la pyramide si elles ont un total de valeurs de 13
      * et qu'elles sont ni l'une ni l'autre obstruée
+     * Pour cliquer le waste, passer rangée 7, colonne pas importante
      * @param rangée1 Rangée de la première carte
      * @param colonne1 Colonne de la première carte
      * @param rangée2 Rangée de la deuxième carte
      * @param colonne2 Colonne de la deuxième carte
      * @return True si les cartes ont été enlevées, False sinon
      */
-    public boolean EnleverCartes(int rangée1, int colonne1, int rangée2, int colonne2) {
+    public boolean enleverCartes(int rangée1, int colonne1, int rangée2, int colonne2) {
         boolean cartesEnlevées = false;
 
-        if (pyramideArray.get(rangée1)[colonne1] != null &&
-                pyramideArray.get(rangée2)[colonne2] != null) {
+        try { // Si le try plante, c'est que un paramètre en dehors de la pyramide a été passé
+            if (rangée1 <= 7 && rangée2 <= 7 &&
+                    rangée1 >= 0 && rangée2 >= 0) {
+                if (rangée1 == 7) { // Vérifier dabord si le waste a été cliqué
+                    if (lstWaste.get(lstWaste.size() - 1).numero + pyramideArray.get(rangée2)[colonne2].numero == 13) {
+                        if (déterminerDisponibilité(rangée2, colonne2) == true) {
+                            enleverDessusWaste();
+                            pyramideArray.get(rangée2)[colonne2] = null;
 
-            if ((pyramideArray.get(rangée1)[colonne1].numero + pyramideArray.get(rangée2)[colonne2].numero) == 13) {
+                            cartesEnlevées = true;
+                        }
+                    }
+                } else if (rangée2 == 7) {
+                    if (lstWaste.get(lstWaste.size() - 1).numero + pyramideArray.get(rangée1)[colonne1].numero == 13) {
+                        if (déterminerDisponibilité(rangée1, colonne1) == true) {
+                            enleverDessusWaste();
+                            pyramideArray.get(rangée1)[colonne1] = null;
 
-                if (DéterminerDisponibilité(rangée1, colonne1) == true &&
-                        DéterminerDisponibilité(rangée2, colonne2) == true) {
+                            cartesEnlevées = true;
+                        }
+                    }
+                } else { // Si aucune carte ne venait du waste
+                    if (pyramideArray.get(rangée1)[colonne1] != null &&
+                            pyramideArray.get(rangée2)[colonne2] != null) {
 
-                    pyramideArray.get(rangée1)[colonne1] = null;
-                    pyramideArray.get(rangée2)[colonne2] = null;
+                        if ((pyramideArray.get(rangée1)[colonne1].numero + pyramideArray.get(rangée2)[colonne2].numero) == 13) {
 
-                    cartesEnlevées = true;
+                            if (déterminerDisponibilité(rangée1, colonne1) == true &&
+                                    déterminerDisponibilité(rangée2, colonne2) == true) {
+
+                                pyramideArray.get(rangée1)[colonne1] = null;
+                                pyramideArray.get(rangée2)[colonne2] = null;
+
+                                cartesEnlevées = true;
+                            }
+                        }
+                    }
                 }
             }
-        }
+        } catch (Exception e) {} // Si le try plante, c'est que un paramètre en dehors de la pyramide a été passé
 
         return cartesEnlevées;
     }
@@ -133,7 +171,7 @@ public class PyramideLogique {
     /**
      * Piger 28 cartes du paquet et les envoyer dans la pyramide
      */
-    private void EnvoyerPaquetAPyramide() {
+    private void envoyerPaquetAPyramide() {
         // Vérifier que le paquet est "neuf"
         if (paquet.size() == 52) {
             List<Carte> lstTemp = new ArrayList<Carte>();
@@ -143,7 +181,7 @@ public class PyramideLogique {
                 lstTemp.add(paquet.pigerUneCarte());
             }
 
-            RemplirPyramide(lstTemp);
+            remplirPyramide(lstTemp);
         }
     }
 
@@ -151,7 +189,7 @@ public class PyramideLogique {
      * Remplir les 7 rangées de la pyramide avec les cartes du paquet
      * @param lstpyramide La liste des 28 cartes à mettre dans la pyramide
      */
-    private void RemplirPyramide(List<Carte> lstpyramide) {
+    private void remplirPyramide(List<Carte> lstpyramide) {
         if (lstpyramide.size() == 28) {
             pyramideArray.add(new Carte[1]);
             pyramideArray.add(new Carte[2]);
@@ -197,7 +235,7 @@ public class PyramideLogique {
     /**
      * Rempli le stock avec les 24 cartes restantes dans le paquet
      */
-    private void RemplirStock() {
+    private void remplirStock() {
         for (int i = 0; i < 24; i++) {
             lstStock.add(paquet.pigerUneCarte());
         }
@@ -208,7 +246,7 @@ public class PyramideLogique {
      * @param colonne Colonne dans laquelle la carte à enlever est située
      * @return Vrai si la carte est disponible, Faux si la carte est bloquée
      */
-    private boolean DéterminerDisponibilité(int rangée, int colonne) {
+    private boolean déterminerDisponibilité(int rangée, int colonne) {
         boolean disponible = true;
 
         if (rangée > 6 || rangée < 0) {
@@ -225,6 +263,13 @@ public class PyramideLogique {
 
 
         return disponible;
+    }
+
+    /**
+     * Enlève la carte sur le dessus du waste
+     */
+    private void enleverDessusWaste() {
+        lstWaste.remove(lstWaste.size() - 1);
     }
 
     /**

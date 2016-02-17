@@ -115,7 +115,23 @@ public class JeuDeCarte extends ArrayList<Carte> {
         return (ArrayList<Carte>)this.clone();
     }
 
-
+    public void ordonnerCartes()
+    {
+        ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
+        if(this.size()>1) {
+            for (int i = 0; i < this.size(); i++) {
+                for(int u=0;u<this.size();u++) {
+                    //SI ma carte actuel est < que ma carte précédente , swapper actuel et précédente.
+                    if (paquetTemoin.get(i).numero < paquetTemoin.get(u).numero) {
+                        paquetTemoin.set(u,paquetTemoin.get(i));
+                        paquetTemoin.set(i, this.get(u));
+                        this.set(i, paquetTemoin.get(i));
+                        this.set(u, paquetTemoin.get(u));
+                    }
+                }
+            }
+        }
+    }
     public void ordonnerCartesCroissant()
     {
         ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();

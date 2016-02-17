@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import utilitaire.Carte;
+import utilitaire.JoueurSingleton;
 
 import com.example.utilisateur.jeudepatience.R;
 
@@ -15,7 +16,9 @@ public class BlackJackActivity extends Activity {
     BlackJack jeu = BlackJack.avoirInstance();
     TextView pointsJoueur;
     TextView pointsCroupier;
+    TextView argent;
     Toast message;
+    JoueurSingleton joueur = JoueurSingleton.getInstance();
 
     @Override
     /**
@@ -26,8 +29,10 @@ public class BlackJackActivity extends Activity {
         setContentView(R.layout.activity_black_jack);
         pointsJoueur = (TextView) findViewById(R.id.lblPointsJoueur);
         pointsCroupier = (TextView) findViewById(R.id.lblPointsCroupier);
+        argent = (TextView)findViewById(R.id.lblArgent);
         message = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-        jeu.context = this;
+
+
 
         if (!jeu.estCree) {
             reinitialiserLeJeu();
@@ -80,8 +85,10 @@ public class BlackJackActivity extends Activity {
      */
     private void afficherGagnant(){
         jeu.determinerGagnant();
-        message.setText(jeu.message);
-        message.show();
+        if(jeu.message != 0) {
+            message.setText(getString(jeu.message));
+            message.show();
+        }
     }
     /**
      * Réinitialiser tout les paramètres du jeu.
@@ -96,6 +103,8 @@ public class BlackJackActivity extends Activity {
         // Reinitialiser les textes
         pointsJoueur.setText("0"+getString(R.string.blackjack_points));
         pointsCroupier.setText("0"+getString(R.string.blackjack_points));
+        float monnaie = joueur.getMonnaie();
+        argent.setText( getString(R.string.argent) + String.valueOf(monnaie));
 
         // Commencer le jeu
         passerPremieresCartes();
@@ -122,6 +131,11 @@ public class BlackJackActivity extends Activity {
         nouvelleCarte = jeu.pigerUneCarte();
         if (nouvelleCarte != null) {
             jeu.jouerPourJoueur(nouvelleCarte);
+        }
+        // Deuxième carte du croupier
+        nouvelleCarte = jeu.pigerUneCarte();
+        if (nouvelleCarte != null) {
+            jeu.jouerPourCroupier(nouvelleCarte);
         }
         mettreÀJourPoints();
         mettreÀJourAffichage();
@@ -203,6 +217,8 @@ public class BlackJackActivity extends Activity {
      */
     private void mettreÀJourAffichage() {
         effacerImage();
+        float monnaie = joueur.getMonnaie();
+        argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
         for (int i = 0; i < 12; i++) {
             if (jeu.cartesJoueur[i] == null && i != 0) {
                 break;

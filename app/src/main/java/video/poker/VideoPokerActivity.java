@@ -23,11 +23,13 @@ public class VideoPokerActivity extends Activity {
 
         if (!jeu.estCree) {
             reinitialiserJeu();
+
         } else
             replacerJeu();
     }
     private void reinitialiserJeu(){
         jeu.reinitialiserJeu();
+        jeu.passerCartes();
         carteValider.clear();
         mettreCarteANull(carteValider);
         replacerJeu();
@@ -97,7 +99,10 @@ public class VideoPokerActivity extends Activity {
         if (carteValider.get(index).nom == "null"){
             carteValider.set(index, carte);
         }
-        else
-            carteValider.set(index, null);
+        else{
+            Carte cartenull = new Carte(1,1,1,"null", JeuDeCarte.type.Carre);
+            carteValider.set(index, cartenull);
+
+        }
     }
 }

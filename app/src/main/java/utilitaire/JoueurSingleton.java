@@ -21,6 +21,7 @@ public class JoueurSingleton {
      */
     public static JoueurSingleton getInstance() {
         if (instance == null) {
+            instance = new JoueurSingleton();
             initialiserJoueur();
         }
         return instance;
@@ -54,10 +55,17 @@ public class JoueurSingleton {
         monnaie += montant;
     }
 
+    /**
+     * @return Le nom du joueur
+     */
+    public String getNom()
+    {
+        return this.nomJoueur;
+    }
+
     private static void initialiserJoueur() {
         nomJoueur = "Kitty";
         monnaie = 50;
     }
-
 
 }

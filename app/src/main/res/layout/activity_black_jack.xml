@@ -98,15 +98,22 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/argent"
+                android:id="@+id/lblArgent"
+                android:layout_column="2"
+                android:layout_span="2" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Ses points: "
+                android:text="@string/blackjack_sespoints"
                 android:id="@+id/lblCroupier"
                 android:layout_column="8"
-                android:layout_marginLeft="50dp"/>
+                android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -126,10 +133,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Vos points: "
+                android:text="@string/blackjack_mespoints"
                 android:id="@+id/lblJoueur"
                 android:layout_column="8"
-                android:layout_marginLeft="50dp"/>
+                android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

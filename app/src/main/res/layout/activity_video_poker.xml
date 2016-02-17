@@ -13,6 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TableRow
+            android:layout_gravity="left">
+
+            <Button
+                android:src="@drawable/clubs_2"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_column="5"
+                android:text="@string/poker_affichergrille"
+                />
+        </TableRow>
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
@@ -53,25 +64,25 @@
             </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20dp">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Valider"
+                android:text="@string/poker_valider"
                 android:id="@+id/btnValiderVideo"
                 android:layout_column="2"
                 android:layout_span="3"
-                android:layout_gravity="bottom"
                 android:onClick="onValiderVideoClick" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rejouer"
+                android:text="@string/poker_rejouer"
                 android:id="@+id/btnRejouer"
                 android:layout_column="2"
                 android:layout_span="3"
-                android:layout_gravity="bottom"
-                android:onClick="onValiderVideoClick" />
+                android:onClick="onRecommencerClick" />
             </TableRow>
     </TableLayout>
 </RelativeLayout>

@@ -70,7 +70,7 @@ public class VideoPoker extends JeuAvecCartes {
      * Lorsque le joueur a décidé quel cartes il voulait garder, garder les cartes, en passer d'autres et vérifier les points
      */
     public JeuDeCarte validerCartes(JeuDeCarte cartes) {
-        if (!aValider){
+        if (!aValider) {
             for (int i = 0; i < 5; i++) {
                 if (cartes.get(i).nom != "null") {
                     paquetFinal.add(cartes.get(i));
@@ -81,14 +81,14 @@ public class VideoPoker extends JeuAvecCartes {
             passerCartes();
             int nbJetons = compterPoints();
             return paquetFinal;
-        }
-        else
+        } else
             return null;
 
     }
+
     private int compterPoints() {
         int nbJetons = 0;
-        paquetFinal.ordonnerCartesCroissant();
+        paquetFinal.ordonnerCartes();
         if (siValetouMieux()) {
             nbJetons = 10;
         }
@@ -122,17 +122,29 @@ public class VideoPoker extends JeuAvecCartes {
     }
 
     /**
-     * Vérifie s'il y a un carte avec une valeur de plus de 10
+     * Vérifie s'il y a une paire de valet ou mieux
      *
-     * @return vrai s'il y a un valet ou mieux faux si non
+     * @return vrai s'il y a une paire de valet ou mieux faux si non
      */
     private boolean siValetouMieux() {
+        int nbValet = 0;
+        int nbDame = 0;
+        int nbRoi = 0;
+        int nbAs = 0;
         for (int i = 0; i < 5; i++) {
-            if (paquetFinal.get(i).numero >= 11) {
-                return true;
-            }
+            if (paquetFinal.get(i).numero == 11) {
+                nbValet++;
+            } else if (paquetFinal.get(i).numero == 12)
+                nbDame++;
+            else if (paquetFinal.get(i).numero == 13)
+                nbRoi++;
+            else if (paquetFinal.get(i).numero == 1)
+                nbAs++;
         }
-        return false;
+        if (nbValet >= 2 || nbDame >= 2 || nbRoi >= 2 || nbAs >= 2)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -333,6 +345,7 @@ public class VideoPoker extends JeuAvecCartes {
     public int trouverIdCarte(String nom) {
         return paquet.trouverIdCarte(nom);
     }
+
     @Override
     public void Initialiser(int seed) {
 

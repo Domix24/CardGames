@@ -10,3 +10,5 @@
     tools:context="jeudu31.JeuDu31activite"
     android:background="@drawable/menubackground">
 </RelativeLayout>
+
+

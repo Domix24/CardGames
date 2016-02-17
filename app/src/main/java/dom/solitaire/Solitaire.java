@@ -100,7 +100,7 @@ public class Solitaire extends JeuAvecCartes {
 
         for(int i = 0; i < TABLEAU_COLUMNS_COUNT; i++) {
             tableau[i] = new ArrayList<>();
-            for(int j = 0 ; j < i+2; j++) {
+            for(int j = 0 ; j < i+1; j++) {
                 tableau[i].add(new CarteColonne(paquet.pigerUneCarte(), j == i+1));
             }
         }
@@ -192,5 +192,15 @@ public class Solitaire extends JeuAvecCartes {
         public void devoilerCarte() {
             estDévoilée = true;
         }
+    }
+
+    public List<CarteColonne>[] avoirTableau()
+    {
+        return  tableau;
+    }
+
+    public int trouverIdCarte(String nom)
+    {
+        return paquet.trouverIdCarte(nom);
     }
 }

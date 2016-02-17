@@ -44,7 +44,7 @@
                 android:id="@+id/btnSolitaire"
                 android:layout_column="7"
                 android:src="@drawable/solitaire"
-                android:onClick="onPyramidClick" />
+                android:onClick="OnSolitaireClick" />
 
 
         </TableRow>
@@ -91,7 +91,7 @@
                 android:id="@+id/btnVideoPoker"
                 android:layout_column="4"
                 android:src="@drawable/videopoker"
-                android:onClick="onBlackJackClick" />
+                android:onClick="onVideoPokerClick" />
 
             <ImageView
                 android:layout_width="250dp"

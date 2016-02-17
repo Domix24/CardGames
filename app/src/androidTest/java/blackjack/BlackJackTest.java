@@ -39,6 +39,13 @@ public class BlackJackTest extends TestCase {
 
     /**
      * Test la logique de calcule, le test regarde principalement si la gestion des Aces sont bien géré et le dépassement de points
+     * Étapes:
+     * -1 : main vide
+     * -2 : Deux Aces
+     * -3 : Deux Aces
+     * -4 : Trois Aces
+     * -5 : Trois Aces + 7
+     * -6 : Trois Aces + deux 7
      * @throws Exception
      */
     public void testCalculerPoints() throws Exception {

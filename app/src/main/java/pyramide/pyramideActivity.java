@@ -122,7 +122,7 @@ public class pyramideActivity extends Activity {
      */
     public void afficherPyramide() {
         if (estCrée){
-            Toast.makeText(getApplicationContext(), "Partie terminée.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
         }
         for(int i =0;i< jeuDePyramide.GetCartesPyramide().size();i++)
             for(int j=0;j<jeuDePyramide.GetCartesPyramide().get(i).length;j++)
@@ -161,7 +161,7 @@ public class pyramideActivity extends Activity {
         int nbCartesStock = jeuDePyramide.GetNombreStock();
         lblStock.setText(Integer.toString(nbCartesStock));
         if (estCrée){
-            Toast.makeText(getApplicationContext(), "Partie terminée.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
         }
         for(int i =0;i< jeuDePyramide.GetCartesPyramide().size();i++)
             for(int j=0;j<jeuDePyramide.GetCartesPyramide().get(i).length;j++)

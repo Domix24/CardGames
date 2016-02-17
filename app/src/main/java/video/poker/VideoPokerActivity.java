@@ -65,6 +65,7 @@ public class VideoPokerActivity extends Activity {
     }
     public void onRecommencerClick(View v) {
         jeu.reinitialiserJeu();
+        jeu.passerCartes();
         replacerJeu();
     }
     public void onCardVideoClick(View v) {

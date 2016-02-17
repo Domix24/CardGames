@@ -83,7 +83,7 @@
                 android:id="@+id/btnSolitaire"
                 android:layout_column="1"
                 android:src="@drawable/solitaire"
-                android:onClick="onPyramidClick"
+                android:onClick="OnSolitaireClick"
                 android:layout_gravity="right|center"/>
         </TableRow>
         <TableRow>

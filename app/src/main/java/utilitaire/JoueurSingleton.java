@@ -58,6 +58,9 @@ public class JoueurSingleton {
         nomJoueur = "Kitty";
         monnaie = 50;
     }
-
+    public String AvoirLeNom()
+    {
+        return this.nomJoueur;
+    }
 
 }

@@ -12,5 +12,5 @@
     <string name="blackjack_sespoints">His score :</string>
     <string name="blackjack_mespoints">My score :</string>
 
-    <string name="pyramide_partieterminer">Partie terminée.</string>
+    <string name="pyramide_partieterminer">Game Over.</string>
 </resources>

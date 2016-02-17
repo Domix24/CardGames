@@ -74,13 +74,13 @@
                 android:layout_margin="5dp"
                 android:id="@+id/btnVideoPoker"
                 android:layout_column="1"
-                android:src="@drawable/solitaire"
+                android:src="@drawable/videopoker"
                 android:onClick="onVideoPokerClick" />
             <ImageButton
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="5dp"
-                android:id="@+id/btnVideoPoker"
+                android:id="@+id/btnSolitaire"
                 android:layout_column="1"
                 android:src="@drawable/solitaire"
                 android:onClick="onPyramidClick"
@@ -113,7 +113,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="5dp"
-                android:id="@+id/btnJeux"
+                android:id="@+id/btnJeu5"
                 android:layout_column="1"
                 android:src="@drawable/solitaire"
                 android:onClick="onJeuDu31Click" />
@@ -121,7 +121,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="5dp"
-                android:id="@+id/btnJeux2"
+                android:id="@+id/btnJeu6"
                 android:layout_column="1"
                 android:src="@drawable/solitaire"
                 android:onClick="onPyramidClick"

@@ -106,7 +106,7 @@
                 android:text="Ses points: "
                 android:id="@+id/lblCroupier"
                 android:layout_column="8"
-                android:layout_marginLeft="50dp"/>
+                android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
                 android:text="Vos points: "
                 android:id="@+id/lblJoueur"
                 android:layout_column="8"
-                android:layout_marginLeft="50dp"/>
+                android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

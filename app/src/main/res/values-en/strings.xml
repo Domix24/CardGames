@@ -8,9 +8,9 @@
     <string name="blackjack_perdu">You lost :(</string>
     <string name="blackjack_gagnier">You have won :) !</string>
     <string name="blackjack_egaliter">Draw :| !</string>
-    <string name="blackjack_points">Score</string>
+    <string name="blackjack_points">points</string>
     <string name="blackjack_sespoints">His score :</string>
     <string name="blackjack_mespoints">My score :</string>
 
-    <string name="pyramide_partieterminer">Partie terminée.</string>
+    <string name="pyramide_partieterminer">Game Over.</string>
 </resources>

@@ -12,7 +12,7 @@
     <string name="blackjack_sespoints">Ses points :</string>
     <string name="blackjack_mespoints">Mes points :</string>
 
-    <string name="pyramide_partieterminer">Game Over.</string>
+    <string name="pyramide_partieterminer">Partie terminée.</string>
 
     <string name="title_activity_jeudu31activite">jeudu31activite</string>
 </resources>

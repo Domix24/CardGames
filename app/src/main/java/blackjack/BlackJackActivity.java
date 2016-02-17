@@ -125,6 +125,11 @@ public class BlackJackActivity extends Activity {
         if (nouvelleCarte != null) {
             jeu.jouerPourJoueur(nouvelleCarte);
         }
+        // Deuxième carte du croupier
+        nouvelleCarte = jeu.pigerUneCarte();
+        if (nouvelleCarte != null) {
+            jeu.jouerPourCroupier(nouvelleCarte);
+        }
         mettreÀJourPoints();
         mettreÀJourAffichage();
     }

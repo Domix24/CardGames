@@ -47,16 +47,16 @@ public class pyramideActivity extends Activity {
      * @param v Vue qui déclenche l'event
      */
     public void OnClickStock(View v) {
-        jeuDePyramide.EnvoyerCarteAuWaste();
+        jeuDePyramide.envoyerCarteAuWaste();
 
 
         TextView lblStock = (TextView)findViewById(R.id.cartesStock);
-        int nbCartesStock = jeuDePyramide.GetNombreStock();
+        int nbCartesStock = jeuDePyramide.getNombreStock();
         lblStock.setText(Integer.toString(nbCartesStock));
 
         ImageView image = (ImageView)findViewById(R.id.R7C0);
         try {
-            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.GetCarteDessusWaste().nom));
+            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
         }
         catch(Exception e){}
 
@@ -88,7 +88,7 @@ public class pyramideActivity extends Activity {
                     colonneOrigine=Character.getNumericValue(tempChar);
 
                     // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    if (jeuDePyramide.EnleverCartes(rangéeOrigine, colonneOrigine) == true) {
+                    if (jeuDePyramide.enleverCartes(rangéeOrigine, colonneOrigine) == true) {
                         imageSélectionnée.setImageDrawable(null);
                         imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                         premiereCarte = "";
@@ -104,7 +104,7 @@ public class pyramideActivity extends Activity {
                     colonneDestination = Character.getNumericValue(tempChar);
 
                     // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    jeuDePyramide.EnleverCartes(rangéeOrigine, colonneOrigine, rangéeDestination, colonneDestination);
+                    jeuDePyramide.enleverCartes(rangéeOrigine, colonneOrigine, rangéeDestination, colonneDestination);
 
                     imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                     premiereCarte = "";
@@ -124,10 +124,10 @@ public class pyramideActivity extends Activity {
         if (estCrée){
             Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
         }
-        for(int i =0;i< jeuDePyramide.GetCartesPyramide().size();i++)
-            for(int j=0;j<jeuDePyramide.GetCartesPyramide().get(i).length;j++)
+        for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++)
+            for(int j=0;j<jeuDePyramide.getCartesPyramide().get(i).length;j++)
                 try{
-                    Carte carteAAfficher =jeuDePyramide.GetCartesPyramide().get(i)[j];
+                    Carte carteAAfficher =jeuDePyramide.getCartesPyramide().get(i)[j];
                     String tag = "R" +Integer.toString(i,0)+"C"+Integer.toString(j,0);
                     for(Field f: campos)
                     {
@@ -147,7 +147,7 @@ public class pyramideActivity extends Activity {
                 }catch(Exception e){}
         ImageView image = (ImageView)findViewById(R.id.R7C0);
         try {
-            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.GetCarteDessusWaste().nom));
+            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
             image.setClickable(true);
         }
         catch(Exception e){}
@@ -156,17 +156,17 @@ public class pyramideActivity extends Activity {
 
     public void Restart(View v)
     {
-        jeuDePyramide.CommencerNouvellePartie();
+        jeuDePyramide.commencerNouvellePartie();
         TextView lblStock = (TextView)findViewById(R.id.cartesStock);
-        int nbCartesStock = jeuDePyramide.GetNombreStock();
+        int nbCartesStock = jeuDePyramide.getNombreStock();
         lblStock.setText(Integer.toString(nbCartesStock));
         if (estCrée){
             Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
         }
-        for(int i =0;i< jeuDePyramide.GetCartesPyramide().size();i++)
-            for(int j=0;j<jeuDePyramide.GetCartesPyramide().get(i).length;j++)
+        for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++)
+            for(int j=0;j<jeuDePyramide.getCartesPyramide().get(i).length;j++)
                 try{
-                    Carte carteAAfficher =jeuDePyramide.GetCartesPyramide().get(i)[j];
+                    Carte carteAAfficher =jeuDePyramide.getCartesPyramide().get(i)[j];
                     String tag = "R" +Integer.toString(i,0)+"C"+Integer.toString(j,0);
                     for(Field f: campos)
                     {
@@ -186,7 +186,7 @@ public class pyramideActivity extends Activity {
                 }catch(Exception e){}
         ImageView image = (ImageView)findViewById(R.id.R7C0);
         try {
-            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.GetCarteDessusWaste().nom));
+            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
             image.setClickable(true);
         }
         catch(Exception e){}

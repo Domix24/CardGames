@@ -20,7 +20,7 @@
                 android:layout_height="50dp"
                 android:layout_width="50dp"
                 android:layout_column="5"
-                android:text="Afficher Grille"
+                android:text="@string/poker_affichergrille"
                 />
         </TableRow>
         <TableRow
@@ -70,7 +70,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Valider"
+                android:text="@string/poker_valider"
                 android:id="@+id/btnValiderVideo"
                 android:layout_column="2"
                 android:layout_span="3"
@@ -78,11 +78,11 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rejouer"
+                android:text="@string/poker_rejouer"
                 android:id="@+id/btnRejouer"
                 android:layout_column="2"
                 android:layout_span="3"
-                android:onClick="onValiderVideoClick" />
+                android:onClick="onRecommencerClick" />
             </TableRow>
     </TableLayout>
 </RelativeLayout>

@@ -25,7 +25,6 @@ public class BlackJack extends JeuAvecCartes {
     public boolean estTermine = false;
     public int message = 0;
     public int drapeauFinPartie = 0;
-    public BlackJackActivity context = null;
 
     private BlackJack() {
         paquet = new JeuDeCarte();

@@ -26,10 +26,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="jeudu31.JeuDu31activite"
-            android:label="@string/title_activity_jeudu31activite"></activity>
+            android:label="@string/title_activity_jeudu31activite"
+            ></activity>
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
-        <activity android:name="video.poker.VideoPokerActivity"></activity>
+        <activity android:name="video.poker.VideoPokerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

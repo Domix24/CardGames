@@ -12,5 +12,12 @@
     <string name="blackjack_sespoints">His score :</string>
     <string name="blackjack_mespoints">My score :</string>
 
+    <string name="poker_valider">Validate</string>
+    <string name="poker_rejouer">Replay</string>
+    <string name="poker_affichergrille">Display Grid</string>
+
+
+    <string name="argent">Cash :</string>
+
     <string name="pyramide_partieterminer">Game Over.</string>
 </resources>

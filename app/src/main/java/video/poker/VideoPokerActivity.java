@@ -99,7 +99,10 @@ public class VideoPokerActivity extends Activity {
         if (carteValider.get(index).nom == "null"){
             carteValider.set(index, carte);
         }
-        else
-            carteValider.set(index, null);
+        else{
+            Carte cartenull = new Carte(1,1,1,"null", JeuDeCarte.type.Carre);
+            carteValider.set(index, cartenull);
+
+        }
     }
 }

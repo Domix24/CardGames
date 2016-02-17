@@ -63,6 +63,7 @@ public class PyramideLogique {
 
     /**
      * Enlève la carte de la pyramide si c'est un roi non-obstrué par une autre carte
+     * Pour cliquer le waste, passer rangée 7, colonne pas importante
      * @param rangée
      * @param colonne
      * @return True si la carte a été enlevée de la pyramide, false sinon
@@ -70,14 +71,23 @@ public class PyramideLogique {
     public boolean EnleverCartes(int rangée, int colonne) {
         boolean carteEnlevée = false;
 
-        if (pyramideArray.get(rangée)[colonne] != null &&
-                pyramideArray.get(rangée)[colonne].numero == 13) {
-            if (DéterminerDisponibilité(rangée, colonne)) {
-                pyramideArray.get(rangée)[colonne] = null;
-                carteEnlevée = true;
+        if (rangée <=7 && rangée >= 0) {
+            if (rangée == 7) { // Rangée 7 est le waste
+                if (lstWaste.get(lstWaste.size() - 1).numero == 13) {
+                    lstWaste.remove(lstWaste.size() - 1);
+                    carteEnlevée = true;
+                }
+            }
+            else {
+                if (pyramideArray.get(rangée)[colonne] != null &&
+                        pyramideArray.get(rangée)[colonne].numero == 13) {
+                    if (DéterminerDisponibilité(rangée, colonne)) {
+                        pyramideArray.get(rangée)[colonne] = null;
+                        carteEnlevée = true;
+                    }
+                }
             }
         }
-
         return carteEnlevée;
     }
 

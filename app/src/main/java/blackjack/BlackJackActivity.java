@@ -32,7 +32,7 @@ public class BlackJackActivity extends Activity {
         argent = (TextView)findViewById(R.id.lblArgent);
         message = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
-        jeu.context = this;
+
 
         if (!jeu.estCree) {
             reinitialiserLeJeu();
@@ -104,7 +104,7 @@ public class BlackJackActivity extends Activity {
         pointsJoueur.setText("0"+getString(R.string.blackjack_points));
         pointsCroupier.setText("0"+getString(R.string.blackjack_points));
         float monnaie = joueur.getMonnaie();
-        argent.setText("Argent: " + String.valueOf(monnaie));
+        argent.setText( getString(R.string.argent) + String.valueOf(monnaie));
 
         // Commencer le jeu
         passerPremieresCartes();
@@ -218,7 +218,7 @@ public class BlackJackActivity extends Activity {
     private void mettreÀJourAffichage() {
         effacerImage();
         float monnaie = joueur.getMonnaie();
-        argent.setText("Argent: " + String.valueOf(monnaie));
+        argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
         for (int i = 0; i < 12; i++) {
             if (jeu.cartesJoueur[i] == null && i != 0) {
                 break;

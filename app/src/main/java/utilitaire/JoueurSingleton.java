@@ -64,6 +64,7 @@ public class JoueurSingleton {
     }
 
     private static void initialiserJoueur() {
+        instance= new JoueurSingleton();
         nomJoueur = "Kitty";
         monnaie = 50;
     }

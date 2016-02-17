@@ -44,7 +44,7 @@
                 android:id="@+id/btnSolitaire"
                 android:layout_column="7"
                 android:src="@drawable/solitaire"
-                android:onClick="onPyramidClick" />
+                android:onClick="OnSolitaireClick" />
 
 
         </TableRow>
@@ -100,7 +100,7 @@
                 android:id="@+id/btnPyramide2"
                 android:layout_column="7"
                 android:src="@drawable/jeu31"
-                android:onClick="onPyramidClick" />
+                android:onClick="onJeuDu31Click" />
 
             <ImageView
                 android:layout_width="250dp"

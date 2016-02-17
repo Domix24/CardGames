@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import blackjack.BlackJackActivity;
+import dom.solitaire.SolitaireActivity;
 import jeudu31.JeuDu31Logique;
 import jeudu31.JeuDu31activite;
 import pyramide.pyramideActivity;
@@ -33,5 +34,11 @@ public class MainActivity extends Activity {
     {
         Intent ouvrierJeuDu31 = new Intent(this, JeuDu31activite.class);
         startActivity(ouvrierJeuDu31);
+    }
+
+    public void OnSolitaireClick(View v)
+    {
+        Intent ouvrirSolitaire = new Intent(this, SolitaireActivity.class);
+        startActivity(ouvrirSolitaire);
     }
 }

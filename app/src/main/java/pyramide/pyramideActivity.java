@@ -122,29 +122,31 @@ public class pyramideActivity extends Activity {
      */
     public void afficherPyramide() {
         if (estCrée){
-            Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
         }
-        for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++)
-            for(int j=0;j<jeuDePyramide.getCartesPyramide().get(i).length;j++)
-                try{
-                    Carte carteAAfficher =jeuDePyramide.getCartesPyramide().get(i)[j];
-                    String tag = "R" +Integer.toString(i,0)+"C"+Integer.toString(j,0);
-                    for(Field f: campos)
-                    {
-                        if(tag.contains(f.getName())) {
-                            ImageView img=(ImageView)this.findViewById(this.getBaseContext().getResources().getIdentifier("R" + i + "C" + j
+        for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++) {
+            for (int j = 0; j < jeuDePyramide.getCartesPyramide().get(i).length; j++) {
+                try {
+                    Carte carteAAfficher = jeuDePyramide.getCartesPyramide().get(i)[j];
+                    String tag = "R" + Integer.toString(i, 0) + "C" + Integer.toString(j, 0);
+                    for (Field f : campos) {
+                        if (tag.contains(f.getName())) {
+                            ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("R" + i + "C" + j
                                     , "id", this.getBaseContext().getPackageName()));
                             if (carteAAfficher == null) {
                                 img.setImageDrawable(null);
                                 img.setClickable(false);
-                            }
-                            else {
+                            } else {
                                 img.setImageResource(jeuDePyramide.trouverIdCarte(carteAAfficher.nom));
                                 img.setClickable(true);
                             }
                         }
                     }
-                }catch(Exception e){}
+                }
+                catch (Exception e) {
+                }
+            }
+        }
         ImageView image = (ImageView)findViewById(R.id.R7C0);
         try {
             image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
@@ -154,6 +156,10 @@ public class pyramideActivity extends Activity {
     }
 
 
+    /**
+     * Au click, commence une nouvelle partie
+     * @param v
+     */
     public void Restart(View v)
     {
         jeuDePyramide.commencerNouvellePartie();

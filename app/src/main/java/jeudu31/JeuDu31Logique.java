@@ -104,7 +104,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         paquet= new JeuDeCarte();
         for(int i=0;i<nbrJoueurs;i++)
             lstJoueurs.add(new JoueurDu31());
-        lstJoueurs.get(0).Setnom(idJoueur.AvoirLeNom());
+        lstJoueurs.get(0).Setnom(idJoueur.getNom());
     }
 
     /**
@@ -199,7 +199,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
     {
         for(JoueurDu31 joueur : lstJoueurs)
         {
-            if(joueur.nom==idJoueur.AvoirLeNom())
+            if(joueur.nom==idJoueur.getNom())
                 idJoueur.AddMontant(sommeArgent/lstGagnants.size());
         }
     }

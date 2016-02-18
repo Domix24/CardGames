@@ -94,9 +94,10 @@ public class BlackJackActivity extends Activity {
             jeu.mise = joueur.getMontant(miseTemp);
             if (jeu.mise != 0){
                 jeu.aMisé = true;
+                // Commencer
+                passerPremieresCartes();
             }
-            // Commencer
-            passerPremieresCartes();
+
         }
     }
 

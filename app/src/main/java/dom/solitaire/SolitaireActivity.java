@@ -75,7 +75,7 @@ public class SolitaireActivity extends Activity {
                         else if (jeuSolitaire.DéplacerPaquetVersAutreColonne(premierecc.carte, colonneOrigine, rangéeOrigine, colonneDestination))
                         {
                             rafraîchirJeu();
-                            premiereCarte = "";
+                            premiereCarte="";
                         }
                     }
                 }

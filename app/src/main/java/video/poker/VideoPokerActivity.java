@@ -1,6 +1,7 @@
 package video.poker;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -56,22 +57,27 @@ public class VideoPokerActivity extends Activity {
         ImageView image = (ImageView) findViewById(R.id.imgVideo1);
         image.setImageResource(jeu.trouverIdCarte(cartes.get(0).nom));
         image.setVisibility(View.VISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
 
         image = (ImageView) findViewById(R.id.imgVideo2);
         image.setImageResource(jeu.trouverIdCarte(cartes.get(1).nom));
         image.setVisibility(View.VISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
 
         image = (ImageView) findViewById(R.id.imgVideo3);
         image.setImageResource(jeu.trouverIdCarte(cartes.get(2).nom));
         image.setVisibility(View.VISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
 
         image = (ImageView) findViewById(R.id.imgVideo4);
         image.setImageResource(jeu.trouverIdCarte(cartes.get(3).nom));
         image.setVisibility(View.VISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
 
         image = (ImageView) findViewById(R.id.imgVideo5);
         image.setImageResource(jeu.trouverIdCarte(cartes.get(4).nom));
         image.setVisibility(View.VISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
     }
     public void onValiderVideoClick(View v) {
         if (jeu.aMisé){
@@ -115,22 +121,26 @@ public class VideoPokerActivity extends Activity {
         }
     }
     public void onCardVideoClick(View v) {
+
         if (jeu.aMisé){
+            ImageView imageSélectionnée;
+            imageSélectionnée = (ImageView)findViewById(v.getId());
+
             switch(v.getId()){
                 case R.id.imgVideo1:
-                    validerCarte(cartePresente.get(0), 0);
+                    validerCarte(cartePresente.get(0), 0,imageSélectionnée);
                     break;
                 case R.id.imgVideo2:
-                    validerCarte(cartePresente.get(1), 1);
+                    validerCarte(cartePresente.get(1), 1,imageSélectionnée);
                     break;
                 case R.id.imgVideo3:
-                    validerCarte(cartePresente.get(2), 2);
+                    validerCarte(cartePresente.get(2), 2,imageSélectionnée);
                     break;
                 case R.id.imgVideo4:
-                    validerCarte(cartePresente.get(3), 3);
+                    validerCarte(cartePresente.get(3), 3,imageSélectionnée);
                     break;
                 case R.id.imgVideo5:
-                    validerCarte(cartePresente.get(4), 4);
+                    validerCarte(cartePresente.get(4), 4,imageSélectionnée);
                     break;
             }
         }
@@ -141,15 +151,17 @@ public class VideoPokerActivity extends Activity {
             cartes.add(cartenull);
         }
     }
-    private void validerCarte(Carte carte, int index){
+    private void validerCarte(Carte carte, int index,ImageView img){
         if (carteValider.get(index).nom == "null"){
             carteValider.set(index, carte);
             message.setText("Carte " + carte.nom + " selectionné.");
+            img.setBackgroundColor(Color.GREEN);
         }
         else{
             Carte cartenull = new Carte(1,1,1,"null", JeuDeCarte.type.Carre);
             carteValider.set(index, cartenull);
             message.setText("Carte " + carte.nom + " deselectionné.");
+            img.setBackgroundColor(Color.TRANSPARENT);
         }
         message.show();
     }
@@ -160,17 +172,22 @@ public class VideoPokerActivity extends Activity {
         // Reinitialiser les images
         ImageView image = (ImageView) findViewById(R.id.imgVideo1);
         image.setVisibility(View.INVISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
 
          image = (ImageView) findViewById(R.id.imgVideo2);
         image.setVisibility(View.INVISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
 
          image = (ImageView) findViewById(R.id.imgVideo3);
         image.setVisibility(View.INVISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
 
          image = (ImageView) findViewById(R.id.imgVideo4);
         image.setVisibility(View.INVISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
 
          image = (ImageView) findViewById(R.id.imgVideo5);
         image.setVisibility(View.INVISIBLE);
+        image.setBackgroundColor(Color.TRANSPARENT);
     }
 }

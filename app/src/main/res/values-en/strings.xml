@@ -18,6 +18,14 @@
 
 
     <string name="argent">Cash : </string>
+    <string name="miser">Bet</string>
+
+    <string name="blackjack">Blackjack</string>
+    <string name="pyramide">Pyramid</string>
+    <string name="jeudu31">31 game</string>
+    <string name="solitaire">Solitaire</string>
+    <string name="videopoker">Video Poker</string>
+    <string name="inconnue">Unknown</string>
 
     <string name="pyramide_partieterminer">Game Over.</string>
 </resources>

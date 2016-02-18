@@ -156,6 +156,7 @@ public class BlackJack extends JeuAvecCartes {
         else
             plusHautScoreCroupier = pointageCroupier[1];
 
+
         if (plusHautScoreJoueur > 21) {
             message = R.string.blackjack_perdu;
             drapeauFinPartie = 1;

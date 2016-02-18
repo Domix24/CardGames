@@ -21,7 +21,6 @@ public class PyramideLogique {
     private float sommeIncrémentielle;
     private boolean partieTerminée;
     private boolean partieGagnée;
-    private int cartesDansPyramide;
 
     public PyramideLogique() {
         idJoueur=JoueurSingleton.getInstance();
@@ -68,7 +67,6 @@ public class PyramideLogique {
         lstWaste = new ArrayList<Carte>();
         partieTerminée = false;
         partieGagnée = false;
-        cartesDansPyramide = 28;
         envoyerPaquetAPyramide();
         remplirStock();
     }
@@ -126,7 +124,6 @@ public class PyramideLogique {
                         if (déterminerDisponibilité(rangée, colonne)) {
                             pyramideArray.get(rangée)[colonne] = null;
                             carteEnlevée = true;
-                            cartesDansPyramide--;
                             sommeArgent+=sommeIncrémentielle;
                         }
                     }
@@ -159,7 +156,6 @@ public class PyramideLogique {
                             enleverDessusWaste();
                             pyramideArray.get(rangée2)[colonne2] = null;
                             cartesEnlevées = true;
-                            cartesDansPyramide--;
                             sommeArgent+=sommeIncrémentielle;
                         }
                     }
@@ -169,7 +165,6 @@ public class PyramideLogique {
                             enleverDessusWaste();
                             pyramideArray.get(rangée1)[colonne1] = null;
                             cartesEnlevées = true;
-                            cartesDansPyramide--;
                             sommeArgent+=sommeIncrémentielle;
                         }
                     }
@@ -185,7 +180,6 @@ public class PyramideLogique {
                                 pyramideArray.get(rangée1)[colonne1] = null;
                                 pyramideArray.get(rangée2)[colonne2] = null;
                                 cartesEnlevées = true;
-                                cartesDansPyramide -= 2;
                                 sommeArgent+=sommeIncrémentielle;
                             }
                         }
@@ -205,7 +199,7 @@ public class PyramideLogique {
     public boolean vérifierFinPartie() {
         List<Carte> lstCartesDisponiblesRestantes = new ArrayList<Carte>();
 
-        if (cartesDansPyramide <= 0) {
+        if (pyramideArray.get(0)[0] == null) {
             partieTerminée = true;
             partieGagnée = true;
         }

@@ -88,7 +88,7 @@ public class VideoPokerActivity extends Activity {
             joueur.AddMontant(gain);
             float monnaie = joueur.getMonnaie();
 
-            argent.setText(R.string.argent + String.valueOf(monnaie));
+            argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
             if (gain != 0)
                 message.setText(getString(R.string.blackjack_gagnier) + " " +String.valueOf(gain));
             else

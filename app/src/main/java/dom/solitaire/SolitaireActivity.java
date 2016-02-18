@@ -27,6 +27,7 @@ public class SolitaireActivity extends Activity {
     Field[] campos;
     Solitaire.CarteColonne premierecc;
     int[] carteFondations = {R.id.FondationCoeur, R.id.FondationPique, R.id.FondationCarre, R.id.FondationTrefle};
+    int[] carteFondationsvide = {R.drawable.hearts_avide,R.drawable.spades_avide, R.drawable.diamonds_avide,R.drawable.clubs_avide};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class SolitaireActivity extends Activity {
                         imageSélectionnée = (ImageView) findViewById(v.getId());
                         premierecc = (Solitaire.CarteColonne)imageSélectionnée.getTag();
                         if (premierecc.estDévoilée) {
-                            imageSélectionnée.setBackgroundColor(Color.rgb(0, 128, 46));
+                            imageSélectionnée.setBackgroundColor(Color.rgb(48,0,255));
                             premiereCarte = f.getName();
                             String[] s = premiereCarte.split("C");
                             tempChar = s[1];
@@ -69,9 +70,10 @@ public class SolitaireActivity extends Activity {
                             premiereCarte = "";
                             deuxièmeCarte = "";
                         }
-                        else if (jeuSolitaire.DéplacerPaquetVersAutreColonne(premierecc.carte, colonneOrigine, rangéeOrigine, colonneDestination));
+                        else if (jeuSolitaire.DéplacerPaquetVersAutreColonne(premierecc.carte, colonneOrigine, rangéeOrigine, colonneDestination))
                         {
                             rafraîchirJeu();
+                            premiereCarte = "";
                         }
                     }
                 }
@@ -110,17 +112,14 @@ public class SolitaireActivity extends Activity {
                             , "id", this.getBaseContext().getPackageName()));
                     if (cc.estDévoilée) {
                         img.setImageResource(jeuSolitaire.trouverIdCarte(cc.carte.nom));
-                        img.setTag(cc);
-                        img.setVisibility(View.VISIBLE);
-                        img.setBackgroundColor(Color.argb(0, 0, 0, 0));
                     }
 
                     else {
                         img.setImageResource(R.drawable.back);
-                        img.setTag(cc);
-                        img.setVisibility(View.VISIBLE);
-                        img.setBackgroundColor(Color.argb(0, 0, 0, 0));
                     }
+                    img.setTag(cc);
+                    img.setVisibility(View.VISIBLE);
+                    img.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 } else {
                     ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("C" + j + "C" + i
                             , "id", this.getBaseContext().getPackageName()));
@@ -139,7 +138,7 @@ public class SolitaireActivity extends Activity {
             if (fondations[i] != null)
                 img.setImageResource(jeuSolitaire.trouverIdCarte(fondations[i].nom));
             else
-                img.setImageResource(R.drawable.diamonds_10);
+                img.setImageResource(carteFondationsvide[i]);
         }
 
     }

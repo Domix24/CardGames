@@ -14,7 +14,7 @@
 
     <string name="poker_valider">Validate</string>
     <string name="poker_rejouer">Replay</string>
-    <string name="poker_affichergrille">Display Grid</string>
+    <string name="poker_affichergrille">Display grid</string>
 
 
     <string name="argent">Cash : </string>

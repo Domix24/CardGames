@@ -101,7 +101,7 @@ public class Solitaire extends JeuAvecCartes {
         for(int i = 0; i < TABLEAU_COLUMNS_COUNT; i++) {
             tableau[i] = new ArrayList<>();
             for(int j = 0 ; j < i+1; j++) {
-                tableau[i].add(new CarteColonne(paquet.pigerUneCarte(), j == i+1));
+                tableau[i].add(new CarteColonne(paquet.pigerUneCarte(), j == i));
             }
         }
     }
@@ -127,12 +127,13 @@ public class Solitaire extends JeuAvecCartes {
             foundationIndex = 3;
         }
 
-        if((foundations[foundationIndex] == null && carte.numero != 1) || (foundations[foundationIndex] != null && foundations[foundationIndex].numero + 1 == carte.numero))
+        if((foundations[foundationIndex] == null && carte.numero != 1) || (foundations[foundationIndex] != null && foundations[foundationIndex].numero + 1 != carte.numero))
             return false;
 
         foundations[foundationIndex] = carte;
         tableau[colonne].remove(tableau[colonne].size()-1);
-        tableau[colonne].get(tableau[colonne].size()-1).devoilerCarte();
+        if (tableau[colonne].size() > 0)
+            tableau[colonne].get(tableau[colonne].size()-1).devoilerCarte();
 
         return true;
     }
@@ -194,10 +195,8 @@ public class Solitaire extends JeuAvecCartes {
         }
     }
 
-    public List<CarteColonne>[] avoirTableau()
-    {
-        return  tableau;
-    }
+    public List<CarteColonne>[] avoirTableau() { return  tableau; }
+    public  Carte[] avoirFondations() { return  foundations;}
 
     public int trouverIdCarte(String nom)
     {

@@ -8,7 +8,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context="jeudu31.JeuDu31activite"
-    android:background="@drawable/menubackground">
+    android:background="@drawable/blackjackbackground">
 
     <TableLayout
         android:layout_width="match_parent"

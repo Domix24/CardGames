@@ -6,7 +6,7 @@
     <string name="blackjack_hit">Prochaine</string>
     <string name="blackjack_hold">Garde</string>
     <string name="blackjack_perdu">Vous avez perdu :(</string>
-    <string name="blackjack_gagnier">Vous avez Gagné : </string>
+    <string name="blackjack_gagnier">Vous avez gagné : </string>
     <string name="blackjack_egaliter">Égalité :| !</string>
     <string name="blackjack_points">points</string>
     <string name="blackjack_sespoints">Ses points :</string>
@@ -25,7 +25,7 @@
     <string name="jeudu31">Jeu du 31</string>
     <string name="solitaire">Solitaire</string>
     <string name="videopoker">Vidéo Poker</string>
-    <string name="inconnue">Inconnue</string>
+    <string name="inconnue">Inconnu</string>
 
 
     <string name="pyramide_partieterminer">Partie terminée.</string>

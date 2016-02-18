@@ -90,6 +90,7 @@
             android:layout_height="70dp"
             android:layout_column="1"
             android:id="@+id/CarteJouer2"
+
             />
         <ImageView
             android:src="@drawable/clubs_k"
@@ -97,6 +98,13 @@
             android:layout_height="70dp"
             android:layout_column="1"
             android:id="@+id/CarteJouer3"
+            />
+        <ImageView
+            android:src="@drawable/clubs_k"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_column="1"
+            android:id="@+id/CarteJouer4"
             />
 
         <Button

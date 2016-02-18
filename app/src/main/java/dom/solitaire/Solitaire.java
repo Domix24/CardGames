@@ -22,8 +22,8 @@ public class Solitaire extends JeuAvecCartes {
     // 2. Carreau (typeCarte = type.Carre
     // 3. Trèfle
 
-    private Queue<Carte> waste;
     private JeuDeCarte paquet;
+    private Carte carteSortie;
     private List<CarteColonne>[] tableau;
     private final int FOUNDATIONS_ARRAY_LENGTH = 4;
     private final int TABLEAU_COLUMNS_COUNT = 7;
@@ -32,9 +32,6 @@ public class Solitaire extends JeuAvecCartes {
      * Permet d'avoir la carte active...
      * @return la carte sur le dessus de la pile
      */
-    public  Carte CarteActive() {
-        return  waste.peek();
-    }
 
     /**
      * Initialise le jeu
@@ -43,20 +40,18 @@ public class Solitaire extends JeuAvecCartes {
     @Override
     public void Initialiser(int seed) {
         InitialiserFoundations();
-        waste = new LinkedBlockingQueue<>();
-
         paquet = new JeuDeCarte();
-
         paquet.mélangerPaquet();
-
         InitialiserTableau();
     }
 
     /**
      * Pige une nouvelle carte et remet le waste dans le paquet si plus de carte
      */
-    public Carte PigerNouvelleCarte() {
-        return paquet.pigerDessus();
+    public  Carte PigerNouvelleCarte()
+    {
+        carteSortie = paquet.pigerDessus();
+        return carteSortie;
     }
 
     public void AjouterCarteAuPaquet(Carte c) {
@@ -212,4 +207,44 @@ public class Solitaire extends JeuAvecCartes {
     {
         return paquet.trouverIdCarte(nom);
     }
+
+    public boolean ajouterNouvelleCarteDansJeu(int colonneArrivée) {
+        if(tableau[colonneArrivée].size() == 0 && carteSortie.numero != 13) {
+            return false;
+        }
+
+        if(tableau[colonneArrivée].size() != 0) {
+            if(tableau[colonneArrivée].get(tableau[colonneArrivée].size() - 1).carte.couleur == carteSortie.couleur) {
+                return false;
+            }
+            if(tableau[colonneArrivée].get(tableau[colonneArrivée].size() - 1).carte.numero != carteSortie.numero + 1) {
+                return  false;
+            }
+        }
+        tableau[colonneArrivée].add(new CarteColonne(carteSortie, true));
+        carteSortie = null;
+        return true;
+    }
+
+    public boolean placerNouvelleCarteDansFondations() {
+
+        int foundationIndex = 0;
+        if(carteSortie.typeCarte == JeuDeCarte.type.Pique) {
+            foundationIndex = 1;
+        }
+        else if(carteSortie.typeCarte == JeuDeCarte.type.Carre) {
+            foundationIndex = 2;
+        }
+        else if(carteSortie.typeCarte == JeuDeCarte.type.Trèfle) {
+            foundationIndex = 3;
+        }
+
+        if((foundations[foundationIndex] == null && carteSortie.numero != 1) || (foundations[foundationIndex] != null && foundations[foundationIndex].numero + 1 != carteSortie.numero))
+            return false;
+        foundations[foundationIndex] = carteSortie;
+        carteSortie = null;
+        return true;
+    }
+
+    public Carte avoirCarteSortie() { return carteSortie; }
 }

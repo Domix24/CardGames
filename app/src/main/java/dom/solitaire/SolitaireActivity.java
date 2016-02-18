@@ -72,8 +72,14 @@ public class SolitaireActivity extends Activity {
                             premiereCarte = "";
                             deuxièmeCarte = "";
                         }
-                        else if (premiereCarte == "carte"){
-
+                        else if (premiereCarte == "carte" && jeuSolitaire.ajouterNouvelleCarteDansJeu(colonneDestination)){
+                            rafraîchirJeu();
+                            premiereCarte = "";
+                            ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
+                            Carte carte = jeuSolitaire.PigerNouvelleCarte();
+                            imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
+                            imageCarteJouable.setTag(carte);
+                            imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
                         }
                         else if (jeuSolitaire.DéplacerPaquetVersAutreColonne(premierecc.carte, colonneOrigine, rangéeOrigine, colonneDestination))
                         {
@@ -91,8 +97,14 @@ public class SolitaireActivity extends Activity {
     {
         if (premiereCarte != "")
         {
-            if (premiereCarte != "carte") {
-
+            if (premiereCarte == "carte" && jeuSolitaire.placerNouvelleCarteDansFondations()) {
+                rafraîchirJeu();
+                premiereCarte = "";
+                ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
+                Carte carte = jeuSolitaire.PigerNouvelleCarte();
+                imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
+                imageCarteJouable.setTag(carte);
+                imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
             }
             else if (jeuSolitaire.PlacerCarteDansFoundations(premierecc.carte, colonneOrigine))
             {

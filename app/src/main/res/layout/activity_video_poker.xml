@@ -72,17 +72,26 @@
                 android:layout_height="wrap_content"
                 android:text="@string/poker_valider"
                 android:id="@+id/btnValiderVideo"
-                android:layout_column="2"
-                android:layout_span="3"
+                android:layout_column="1"
+                android:layout_span="2"
                 android:onClick="onValiderVideoClick" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/poker_rejouer"
-                android:id="@+id/btnRejouer"
-                android:layout_column="2"
-                android:layout_span="3"
-                android:onClick="onRecommencerClick" />
+                android:text="@string/miser"
+                android:id="@+id/btnMiser"
+                android:layout_column="1"
+                android:layout_span="1"
+                android:onClick="onMiserClick" />
+
+            <TextView
+                android:text="Argent:"
+                android:id="@+id/lblArgent"
+                android:layout_column="1"/>
+            <TextView
+                android:text="5"
+                android:id="@+id/lblMise"
+                android:layout_column="1"/>
             </TableRow>
     </TableLayout>
 </RelativeLayout>

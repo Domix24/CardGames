@@ -71,15 +71,7 @@
                 android:id="@+id/btnValiderVideo"
                 android:layout_gravity="bottom"
                 android:onClick="onValiderVideoClick" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/poker_rejouer"
-                android:layout_span="1"
-                android:layout_column="1"
-                android:id="@+id/btnRejouer"
-                android:layout_gravity="bottom"
-                android:onClick="onRecommencerClick" />
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,15 +81,13 @@
                 android:id="@+id/btnMiser"
                 android:layout_gravity="bottom"
                 android:onClick="onMiserClick" />
-
-            </TableRow>
-        <TableRow>
             <TextView
                 android:text="Argent:"
                 android:id="@+id/lblArgent"/>
             <TextView
                 android:text="5"
                 android:id="@+id/lblMise"/>
-        </TableRow>
+            </TableRow>
+
     </TableLayout>
 </RelativeLayout>

@@ -33,7 +33,10 @@
         <activity android:name="video.poker.VideoPokerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"></activity>
-        <activity android:name="dom.solitaire.SolitaireActivity"></activity>
+        <activity android:name="dom.solitaire.SolitaireActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            ></activity>
     </application>
 
 </manifest>

@@ -166,7 +166,8 @@ public class Solitaire extends JeuAvecCartes {
             tableau[colonneArrivée].add(new CarteColonne(tableau[colonneDepart].get(i).carte, true));
         }
 
-        for(int i = ligneDepart; i < tableau[colonneDepart].size(); i++) {
+        int nombre = tableau[colonneDepart].size() - ligneDepart;
+        for(int i = 0; i < nombre; i++) {
             tableau[colonneDepart].remove(ligneDepart);
         }
 

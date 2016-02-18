@@ -131,7 +131,7 @@ public class Solitaire extends JeuAvecCartes {
             return false;
 
         foundations[foundationIndex] = carte;
-        tableau[colonne].remove(tableau[colonne].size()-1);
+        tableau[colonne].remove(tableau[colonne].size() - 1);
         if (tableau[colonne].size() > 0)
             tableau[colonne].get(tableau[colonne].size()-1).devoilerCarte();
 
@@ -156,9 +156,22 @@ public class Solitaire extends JeuAvecCartes {
             if(tableau[colonneArrivée].get(tableau[colonneArrivée].size() - 1).carte.couleur == carte.couleur) {
                 return false;
             }
+            if(tableau[colonneArrivée].get(tableau[colonneArrivée].size() - 1).carte.numero != carte.numero + 1) {
+                return  false;
+            }
         }
 
         // TODO: déplacement d'un tas de carte...
+        for(int i = ligneDepart; i < tableau[colonneDepart].size(); i++) {
+            tableau[colonneArrivée].add(new CarteColonne(tableau[colonneDepart].get(i).carte, true));
+        }
+
+        for(int i = ligneDepart; i < tableau[colonneDepart].size(); i++) {
+            tableau[colonneDepart].remove(ligneDepart);
+        }
+
+        if (tableau[colonneDepart].size() > 0)
+            tableau[colonneDepart].get(tableau[colonneDepart].size()-1).devoilerCarte();
 
         return true;
     }

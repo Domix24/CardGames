@@ -107,7 +107,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         paquet= new JeuDeCarte();
         for(int i=0;i<nbrJoueurs;i++)
             lstJoueurs.add(new JoueurDu31());
-        lstJoueurs.get(0).Setnom(idJoueur.getNom());
+        lstJoueurs.get(0).déterminerNom(idJoueur.getNom());
     }
 
     /**

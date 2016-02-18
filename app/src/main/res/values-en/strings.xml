@@ -6,7 +6,7 @@
     <string name="blackjack_hit">Hit</string>
     <string name="blackjack_hold">Hold</string>
     <string name="blackjack_perdu">You lost :(</string>
-    <string name="blackjack_gagnier">You have won :) !</string>
+    <string name="blackjack_gagnier">You won : </string>
     <string name="blackjack_egaliter">Draw :| !</string>
     <string name="blackjack_points">points</string>
     <string name="blackjack_sespoints">His score :</string>
@@ -17,7 +17,15 @@
     <string name="poker_affichergrille">Display Grid</string>
 
 
-    <string name="argent">Cash :</string>
+    <string name="argent">Cash : </string>
+    <string name="miser">Bet</string>
+
+    <string name="blackjack">Blackjack</string>
+    <string name="pyramide">Pyramid</string>
+    <string name="jeudu31">31 game</string>
+    <string name="solitaire">Solitaire</string>
+    <string name="videopoker">Video Poker</string>
+    <string name="inconnue">Unknown</string>
 
     <string name="pyramide_partieterminer">Game Over.</string>
 </resources>

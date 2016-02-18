@@ -23,6 +23,8 @@ public class BlackJack extends JeuAvecCartes {
     public int[] pointageJoueur;
     public int[] pointageCroupier;
     public boolean estTermine = false;
+    boolean aMisé = false;
+    float mise = 0.0f;
     public int message = 0;
     public int drapeauFinPartie = 0;
 
@@ -154,6 +156,7 @@ public class BlackJack extends JeuAvecCartes {
         else
             plusHautScoreCroupier = pointageCroupier[1];
 
+
         if (plusHautScoreJoueur > 21) {
             message = R.string.blackjack_perdu;
             drapeauFinPartie = 1;
@@ -205,7 +208,10 @@ public class BlackJack extends JeuAvecCartes {
         pointageJoueur = new int[2];
         pointageCroupier = new int[2];
         estTermine = false;
+        aMisé = false;
+        drapeauFinPartie = 0;
         message = 0;
+        mise = 0.0f;
     }
 
     public void faireJouerCroupier() {

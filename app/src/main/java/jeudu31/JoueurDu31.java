@@ -11,10 +11,10 @@ import utilitaire.JeuDeCarte;
  */
 public class JoueurDu31 extends JeuAvecCartes {
     JeuDeCarte JeuEnMain;
-    protected int SommeCarrés;
-    protected int SommeCoeurs;
-    protected int SommeTrèfles;
-    protected int SommePiques;
+    private int SommeCarrés;
+    private int SommeCoeurs;
+    private int SommeTrèfles;
+    private int SommePiques;
     protected boolean Cogne;
     protected String nom;
 
@@ -44,7 +44,12 @@ public class JoueurDu31 extends JeuAvecCartes {
             ajouterCarteALaMain(paquet.pigerUneCarte());
 
     }
-    public void Setnom(String nom)
+
+    /**
+     *
+     * @param nom Renvoie le nom du propriétaire.
+     */
+    public void déterminerNom(String nom)
     {
         this.nom=nom;
     }

@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical">
 
         <TableRow
             android:layout_width="match_parent"
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="BlackJack"
+                android:text="@string/blackjack"
                 android:id="@+id/lblBlackJack"
                 android:layout_column="1"
                 android:textAlignment="center" />
@@ -67,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Pyramide"
+                android:text="@string/pyramide"
                 android:id="@+id/lblPyramid"
                 android:layout_column="1"
                 android:textAlignment="center" />
@@ -75,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Jeu du 31"
+                android:text="@string/jeudu31"
                 android:id="@+id/lblJeu5"
                 android:layout_column="1"
                 android:onClick="onJeuDu31Click"
@@ -116,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Video Poker"
+                android:text="@string/videopoker"
                 android:id="@+id/lblVideoPoker"
                 android:layout_column="1"
                 android:textAlignment="center" />
@@ -125,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Solitaire"
+                android:text="@string/solitaire"
                 android:id="@+id/lblSolitaire"
                 android:layout_column="1"
                 android:textAlignment="center" />
@@ -133,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="inconnue"
+                android:text="@string/inconnue"
                 android:id="@+id/lblJeu6"
                 android:layout_column="1"
                 android:textAlignment="center" />

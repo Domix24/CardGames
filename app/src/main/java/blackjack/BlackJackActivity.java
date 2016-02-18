@@ -17,6 +17,7 @@ public class BlackJackActivity extends Activity {
     TextView pointsJoueur;
     TextView pointsCroupier;
     TextView argent;
+    TextView mise;
     Toast message;
     JoueurSingleton joueur = JoueurSingleton.getInstance();
 
@@ -29,7 +30,8 @@ public class BlackJackActivity extends Activity {
         setContentView(R.layout.activity_black_jack);
         pointsJoueur = (TextView) findViewById(R.id.lblPointsJoueur);
         pointsCroupier = (TextView) findViewById(R.id.lblPointsCroupier);
-        argent = (TextView)findViewById(R.id.lblArgent);
+        argent = (TextView) findViewById(R.id.lblArgent);
+        mise = (TextView) findViewById(R.id.lblMise);
         message = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
 
@@ -46,17 +48,17 @@ public class BlackJackActivity extends Activity {
      * @param v Le bouton cliqué
      */
     public void onHitClick(View v) {
-        if (!jeu.estTermine) {
+        if (!jeu.estTermine && jeu.aMisé) {
             Carte nouvelleCarte = jeu.pigerUneCarte();
             if (nouvelleCarte != null) {
                 jeu.jouerPourJoueur(nouvelleCarte);
                 mettreÀJourAffichage();
                 mettreÀJourPoints();
-                if (jeu.estTermine){
+                if (jeu.estTermine) {
                     afficherGagnant();
                 }
             }
-        } else{
+        } else {
             reinitialiserLeJeu();
         }
     }
@@ -67,29 +69,63 @@ public class BlackJackActivity extends Activity {
      * @param v le bouton cliqué
      */
     public void onHoldClick(View v) {
-        if (!jeu.estTermine) {
+        if (!jeu.estTermine && jeu.aMisé) {
             jeu.faireJouerCroupier();
             mettreÀJourPoints();
             mettreÀJourAffichage();
-            if (jeu.estTermine){
+            if (jeu.estTermine) {
                 afficherGagnant();
             }
-        }
-        else{
+        } else {
             reinitialiserLeJeu();
         }
     }
 
     /**
-     * Permet d'afficher le résutat de la partie.
+     * Permet de valider la mise et de commencer le jeu
+     *
+     * @param v
      */
-    private void afficherGagnant(){
-        jeu.determinerGagnant();
-        if(jeu.message != 0) {
-            message.setText(getString(jeu.message));
-            message.show();
+    public void onMiseClick(View v) {
+        if (jeu.estTermine)
+            reinitialiserLeJeu();
+        if (!jeu.aMisé) {
+            float miseTemp = Float.parseFloat(mise.getText().toString());
+            jeu.mise = joueur.getMontant(miseTemp);
+            if (jeu.mise != 0){
+                jeu.aMisé = true;
+            }
+            // Commencer
+            passerPremieresCartes();
         }
     }
+
+    /**
+     * Permet d'afficher le résutat de la partie.
+     * 1 Perdant
+     * 2 Égalité
+     * 3 Gagnant
+     */
+    private void afficherGagnant() {
+        jeu.determinerGagnant();
+        if (jeu.drapeauFinPartie == 1){
+            message.setText(R.string.blackjack_perdu);
+            mettreÀJourAffichage();
+        }
+        else if (jeu.drapeauFinPartie == 2){
+            message.setText(R.string.blackjack_egaliter);
+            joueur.AddMontant(jeu.mise);
+            mettreÀJourAffichage();
+        }
+        else if (jeu.drapeauFinPartie == 3){
+            float gain = jeu.mise * 2;
+            message.setText(getString(R.string.blackjack_gagnier) + " " +String.valueOf(gain));
+            joueur.AddMontant(gain);
+            mettreÀJourAffichage();
+        }
+        message.show();
+    }
+
     /**
      * Réinitialiser tout les paramètres du jeu.
      */
@@ -101,14 +137,10 @@ public class BlackJackActivity extends Activity {
         effacerImage();
 
         // Reinitialiser les textes
-        pointsJoueur.setText("0"+getString(R.string.blackjack_points));
-        pointsCroupier.setText("0"+getString(R.string.blackjack_points));
+        pointsJoueur.setText("0 " + getString(R.string.blackjack_points));
+        pointsCroupier.setText("0 " + getString(R.string.blackjack_points));
         float monnaie = joueur.getMonnaie();
-        argent.setText( getString(R.string.argent) + String.valueOf(monnaie));
-
-        // Commencer le jeu
-        passerPremieresCartes();
-
+        argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
     }
 
     /**
@@ -132,13 +164,14 @@ public class BlackJackActivity extends Activity {
         if (nouvelleCarte != null) {
             jeu.jouerPourJoueur(nouvelleCarte);
         }
-        // Deuxième carte du croupier
-        nouvelleCarte = jeu.pigerUneCarte();
-        if (nouvelleCarte != null) {
-            jeu.jouerPourCroupier(nouvelleCarte);
-        }
         mettreÀJourPoints();
         mettreÀJourAffichage();
+        if(jeu.pointageJoueur[1] == 21)
+        {
+            jeu.determinerGagnant();
+            if(jeu.estTermine)
+                afficherGagnant();
+        }
     }
 
     /**
@@ -309,19 +342,20 @@ public class BlackJackActivity extends Activity {
     private void mettreÀJourPoints() {
         jeu.calculerPoints();
 
+
         // Calculer les points du croupier
         if (jeu.pointageCroupier[1] > 21) {
-            pointsCroupier.setText(jeu.pointageCroupier[0] +" "+getString(R.string.blackjack_points));
+            pointsCroupier.setText(jeu.pointageCroupier[0] + " " + getString(R.string.blackjack_points));
         } else {
-            pointsCroupier.setText(jeu.pointageCroupier[0] + " / " + jeu.pointageCroupier[1] + " "+getString(R.string.blackjack_points));
+            pointsCroupier.setText(jeu.pointageCroupier[0] + " / " + jeu.pointageCroupier[1] + " " + getString(R.string.blackjack_points));
         }
 
         // Calculer les points du joueur
         jeu.pointageJoueur = jeu.pointageJoueur;
         if (jeu.pointageJoueur[1] > 21) {
-            pointsJoueur.setText(jeu.pointageJoueur[0] + " "+getString(R.string.blackjack_points));
+            pointsJoueur.setText(jeu.pointageJoueur[0] + " " + getString(R.string.blackjack_points));
         } else {
-            pointsJoueur.setText(jeu.pointageJoueur[0] + " / " + jeu.pointageJoueur[1] + " "+getString(R.string.blackjack_points));
+            pointsJoueur.setText(jeu.pointageJoueur[0] + " / " + jeu.pointageJoueur[1] + " " + getString(R.string.blackjack_points));
         }
     }
 }

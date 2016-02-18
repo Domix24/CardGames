@@ -24,22 +24,14 @@ public class pyramideActivity extends Activity {
     int rangéeOrigine;
     int colonneOrigine;
     ImageView imageSélectionnée;
-    boolean estCrée = false;
+    boolean partieTerminée;
+    boolean partieGagnée;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyramide);
-        premiereCarte="";
-        deuxièmeCarte="";
-        rangéeDestination = -1;
-        colonneDestination = -1;
-        rangéeOrigine = -1;
-        colonneOrigine = -1;
-        jeuDePyramide = new PyramideLogique();
-        campos = R.id.class.getFields();
-        afficherPyramide();
-        estCrée = true;
+        commencerNouvellePartie();
     }
 
     /**
@@ -49,35 +41,25 @@ public class pyramideActivity extends Activity {
     public void OnClickStock(View v) {
         jeuDePyramide.envoyerCarteAuWaste();
 
-
-        TextView lblStock = (TextView)findViewById(R.id.cartesStock);
-        int nbCartesStock = jeuDePyramide.getNombreStock();
-        lblStock.setText(Integer.toString(nbCartesStock));
-
-        ImageView image = (ImageView)findViewById(R.id.R7C0);
-        try {
-            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
+        if (jeuDePyramide.vérifierFinPartie() == true) {
+            partieTerminée = true;
+            partieGagnée = jeuDePyramide.vérifierPartieGagnée();
         }
-        catch(Exception e){}
 
-        if (nbCartesStock == 0) {
-            image = (ImageView) findViewById(R.id.stock);
-            image.setImageDrawable(null);
-        }
-        jeuDePyramide.vérifierFinPartie();
+        afficherPyramide();
     }
 
     /**
-     * Sélectionne une carte, si une est déj`asélectionnée, en sélectionne une deuxième.
+     * Sélectionne une carte, si une est déjà sélectionnée, en sélectionne une deuxième.
      * Envoie le(s) carte(s) sélectionnée(s) à pyramide pour vérifier si on peut les enlever
+     * Cet évènement click inclut aussi le click du waste qui est traité comme rangée 7 colonne 0
      * @param v Objet qui a provoqué l'event
      */
     public void OnClickPyramide(View v) throws IllegalAccessException {
         char tempChar;
 
         for(Field f: campos)
-        if(f.getInt(null)==v.getId())
-            {
+        if(f.getInt(null)==v.getId()) {
                 if(premiereCarte=="") {
                     imageSélectionnée = (ImageView)findViewById(v.getId());
                     imageSélectionnée.setBackgroundColor(Color.BLUE);
@@ -110,9 +92,11 @@ public class pyramideActivity extends Activity {
                     premiereCarte = "";
                     deuxièmeCarte = "";
                 }
-                break;
             }
-        jeuDePyramide.vérifierFinPartie();
+        if (jeuDePyramide.vérifierFinPartie() == true) {
+            partieTerminée = true;
+            partieGagnée = jeuDePyramide.vérifierPartieGagnée();
+        }
         afficherPyramide();
     }
 
@@ -121,8 +105,13 @@ public class pyramideActivity extends Activity {
      * Si la carte est null, ne pas afficher d'image
      */
     public void afficherPyramide() {
-        if (estCrée){
-            // Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+        if (partieTerminée) {
+            if (partieGagnée == true) {
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+            }
         }
         for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++) {
             for (int j = 0; j < jeuDePyramide.getCartesPyramide().get(i).length; j++) {
@@ -152,49 +141,49 @@ public class pyramideActivity extends Activity {
             image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
             image.setClickable(true);
         }
-        catch(Exception e){}
-    }
+        catch(Exception e){
+            image.setImageDrawable(null);
+            image.setClickable(false);
+        }
+        image = (ImageView)findViewById(R.id.stock);
 
+        if (jeuDePyramide.getNombreStock() == 0) {;
+            image.setImageDrawable(null);
+            image.setClickable(false);
+        }
+        else {
+            image.setImageResource(R.drawable.back);
+            image.setClickable(true);
+        }
+
+        TextView lblStock = (TextView)findViewById(R.id.cartesStock);
+        int nbCartesStock = jeuDePyramide.getNombreStock();
+        lblStock.setText(Integer.toString(nbCartesStock));
+    }
 
     /**
      * Au click, commence une nouvelle partie
      * @param v
      */
-    public void Restart(View v)
-    {
+    public void Restart(View v) {
         jeuDePyramide.commencerNouvellePartie();
-        TextView lblStock = (TextView)findViewById(R.id.cartesStock);
-        int nbCartesStock = jeuDePyramide.getNombreStock();
-        lblStock.setText(Integer.toString(nbCartesStock));
-        if (estCrée){
-            Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
-        }
-        for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++)
-            for(int j=0;j<jeuDePyramide.getCartesPyramide().get(i).length;j++)
-                try{
-                    Carte carteAAfficher =jeuDePyramide.getCartesPyramide().get(i)[j];
-                    String tag = "R" +Integer.toString(i,0)+"C"+Integer.toString(j,0);
-                    for(Field f: campos)
-                    {
-                        if(tag.contains(f.getName())) {
-                            ImageView img=(ImageView)this.findViewById(this.getBaseContext().getResources().getIdentifier("R" + i + "C" + j
-                                    , "id", this.getBaseContext().getPackageName()));
-                            if (carteAAfficher == null) {
-                                img.setImageDrawable(null);
-                                img.setClickable(false);
-                            }
-                            else {
-                                img.setImageResource(jeuDePyramide.trouverIdCarte(carteAAfficher.nom));
-                                img.setClickable(true);
-                            }
-                        }
-                    }
-                }catch(Exception e){}
-        ImageView image = (ImageView)findViewById(R.id.R7C0);
-        try {
-            image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
-            image.setClickable(true);
-        }
-        catch(Exception e){}
+        commencerNouvellePartie();
+    }
+
+    /**
+     * Initialiser les variables pour commencer une nouvelle partie
+     */
+    private void commencerNouvellePartie() {
+        premiereCarte="";
+        deuxièmeCarte="";
+        rangéeDestination = -1;
+        colonneDestination = -1;
+        rangéeOrigine = -1;
+        colonneOrigine = -1;
+        partieTerminée = false;
+        partieGagnée = false;
+        jeuDePyramide = new PyramideLogique();
+        campos = R.id.class.getFields();
+        afficherPyramide();
     }
 }

@@ -81,6 +81,8 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_column="1"
+            android:onClick="onClickJeuDuJoueur"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/CarteJouer1"
 
             />
@@ -89,6 +91,8 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_column="1"
+            android:onClick="onClickJeuDuJoueur"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/CarteJouer2"
 
             />
@@ -97,13 +101,17 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_column="1"
+            android:onClick="onClickJeuDuJoueur"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/CarteJouer3"
             />
         <ImageView
             android:src="@drawable/clubs_k"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:layout_column="1"
+            android:onClick="onClickJeuDuJoueur"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/CarteJouer4"
             />
 

@@ -1026,19 +1026,19 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginLeft="700dp"
                 android:layout_marginStart="700dp"
-                android:onClick="onPaquetClick"
-                android:padding="2dp" />
+                android:padding="2dp"
+                android:onClick="onPaquetClic" />
 
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="90dp"
                 android:id="@+id/Card"
-                android:src="@drawable/clubs_10"
+                android:src="@drawable/emptycard"
                 android:clickable="true"
                 android:layout_marginTop="0dp"
                 android:layout_marginLeft="630dp"
                 android:layout_marginStart="630dp"
-                android:onClick="onPaquetClick"
+                android:onClick="onSortiePaquetClick"
                 android:padding="2dp" />
 
 

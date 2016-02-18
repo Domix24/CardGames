@@ -55,16 +55,12 @@ public class Solitaire extends JeuAvecCartes {
     /**
      * Pige une nouvelle carte et remet le waste dans le paquet si plus de carte
      */
-    public void PigerNouvelleCarte() {
-        Carte carte = paquet.pigerUneCarte();
+    public Carte PigerNouvelleCarte() {
+        return paquet.pigerDessus();
+    }
 
-        if(carte == null)
-        {
-            while(!waste.isEmpty()) {
-                paquet.add(waste.poll());
-            }
-            carte = paquet.pigerUneCarte();
-        }
+    public void AjouterCarteAuPaquet(Carte c) {
+        paquet.add(c);
     }
 
     /**

@@ -126,6 +126,7 @@ public class PyramideLogique {
                         if (déterminerDisponibilité(rangée, colonne)) {
                             pyramideArray.get(rangée)[colonne] = null;
                             carteEnlevée = true;
+                            cartesDansPyramide--;
                             sommeArgent+=sommeIncrémentielle;
                         }
                     }
@@ -158,6 +159,7 @@ public class PyramideLogique {
                             enleverDessusWaste();
                             pyramideArray.get(rangée2)[colonne2] = null;
                             cartesEnlevées = true;
+                            cartesDansPyramide--;
                             sommeArgent+=sommeIncrémentielle;
                         }
                     }
@@ -167,6 +169,7 @@ public class PyramideLogique {
                             enleverDessusWaste();
                             pyramideArray.get(rangée1)[colonne1] = null;
                             cartesEnlevées = true;
+                            cartesDansPyramide--;
                             sommeArgent+=sommeIncrémentielle;
                         }
                     }
@@ -182,6 +185,7 @@ public class PyramideLogique {
                                 pyramideArray.get(rangée1)[colonne1] = null;
                                 pyramideArray.get(rangée2)[colonne2] = null;
                                 cartesEnlevées = true;
+                                cartesDansPyramide -= 2;
                                 sommeArgent+=sommeIncrémentielle;
                             }
                         }
@@ -206,10 +210,13 @@ public class PyramideLogique {
             partieGagnée = true;
         }
         else if (lstStock.size() <= 0) { // Ne vérifier la fin de partie que si le stock est vide
+            lstCartesDisponiblesRestantes.add(lstWaste.get(lstWaste.size() - 1));
             for (int i = pyramideArray.size() - 1; i >= 0; i--) {
-                for (int j = pyramideArray.get(i).length - 1; j >= 0; i--) {
-                    if (déterminerDisponibilité(i, j) == true) {
-                        lstCartesDisponiblesRestantes.add(pyramideArray.get(i)[j]);
+                for (int j = pyramideArray.get(i).length - 1; j >= 0; j--) {
+                    if (pyramideArray.get(i)[j] != null) {
+                        if (déterminerDisponibilité(i, j) == true) {
+                            lstCartesDisponiblesRestantes.add(pyramideArray.get(i)[j]);
+                        }
                     }
                 }
             }
@@ -229,6 +236,13 @@ public class PyramideLogique {
         }
 
         return partieTerminée;
+    }
+
+    /**
+     * @return Vrai si la partie est gagnée, faux sinon
+     */
+    public boolean vérifierPartieGagnée() {
+        return partieGagnée;
     }
 
     /**

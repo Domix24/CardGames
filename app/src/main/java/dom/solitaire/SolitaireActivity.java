@@ -48,15 +48,17 @@ public class SolitaireActivity extends Activity {
                 if (f.getInt(null) == v.getId()) {
                     if (premiereCarte == "") {
                         imageSélectionnée = (ImageView) findViewById(v.getId());
-                        premierecc = (Solitaire.CarteColonne)imageSélectionnée.getTag();
-                        if (premierecc.estDévoilée) {
-                            imageSélectionnée.setBackgroundColor(Color.rgb(48,0,255));
-                            premiereCarte = f.getName();
-                            String[] s = premiereCarte.split("C");
-                            tempChar = s[1];
-                            rangéeOrigine = Integer.parseInt(tempChar);
-                            tempChar = s[2];
-                            colonneOrigine = Integer.parseInt(tempChar);
+                        if (imageSélectionnée.getTag() != null) {
+                            premierecc = (Solitaire.CarteColonne) imageSélectionnée.getTag();
+                            if (premierecc.estDévoilée) {
+                                imageSélectionnée.setBackgroundColor(Color.rgb(48, 0, 255));
+                                premiereCarte = f.getName();
+                                String[] s = premiereCarte.split("C");
+                                tempChar = s[1];
+                                rangéeOrigine = Integer.parseInt(tempChar);
+                                tempChar = s[2];
+                                colonneOrigine = Integer.parseInt(tempChar);
+                            }
                         }
                     }
                     else
@@ -124,8 +126,11 @@ public class SolitaireActivity extends Activity {
                     ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("C" + j + "C" + i
                             , "id", this.getBaseContext().getPackageName()));
                     if (img != null) {
-                        img.setVisibility(View.INVISIBLE);
-                        img .setTag(null);
+                        if (j != 0) {
+                            img.setVisibility(View.INVISIBLE);
+                            img.setTag(null);
+                        }
+                        img.setImageResource(R.drawable.emptycard);
                     }
                 }
             }

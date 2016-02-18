@@ -128,9 +128,10 @@ public class SolitaireActivity extends Activity {
                     if (img != null) {
                         if (j != 0) {
                             img.setVisibility(View.INVISIBLE);
-                            img.setTag(null);
                         }
+                        img.setTag(null);
                         img.setImageResource(R.drawable.emptycard);
+                        img.setBackgroundColor(Color.argb(0, 0, 0, 0));
                     }
                 }
             }
@@ -156,6 +157,11 @@ public class SolitaireActivity extends Activity {
         jeuSolitaire = new Solitaire();
         jeuSolitaire.Initialiser(16421);
         rafraîchirJeu();
+    }
+
+    public void onPaquetClick(View v)
+    {
+
     }
 }
 

@@ -1026,6 +1026,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginLeft="700dp"
                 android:layout_marginStart="700dp"
+                android:onClick="onPaquetClick"
                 android:padding="2dp" />
 
             <ImageView
@@ -1037,6 +1038,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginLeft="630dp"
                 android:layout_marginStart="630dp"
+                android:onClick="onPaquetClick"
                 android:padding="2dp" />
 
 

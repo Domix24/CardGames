@@ -249,6 +249,15 @@
                 android:layout_gravity="bottom"
                 android:onClick="onHoldClick"
                 android:layout_marginLeft="50dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/miser"
+                android:layout_gravity="bottom"
+                android:id="@+id/btnMise"
+                android:layout_column="7"
+                android:onClick="onMiseClick"
+                />
         </TableRow>
     </TableLayout>
 </RelativeLayout>

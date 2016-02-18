@@ -140,7 +140,7 @@ public class BlackJackActivity extends Activity {
         pointsJoueur.setText("0 " + getString(R.string.blackjack_points));
         pointsCroupier.setText("0 " + getString(R.string.blackjack_points));
         float monnaie = joueur.getMonnaie();
-        argent.setText( getString(R.string.argent) + String.valueOf(monnaie));
+        argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
     }
 
     /**
@@ -166,6 +166,12 @@ public class BlackJackActivity extends Activity {
         }
         mettreÀJourPoints();
         mettreÀJourAffichage();
+        if(jeu.pointageJoueur[1] == 21)
+        {
+            jeu.determinerGagnant();
+            if(jeu.estTermine)
+                afficherGagnant();
+        }
     }
 
     /**
@@ -335,6 +341,7 @@ public class BlackJackActivity extends Activity {
      */
     private void mettreÀJourPoints() {
         jeu.calculerPoints();
+
 
         // Calculer les points du croupier
         if (jeu.pointageCroupier[1] > 21) {

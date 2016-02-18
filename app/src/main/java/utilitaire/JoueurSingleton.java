@@ -55,13 +55,18 @@ public class JoueurSingleton {
         monnaie += montant;
     }
 
-    private static void initialiserJoueur() {
-        nomJoueur = "Kitty";
-        monnaie = 50;
-    }
-    public String AvoirLeNom()
+    /**
+     * @return Le nom du joueur
+     */
+    public String getNom()
     {
         return this.nomJoueur;
+    }
+
+    private static void initialiserJoueur() {
+        instance= new JoueurSingleton();
+        nomJoueur = "Kitty";
+        monnaie = 50;
     }
 
 }

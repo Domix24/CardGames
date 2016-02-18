@@ -40,17 +40,20 @@ public class JeuDu31Logique extends JeuAvecCartes {
 
     /**
      * Mise une somme et les joueurs fictifs misent la même somme.
-     * @param txtSomme Valeur du textbox.
+     * @param somme Valeur du textbox.
      */
-    public void miserUneSomme(String txtSomme)
+    public void miserUneSomme(float somme)
     {
-        sommeArgent = idJoueur.getMontant(Float.parseFloat(txtSomme));
-        sommeArgent+=sommeArgent*lstJoueurs.size();
+        try {
+            sommeArgent = idJoueur.getMontant(somme);
+            sommeArgent += sommeArgent * lstJoueurs.size();
+        }
+        catch(Exception e){}//Le montant recu est invalide.
 
     }
     public void simulerUneManche()
     {
-        miserUneSomme("75");
+        miserUneSomme(75);
         int nbrTour=lstJoueurs.size()-1;
         while(perdant==null && nbrTour!=0) {
             if(cogneur!=-1)
@@ -104,7 +107,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         paquet= new JeuDeCarte();
         for(int i=0;i<nbrJoueurs;i++)
             lstJoueurs.add(new JoueurDu31());
-        lstJoueurs.get(0).Setnom(idJoueur.AvoirLeNom());
+        lstJoueurs.get(0).Setnom(idJoueur.getNom());
     }
 
     /**
@@ -199,7 +202,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
     {
         for(JoueurDu31 joueur : lstJoueurs)
         {
-            if(joueur.nom==idJoueur.AvoirLeNom())
+            if(joueur.nom==idJoueur.getNom())
                 idJoueur.AddMontant(sommeArgent/lstGagnants.size());
         }
     }

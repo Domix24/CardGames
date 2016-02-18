@@ -27,7 +27,6 @@ public class BlackJack extends JeuAvecCartes {
     float mise = 0.0f;
     public int message = 0;
     public int drapeauFinPartie = 0;
-    public BlackJackActivity context = null;
 
     private BlackJack() {
         paquet = new JeuDeCarte();

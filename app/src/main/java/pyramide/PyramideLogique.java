@@ -19,6 +19,9 @@ public class PyramideLogique {
     private JoueurSingleton idJoueur;
     private float sommeArgent;
     private float sommeIncrémentielle;
+    private boolean partieTerminée;
+    private boolean partieGagnée;
+    private int cartesDansPyramide;
 
     public PyramideLogique() {
         idJoueur=JoueurSingleton.getInstance();
@@ -30,8 +33,7 @@ public class PyramideLogique {
      * Mise une somem initialle qui sera le piont de référence.
      * @param mise somme d'argent misé au début.
      */
-    public void miseDeDépart(float mise)
-    {
+    public void miseDeDépart(float mise) {
         try {
             sommeArgent = idJoueur.getMontant(mise);
             sommeIncrémentielle = sommeArgent;
@@ -50,13 +52,12 @@ public class PyramideLogique {
      * À implémenter dans l'interface
      * @return retourne l'argent restant
      */
-    public float soustraireMontant()
-    {
+    public float soustraireMontant() {
         if(sommeArgent-sommeIncrémentielle+idJoueur.getMonnaie()>=0)
             sommeArgent-=sommeIncrémentielle;
         return sommeArgent;
     }
-    
+
     /**
      * Méthode commençant une nouvelle partie
      */
@@ -65,6 +66,9 @@ public class PyramideLogique {
         pyramideArray = new ArrayList<Carte[]>();
         lstStock = new ArrayList<Carte>();
         lstWaste = new ArrayList<Carte>();
+        partieTerminée = false;
+        partieGagnée = false;
+        cartesDansPyramide = 28;
         envoyerPaquetAPyramide();
         remplirStock();
     }
@@ -195,16 +199,36 @@ public class PyramideLogique {
      * @return True si partie terminée, faux sinon
      */
     public boolean vérifierFinPartie() {
-        boolean partieTerminée = false;
-        boolean pyramideVide = false;
+        List<Carte> lstCartesDisponiblesRestantes = new ArrayList<Carte>();
 
+        if (cartesDansPyramide <= 0) {
+            partieTerminée = true;
+            partieGagnée = true;
+        }
+        else if (lstStock.size() <= 0) { // Ne vérifier la fin de partie que si le stock est vide
+            for (int i = pyramideArray.size() - 1; i >= 0; i--) {
+                for (int j = pyramideArray.get(i).length - 1; j >= 0; i--) {
+                    if (déterminerDisponibilité(i, j) == true) {
+                        lstCartesDisponiblesRestantes.add(pyramideArray.get(i)[j]);
+                    }
+                }
+            }
 
-        // Si la pyramide est vide, la partie est gagnée
-        do {
+            partieTerminée = true;
+            for (int i = 0; i < lstCartesDisponiblesRestantes.size(); i++) {
+                if (lstCartesDisponiblesRestantes.get(i).numero == 13) {
+                    partieTerminée = false;
+                } else {
+                    for (int j = 0; j < lstCartesDisponiblesRestantes.size(); j++) {
+                        if (lstCartesDisponiblesRestantes.get(i).numero + lstCartesDisponiblesRestantes.get(j).numero == 13) {
+                            partieTerminée = false;
+                        }
+                    }
+                }
+            }
+        }
 
-        } while (pyramideVide);
-
-        return false;
+        return partieTerminée;
     }
 
     /**

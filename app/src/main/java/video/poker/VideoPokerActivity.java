@@ -112,12 +112,12 @@ public class VideoPokerActivity extends Activity {
             jeu.mise = joueur.getMontant(miseTemp);
             if (jeu.mise != 0){
                 jeu.aMisé = true;
+                float monnaie = joueur.getMonnaie();
+                argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
+                // Commencer
+                jeu.passerCartes();
+                replacerJeu();
             }
-            float monnaie = joueur.getMonnaie();
-            argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
-            // Commencer
-            jeu.passerCartes();
-            replacerJeu();
         }
     }
     public void onCardVideoClick(View v) {

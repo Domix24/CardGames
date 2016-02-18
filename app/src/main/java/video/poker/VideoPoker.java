@@ -15,6 +15,8 @@ public class VideoPoker extends JeuAvecCartes {
     int nbCartesGardées = 0;
     boolean estCree = false;
     boolean aValider = false;
+    boolean aMisé = false;
+    float mise = 0.0f;
 
     /**
      * Constructeur
@@ -45,6 +47,8 @@ public class VideoPoker extends JeuAvecCartes {
         nbCartesGardées = 0;
         estCree = true;
         aValider = false;
+        aMisé = false;
+        mise = 0.0f;
 
     }
 
@@ -56,12 +60,14 @@ public class VideoPoker extends JeuAvecCartes {
             for (int i = nbCartesGardées; i < 5; i++) {
                 paquetFinal.add(paquet.pigerUneCarte());
             }
+            paquetFinal.ordonnerCartes();
             return paquetFinal;
         } else {
             aPremièresCartes = true;
             for (int i = 0; i < 5; i++) {
                 paquetPremier.add(paquet.pigerUneCarte());
             }
+            paquetPremier.ordonnerCartes();
             return paquetPremier;
         }
     }
@@ -79,46 +85,48 @@ public class VideoPoker extends JeuAvecCartes {
             }
             aValider = true;
             passerCartes();
-            int nbJetons = compterPoints();
             return paquetFinal;
         } else
             return null;
 
     }
 
-    private int compterPoints() {
-        int nbJetons = 0;
-        paquetFinal.ordonnerCartes();
+    /**
+     * compter les points du joueur
+     * @return
+     */
+    public float compterPoints() {
+        float multiplicateur = 0;
         if (siValetouMieux()) {
-            nbJetons = 10;
+            multiplicateur = 1;
         }
 
         if (siDeuxPairs()) {
-            nbJetons = 25;
+            multiplicateur = 2;
         }
         if (siTroisPareil()) {
-            nbJetons = 50;
+            multiplicateur = 3;
         }
         if (siSuiteSansAs() || siSuiteAvecAs()) {
-            nbJetons = 75;
+            multiplicateur = 4;
         }
         if (siCouleur()) {
-            nbJetons = 125;
+            multiplicateur = 6;
         }
         if (siMaisonPleine()) {
-            nbJetons = 250;
+            multiplicateur = 9;
         }
         if (siQuatrePareil()) {
-            nbJetons = 500;
+            multiplicateur = 25;
         }
         if (siSuiteCouleur()) {
-            nbJetons = 1000;
+            multiplicateur = 50;
         }
         if (siSuiteCouleurRoyal()) {
-            nbJetons = 5000;
+            multiplicateur = 250;
         }
 
-        return nbJetons;
+        return mise * multiplicateur;
     }
 
     /**

@@ -6,7 +6,7 @@
     <string name="blackjack_hit">Prochaine</string>
     <string name="blackjack_hold">Garde</string>
     <string name="blackjack_perdu">Vous avez perdu :(</string>
-    <string name="blackjack_gagnier">Vous avez Gagné :) !</string>
+    <string name="blackjack_gagnier">Vous avez Gagné : </string>
     <string name="blackjack_egaliter">Égalité :| !</string>
     <string name="blackjack_points">points</string>
     <string name="blackjack_sespoints">Ses points :</string>
@@ -17,7 +17,7 @@
     <string name="poker_affichergrille">Afficher Grille</string>
 
 
-    <string name="argent">Argent :</string>
+    <string name="argent">Argent : </string>
 
 
 

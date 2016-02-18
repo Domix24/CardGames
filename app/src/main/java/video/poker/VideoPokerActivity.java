@@ -70,6 +70,9 @@ public class VideoPokerActivity extends Activity {
         jeu.passerCartes();
         replacerJeu();
     }
+    public void onMiserClick(View v) {
+        
+    }
     public void onCardVideoClick(View v) {
         switch(v.getId()){
             case R.id.imgVideo1:

@@ -157,5 +157,12 @@ public class SolitaireActivity extends Activity {
         jeuSolitaire.Initialiser(16421);
         rafraîchirJeu();
     }
+
+    public void onPaquetClic(View v) {
+        System.err.println("Clic sur le paquet");
+
+        ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
+        jeuSolitaire.PigerNouvelleCarte();
+    }
 }
 

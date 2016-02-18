@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="dom.solitaire.SolitaireActivity"
+    android:background="@drawable/solitairebackground">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="0" >
+    <TableRow
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/C0">
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C0C0"
+                android:layout_gravity="left"
+                android:src="@drawable/diamonds_k"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C1C0"
+                android:src="@drawable/diamonds_q"
+                android:clickable="true"
+                android:layout_marginTop="30dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C2C0"
+                android:src="@drawable/diamonds_j"
+                android:clickable="true"
+                android:layout_marginTop="60dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C3C0"
+                android:src="@drawable/diamonds_10"
+                android:clickable="true"
+                android:layout_marginTop="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C4C0"
+                android:src="@drawable/diamonds_9"
+                android:clickable="true"
+                android:layout_marginTop="120dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C5C0"
+                android:src="@drawable/diamonds_8"
+                android:clickable="true"
+                android:layout_marginTop="150dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C6C0"
+                android:src="@drawable/diamonds_7"
+                android:clickable="true"
+                android:layout_marginTop="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C7C0"
+                android:src="@drawable/diamonds_6"
+                android:clickable="true"
+                android:layout_marginTop="210dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C8C0"
+                android:src="@drawable/diamonds_5"
+                android:clickable="true"
+                android:layout_marginTop="240dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C9C0"
+                android:src="@drawable/diamonds_4"
+                android:clickable="true"
+                android:layout_marginTop="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C10C0"
+                android:src="@drawable/diamonds_3"
+                android:clickable="true"
+                android:layout_marginTop="300dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C11C0"
+                android:src="@drawable/diamonds_2"
+                android:clickable="true"
+                android:layout_marginTop="330dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C12C0"
+                android:src="@drawable/diamonds_a"
+                android:clickable="true"
+                android:layout_marginTop="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+
+
+
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C0C1"
+                android:layout_gravity="left"
+                android:src="@drawable/diamonds_k"
+                android:clickable="true"
+                android:layout_marginLeft="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C1C1"
+                android:src="@drawable/diamonds_q"
+                android:clickable="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C2C1"
+                android:src="@drawable/diamonds_j"
+                android:clickable="true"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C3C1"
+                android:src="@drawable/diamonds_10"
+                android:clickable="true"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C4C1"
+                android:src="@drawable/diamonds_9"
+                android:clickable="true"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C5C1"
+                android:src="@drawable/diamonds_8"
+                android:clickable="true"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C6C1"
+                android:src="@drawable/diamonds_7"
+                android:clickable="true"
+                android:layout_marginTop="180dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C7C1"
+                android:src="@drawable/diamonds_6"
+                android:clickable="true"
+                android:layout_marginTop="210dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C8C1"
+                android:src="@drawable/diamonds_5"
+                android:clickable="true"
+                android:layout_marginTop="240dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C9C1"
+                android:src="@drawable/diamonds_4"
+                android:clickable="true"
+                android:layout_marginTop="270dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C10C1"
+                android:src="@drawable/diamonds_3"
+                android:clickable="true"
+                android:layout_marginTop="300dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C11C1"
+                android:src="@drawable/diamonds_2"
+                android:clickable="true"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C12C1"
+                android:src="@drawable/clubs_a"
+                android:clickable="true"
+                android:layout_marginTop="360dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginStart="90dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+
+
+
+                        <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C0C2"
+                android:layout_gravity="left"
+                android:src="@drawable/diamonds_k"
+                android:clickable="true"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C1C2"
+                android:src="@drawable/diamonds_q"
+                android:clickable="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C2C2"
+                android:src="@drawable/diamonds_j"
+                android:clickable="true"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C3C2"
+                android:src="@drawable/diamonds_10"
+                android:clickable="true"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C4C2"
+                android:src="@drawable/diamonds_9"
+                android:clickable="true"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C5C2"
+                android:src="@drawable/diamonds_8"
+                android:clickable="true"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C6C2"
+                android:src="@drawable/diamonds_7"
+                android:clickable="true"
+                android:layout_marginTop="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C7C2"
+                android:src="@drawable/diamonds_6"
+                android:clickable="true"
+                android:layout_marginTop="210dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C8C2"
+                android:src="@drawable/diamonds_5"
+                android:clickable="true"
+                android:layout_marginTop="240dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C9C2"
+                android:src="@drawable/diamonds_4"
+                android:clickable="true"
+                android:layout_marginTop="270dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C10C2"
+                android:src="@drawable/diamonds_3"
+                android:clickable="true"
+                android:layout_marginTop="300dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C11C2"
+                android:src="@drawable/diamonds_2"
+                android:clickable="true"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C12C2"
+                android:src="@drawable/clubs_a"
+                android:clickable="true"
+                android:layout_marginTop="360dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginStart="180dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+
+
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C0C3"
+                android:layout_gravity="left"
+                android:src="@drawable/diamonds_k"
+                android:clickable="true"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C1C3"
+                android:src="@drawable/diamonds_q"
+                android:clickable="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C2C3"
+                android:src="@drawable/diamonds_j"
+                android:clickable="true"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C3C3"
+                android:src="@drawable/diamonds_10"
+                android:clickable="true"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C4C3"
+                android:src="@drawable/diamonds_9"
+                android:clickable="true"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C5C3"
+                android:src="@drawable/diamonds_8"
+                android:clickable="true"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C6C3"
+                android:src="@drawable/diamonds_7"
+                android:clickable="true"
+                android:layout_marginTop="180dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C7C3"
+                android:src="@drawable/diamonds_6"
+                android:clickable="true"
+                android:layout_marginTop="210dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C8C3"
+                android:src="@drawable/diamonds_5"
+                android:clickable="true"
+                android:layout_marginTop="240dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C9C3"
+                android:src="@drawable/diamonds_4"
+                android:clickable="true"
+                android:layout_marginTop="270dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C10C3"
+                android:src="@drawable/diamonds_3"
+                android:clickable="true"
+                android:layout_marginTop="300dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C11C3"
+                android:src="@drawable/diamonds_2"
+                android:clickable="true"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C12C3"
+                android:src="@drawable/clubs_a"
+                android:clickable="true"
+                android:layout_marginTop="360dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginStart="270dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+
+
+
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C0C4"
+                android:layout_gravity="left"
+                android:src="@drawable/diamonds_k"
+                android:clickable="true"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C1C4"
+                android:src="@drawable/diamonds_q"
+                android:clickable="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C2C4"
+                android:src="@drawable/diamonds_j"
+                android:clickable="true"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C3C4"
+                android:src="@drawable/diamonds_10"
+                android:clickable="true"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C4C4"
+                android:src="@drawable/diamonds_9"
+                android:clickable="true"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C5C4"
+                android:src="@drawable/diamonds_8"
+                android:clickable="true"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C6C4"
+                android:src="@drawable/diamonds_7"
+                android:clickable="true"
+                android:layout_marginTop="180dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C7C4"
+                android:src="@drawable/diamonds_6"
+                android:clickable="true"
+                android:layout_marginTop="210dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C8C4"
+                android:src="@drawable/diamonds_5"
+                android:clickable="true"
+                android:layout_marginTop="240dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C9C4"
+                android:src="@drawable/diamonds_4"
+                android:clickable="true"
+                android:layout_marginTop="270dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C10C4"
+                android:src="@drawable/diamonds_3"
+                android:clickable="true"
+                android:layout_marginTop="300dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C11C4"
+                android:src="@drawable/diamonds_2"
+                android:clickable="true"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C12C4"
+                android:src="@drawable/clubs_a"
+                android:clickable="true"
+                android:layout_marginTop="360dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginStart="360dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+
+
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C0C5"
+                android:layout_gravity="left"
+                android:src="@drawable/diamonds_k"
+                android:clickable="true"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C1C5"
+                android:src="@drawable/diamonds_q"
+                android:clickable="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C2C5"
+                android:src="@drawable/diamonds_j"
+                android:clickable="true"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C3C5"
+                android:src="@drawable/diamonds_10"
+                android:clickable="true"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C4C5"
+                android:src="@drawable/diamonds_9"
+                android:clickable="true"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C5C5"
+                android:src="@drawable/diamonds_8"
+                android:clickable="true"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C6C5"
+                android:src="@drawable/diamonds_7"
+                android:clickable="true"
+                android:layout_marginTop="180dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C7C5"
+                android:src="@drawable/diamonds_6"
+                android:clickable="true"
+                android:layout_marginTop="210dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C8C5"
+                android:src="@drawable/diamonds_5"
+                android:clickable="true"
+                android:layout_marginTop="240dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C9C5"
+                android:src="@drawable/diamonds_4"
+                android:clickable="true"
+                android:layout_marginTop="270dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C10C5"
+                android:src="@drawable/diamonds_3"
+                android:clickable="true"
+                android:layout_marginTop="300dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C11C5"
+                android:src="@drawable/diamonds_2"
+                android:clickable="true"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C12C5"
+                android:src="@drawable/clubs_a"
+                android:clickable="true"
+                android:layout_marginTop="360dp"
+                android:layout_marginLeft="450dp"
+                android:layout_marginStart="450dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+
+
+
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C0C6"
+                android:layout_gravity="left"
+                android:src="@drawable/diamonds_k"
+                android:clickable="true"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C1C6"
+                android:src="@drawable/diamonds_q"
+                android:clickable="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C2C6"
+                android:src="@drawable/diamonds_j"
+                android:clickable="true"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C3C6"
+                android:src="@drawable/diamonds_10"
+                android:clickable="true"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C4C6"
+                android:src="@drawable/diamonds_9"
+                android:clickable="true"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C5C6"
+                android:src="@drawable/diamonds_8"
+                android:clickable="true"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C6C6"
+                android:src="@drawable/diamonds_7"
+                android:clickable="true"
+                android:layout_marginTop="180dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C7C6"
+                android:src="@drawable/diamonds_6"
+                android:clickable="true"
+                android:layout_marginTop="210dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C8C6"
+                android:src="@drawable/diamonds_5"
+                android:clickable="true"
+                android:layout_marginTop="240dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C9C6"
+                android:src="@drawable/diamonds_4"
+                android:clickable="true"
+                android:layout_marginTop="270dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C10C6"
+                android:src="@drawable/diamonds_3"
+                android:clickable="true"
+                android:layout_marginTop="300dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C11C6"
+                android:src="@drawable/diamonds_2"
+                android:clickable="true"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="540dp"
+                android:layout_marginStart="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="100dp"
+                android:id="@+id/C12C6"
+                android:src="@drawable/clubs_a"
+                android:clickable="true"
+                android:layout_marginTop="360dp"
+                android:layout_marginStart="540dp"
+                android:layout_marginLeft="540dp"
+                android:onClick="onClick"
+                android:padding="2dp" />
+
+
+
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:id="@+id/DeckCard"
+                android:src="@drawable/back"
+                android:clickable="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="700dp"
+                android:layout_marginStart="700dp"
+                android:padding="2dp" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:id="@+id/Card"
+                android:src="@drawable/clubs_10"
+                android:clickable="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="630dp"
+                android:layout_marginStart="630dp"
+                android:padding="2dp" />
+
+
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:id="@+id/FondationCoeur"
+                android:src="@drawable/hearts_a"
+                android:clickable="true"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="630dp"
+                android:layout_marginStart="630dp"
+                android:onClick="onFondationClick"
+                android:padding="2dp" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:id="@+id/FondationPique"
+                android:src="@drawable/spades_a"
+                android:clickable="true"
+                android:layout_marginTop="180dp"
+                android:layout_marginLeft="630dp"
+                android:layout_marginStart="630dp"
+                android:onClick="onFondationClick"
+                android:padding="2dp" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:id="@+id/FondationCarre"
+                android:src="@drawable/diamonds_a"
+                android:clickable="true"
+                android:layout_marginTop="270dp"
+                android:layout_marginLeft="630dp"
+                android:layout_marginStart="630dp"
+                android:onClick="onFondationClick"
+                android:padding="2dp" />
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:id="@+id/FondationTrefle"
+                android:src="@drawable/clubs_a"
+                android:clickable="true"
+                android:layout_marginTop="360dp"
+                android:layout_marginLeft="630dp"
+                android:layout_marginStart="630dp"
+                android:onClick="onFondationClick"
+                android:padding="2dp"  />
+
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageButton"
+                android:layout_gravity="left|bottom"
+                android:src="@drawable/restart"
+                android:layout_marginLeft="700dp"
+                android:layout_marginStart="775dp"
+                android:onClick="Recommencer" />
+
+
+
+
+
+        </FrameLayout>
+        </TableRow>
+    </TableLayout>
+
+    </RelativeLayout>

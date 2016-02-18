@@ -112,12 +112,12 @@ public class VideoPokerActivity extends Activity {
             jeu.mise = joueur.getMontant(miseTemp);
             if (jeu.mise != 0){
                 jeu.aMisé = true;
+                float monnaie = joueur.getMonnaie();
+                argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
+                // Commencer
+                jeu.passerCartes();
+                replacerJeu();
             }
-            float monnaie = joueur.getMonnaie();
-            argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
-            // Commencer
-            jeu.passerCartes();
-            replacerJeu();
         }
     }
     public void onCardVideoClick(View v) {
@@ -154,16 +154,13 @@ public class VideoPokerActivity extends Activity {
     private void validerCarte(Carte carte, int index,ImageView img){
         if (carteValider.get(index).nom == "null"){
             carteValider.set(index, carte);
-            message.setText("Carte " + carte.nom + " selectionné.");
             img.setBackgroundColor(Color.GREEN);
         }
         else{
             Carte cartenull = new Carte(1,1,1,"null", JeuDeCarte.type.Carre);
             carteValider.set(index, cartenull);
-            message.setText("Carte " + carte.nom + " deselectionné.");
             img.setBackgroundColor(Color.TRANSPARENT);
         }
-        message.show();
     }
     /**
      * Rendre les images de cartes invisibles.

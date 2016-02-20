@@ -41,6 +41,8 @@ public class VideoPokerActivity extends Activity {
         jeu.reinitialiserJeu();
         carteValider.clear();
         mettreCarteANull(carteValider);
+        mettreCarteANull(jeu.paquetPremier);
+        mettreCarteANull(jeu.paquetFinal);
     }
     private void replacerJeu(){
         if (jeu.aValider){
@@ -54,30 +56,34 @@ public class VideoPokerActivity extends Activity {
         }
     }
     private void placerCartes(JeuDeCarte cartes){
-        ImageView image = (ImageView) findViewById(R.id.imgVideo1);
-        image.setImageResource(jeu.trouverIdCarte(cartes.get(0).nom));
-        image.setVisibility(View.VISIBLE);
-        image.setBackgroundColor(Color.TRANSPARENT);
+        if (cartes.get(0).nom != "null"){
+            ImageView image = (ImageView) findViewById(R.id.imgVideo1);
+            image.setImageResource(jeu.trouverIdCarte(cartes.get(0).nom));
+            image.setVisibility(View.VISIBLE);
+            image.setBackgroundColor(Color.TRANSPARENT);
 
-        image = (ImageView) findViewById(R.id.imgVideo2);
-        image.setImageResource(jeu.trouverIdCarte(cartes.get(1).nom));
-        image.setVisibility(View.VISIBLE);
-        image.setBackgroundColor(Color.TRANSPARENT);
+            image = (ImageView) findViewById(R.id.imgVideo2);
+            image.setImageResource(jeu.trouverIdCarte(cartes.get(1).nom));
+            image.setVisibility(View.VISIBLE);
+            image.setBackgroundColor(Color.TRANSPARENT);
 
-        image = (ImageView) findViewById(R.id.imgVideo3);
-        image.setImageResource(jeu.trouverIdCarte(cartes.get(2).nom));
-        image.setVisibility(View.VISIBLE);
-        image.setBackgroundColor(Color.TRANSPARENT);
+            image = (ImageView) findViewById(R.id.imgVideo3);
+            image.setImageResource(jeu.trouverIdCarte(cartes.get(2).nom));
+            image.setVisibility(View.VISIBLE);
+            image.setBackgroundColor(Color.TRANSPARENT);
 
-        image = (ImageView) findViewById(R.id.imgVideo4);
-        image.setImageResource(jeu.trouverIdCarte(cartes.get(3).nom));
-        image.setVisibility(View.VISIBLE);
-        image.setBackgroundColor(Color.TRANSPARENT);
+            image = (ImageView) findViewById(R.id.imgVideo4);
+            image.setImageResource(jeu.trouverIdCarte(cartes.get(3).nom));
+            image.setVisibility(View.VISIBLE);
+            image.setBackgroundColor(Color.TRANSPARENT);
 
-        image = (ImageView) findViewById(R.id.imgVideo5);
-        image.setImageResource(jeu.trouverIdCarte(cartes.get(4).nom));
-        image.setVisibility(View.VISIBLE);
-        image.setBackgroundColor(Color.TRANSPARENT);
+            image = (ImageView) findViewById(R.id.imgVideo5);
+            image.setImageResource(jeu.trouverIdCarte(cartes.get(4).nom));
+            image.setVisibility(View.VISIBLE);
+            image.setBackgroundColor(Color.TRANSPARENT);
+        }
+        else
+            effacerImage();
     }
     public void onValiderVideoClick(View v) {
         if (jeu.aMisé){

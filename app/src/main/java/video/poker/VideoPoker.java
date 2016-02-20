@@ -58,14 +58,14 @@ public class VideoPoker extends JeuAvecCartes {
     public JeuDeCarte passerCartes() {
         if (aPremièresCartes) {
             for (int i = nbCartesGardées; i < 5; i++) {
-                paquetFinal.add(paquet.pigerUneCarte());
+                paquetFinal.set(i, paquet.pigerUneCarte());
             }
             paquetFinal.ordonnerCartes();
             return paquetFinal;
         } else {
             aPremièresCartes = true;
             for (int i = 0; i < 5; i++) {
-                paquetPremier.add(paquet.pigerUneCarte());
+                paquetPremier.set(i, paquet.pigerUneCarte());
             }
             paquetPremier.ordonnerCartes();
             return paquetPremier;
@@ -79,8 +79,7 @@ public class VideoPoker extends JeuAvecCartes {
         if (!aValider) {
             for (int i = 0; i < 5; i++) {
                 if (cartes.get(i).nom != "null") {
-                    paquetFinal.add(cartes.get(i));
-                    nbCartesGardées++;
+                    paquetFinal.set(nbCartesGardées++, cartes.get(i));
                 }
             }
             aValider = true;
@@ -93,9 +92,23 @@ public class VideoPoker extends JeuAvecCartes {
 
     /**
      * compter les points du joueur
+     *
      * @return
      */
     public float compterPoints() {
+        /**paquetFinal.clear();
+         Carte c1 = new Carte(11,-65536,0,"Carre11", JeuDeCarte.type.Carre);
+         Carte c2 = new Carte(4,-16777216,2,"Pique4", JeuDeCarte.type.Pique);
+         Carte c3 = new Carte(5,-16777216,2,"Pique5", JeuDeCarte.type.Pique);
+         Carte c4 = new Carte(6,-16777216,1,"Trèfle6", JeuDeCarte.type.Trèfle);
+         Carte c5 = new Carte(7,-65536,0,"Carre7", JeuDeCarte.type.Carre);
+
+         paquetFinal.add(c1);
+         paquetFinal.add(c2);
+         paquetFinal.add(c3);
+         paquetFinal.add(c4);
+         paquetFinal.add(c5);
+         **/
         float multiplicateur = 0;
         if (siValetouMieux()) {
             multiplicateur = 1;
@@ -210,12 +223,13 @@ public class VideoPoker extends JeuAvecCartes {
      */
     private boolean siSuiteSansAs() {
         //Vérifie si c'est une suite sans compter que l'as peut suivre le roi
+        boolean estSuite = true;
         for (int i = 0; i < 4; i++) {
-            if (!(paquetFinal.get(i).numero == paquetFinal.get(i + 1).numero + 1)) {
-                return false;
+            if (!((paquetFinal.get(i).numero + 1) == (paquetFinal.get(i + 1).numero))) {
+                estSuite = false;
             }
         }
-        return true;
+        return estSuite;
     }
 
     /**
@@ -224,16 +238,38 @@ public class VideoPoker extends JeuAvecCartes {
      * @return vrai si c'est une suite, faux sinon
      */
     private boolean siSuiteAvecAs() {
-        for (int i = 0; i < 4; i++) {
-            if (i == 0) {
-                if (!(paquetFinal.get(i).numero == 1 && paquetFinal.get(1).numero == 10)) {
-                    return false;
-                }
-            } else if (!(paquetFinal.get(i).numero == paquetFinal.get(i + 1).numero + 1)) {
-                return false;
+        // Replacer le paquet pour mieux compter
+        JeuDeCarte cartes = new JeuDeCarte();
+        cartes.clear();
+        mettreCarteANull(cartes);
+        int index = 0;
+        int lastnumber = 9;
+        for (int i = 0; i < 5; i++) {
+            if (paquetFinal.get(i).numero > lastnumber) {
+                cartes.set(index, paquetFinal.get(i));
+                lastnumber = paquetFinal.get(i).numero;
+                index++;
             }
         }
-        return true;
+        lastnumber = 9;
+        for (int i = 0; i < 5; i++) {
+            if (paquetFinal.get(i).numero < lastnumber) {
+                cartes.set(index, paquetFinal.get(i));
+                index++;
+            }
+        }
+        boolean estSuite = true;
+        for (int i = 0; i < 4; i++) {
+            if ((cartes.get(i).numero + 1) == (cartes.get(i + 1).numero)) {
+                estSuite = true;
+            } else if (cartes.get(i).numero == 13 && cartes.get(i + 1).numero == 1) {
+                estSuite = true;
+            } else {
+                estSuite = false;
+                break;
+            }
+        }
+        return estSuite;
     }
 
     /**
@@ -352,6 +388,18 @@ public class VideoPoker extends JeuAvecCartes {
      */
     public int trouverIdCarte(String nom) {
         return paquet.trouverIdCarte(nom);
+    }
+
+    /**
+     * Met les cartes a null
+     *
+     * @param cartes le paquet de cartes
+     */
+    private void mettreCarteANull(JeuDeCarte cartes) {
+        Carte cartenull = new Carte(1, 1, 1, "null", JeuDeCarte.type.Carre);
+        for (int i = 0; i < 5; i++) {
+            cartes.add(cartenull);
+        }
     }
 
     @Override

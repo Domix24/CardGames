@@ -200,7 +200,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
      */
     public void ajouterMontant()
     {
-        for(JoueurDu31 joueur : lstJoueurs)
+        for(JoueurDu31 joueur : lstGagnants)
         {
             if(joueur.nom==idJoueur.getNom())
                 idJoueur.AddMontant(sommeArgent/lstGagnants.size());

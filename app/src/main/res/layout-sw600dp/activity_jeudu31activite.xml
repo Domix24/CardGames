@@ -19,43 +19,43 @@
                 android:layout_column="1"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:id="@+id/CarteEnemi11"/>
+                android:id="@+id/CarteEnemi1"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:id="@+id/CarteEnemi12"/>
+                android:id="@+id/CarteEnemi2"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginRight="40dp"
-                android:id="@+id/CarteEnemi13"/>
+                android:id="@+id/CarteEnemi3"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:id="@+id/CarteEnemi21"/>
+                android:id="@+id/CarteEnemi4"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:id="@+id/CarteEnemi22"/>
+                android:id="@+id/CarteEnemi5"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:id="@+id/CarteEnemi23"/>
+                android:id="@+id/CarteEnemi6"/>
         </TableRow>
         <TableRow
             android:layout_marginTop="50dp"
             android:layout_marginLeft="180dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center_horizontal">
             <ImageView
                 android:src="@drawable/clubs_k"
                 android:layout_width="120dp"

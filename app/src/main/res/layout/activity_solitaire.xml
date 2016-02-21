@@ -1030,7 +1030,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:id="@+id/Card"
-                android:src="@drawable/clubs_10"
+                android:src="@drawable/emptycard"
                 android:clickable="true"
                 android:layout_marginTop="0dp"
                 android:layout_marginLeft="630dp"

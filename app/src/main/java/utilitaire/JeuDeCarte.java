@@ -223,4 +223,13 @@ public class JeuDeCarte extends ArrayList<Carte> {
         }
         return carteTemporaire;
     }
+
+    public Carte pigerDessus() {
+        Carte carteTemporaire = null;
+        if (this.size()>0) {
+            carteTemporaire=this.get(0);
+            this.remove(carteTemporaire);
+        }
+        return carteTemporaire;
+    }
 }

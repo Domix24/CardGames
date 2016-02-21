@@ -72,6 +72,15 @@ public class SolitaireActivity extends Activity {
                             premiereCarte = "";
                             deuxièmeCarte = "";
                         }
+                        else if (premiereCarte == "carte" && jeuSolitaire.ajouterNouvelleCarteDansJeu(colonneDestination)){
+                            rafraîchirJeu();
+                            premiereCarte = "";
+                            ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
+                            Carte carte = jeuSolitaire.PigerNouvelleCarte();
+                            imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
+                            imageCarteJouable.setTag(carte);
+                            imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                        }
                         else if (jeuSolitaire.DéplacerPaquetVersAutreColonne(premierecc.carte, colonneOrigine, rangéeOrigine, colonneDestination))
                         {
                             rafraîchirJeu();
@@ -88,7 +97,16 @@ public class SolitaireActivity extends Activity {
     {
         if (premiereCarte != "")
         {
-            if (jeuSolitaire.PlacerCarteDansFoundations(premierecc.carte, colonneOrigine))
+            if (premiereCarte == "carte" && jeuSolitaire.placerNouvelleCarteDansFondations()) {
+                rafraîchirJeu();
+                premiereCarte = "";
+                ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
+                Carte carte = jeuSolitaire.PigerNouvelleCarte();
+                imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
+                imageCarteJouable.setTag(carte);
+                imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+            }
+            else if (jeuSolitaire.PlacerCarteDansFoundations(premierecc.carte, colonneOrigine))
             {
                 premiereCarte = "";
                 rafraîchirJeu();
@@ -128,9 +146,10 @@ public class SolitaireActivity extends Activity {
                     if (img != null) {
                         if (j != 0) {
                             img.setVisibility(View.INVISIBLE);
-                            img.setTag(null);
                         }
+                        img.setTag(null);
                         img.setImageResource(R.drawable.emptycard);
+                        img.setBackgroundColor(Color.argb(0, 0, 0, 0));
                     }
                 }
             }
@@ -156,6 +175,38 @@ public class SolitaireActivity extends Activity {
         jeuSolitaire = new Solitaire();
         jeuSolitaire.Initialiser(16421);
         rafraîchirJeu();
+        ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
+        imageCarteJouable.setImageResource(R.drawable.emptycard);
+    }
+
+    public void onPaquetClic(View v) {
+       // System.err.println("Clic sur le paquet");
+
+        ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
+        Carte carte = jeuSolitaire.PigerNouvelleCarte();
+        if (imageCarteJouable.getTag() != null) {
+            Carte carteChangee = (Carte)imageCarteJouable.getTag();
+            jeuSolitaire.AjouterCarteAuPaquet(carteChangee);
+        }
+
+            imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
+            imageCarteJouable.setTag(carte);
+
+    }
+
+    public void onSortiePaquetClick(View v){
+        if (premiereCarte == ""){
+            imageSélectionnée = (ImageView) findViewById(v.getId());
+            if (imageSélectionnée.getTag() != null) {
+                    imageSélectionnée.setBackgroundColor(Color.rgb(48, 0, 255));
+                    premiereCarte = "carte";
+            }
+        }
+        else if (premiereCarte == "carte"){
+            imageSélectionnée = (ImageView) findViewById(v.getId());
+            imageSélectionnée.setBackgroundColor(Color.argb(0, 0, 0, 0));
+            premiereCarte = "";
+        }
     }
 }
 

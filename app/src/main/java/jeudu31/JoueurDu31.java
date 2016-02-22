@@ -9,7 +9,7 @@ import utilitaire.JeuDeCarte;
 /**
  * Created by Jean-Michel Lavoie on 11/02/2016.
  */
-public class JoueurDu31 extends JeuAvecCartes {
+public class JoueurDu31{
     JeuDeCarte JeuEnMain;
     private int SommeCarrés;
     private int SommeCoeurs;
@@ -17,6 +17,7 @@ public class JoueurDu31 extends JeuAvecCartes {
     private int SommePiques;
     protected boolean Cogne;
     protected String nom;
+    int[] nbrMêmeCarte;
 
     /**
      * As vaut 11
@@ -40,8 +41,8 @@ public class JoueurDu31 extends JeuAvecCartes {
     {
         nom="";
         Cogne=false;
-        for(int i=0;i<3;i++)
-            ajouterCarteALaMain(paquet.pigerUneCarte());
+        JeuEnMain = new JeuDeCarte();
+        JeuEnMain.clear();
 
     }
 
@@ -65,15 +66,15 @@ public class JoueurDu31 extends JeuAvecCartes {
     /**
      *
      * @param ct ajoute la carte dans la main du joueur
-     * @return retourne le résultat de l'opération
+     * @return retourne null si non assignée.
      */
-    public boolean ajouterCarteALaMain(Carte ct)
+    public Carte ajouterCarteALaMain(Carte ct)
     {
         if(!JeuEnMain.contains(ct) && ct!=null) {
             JeuEnMain.add(ct);
-            return true;
+            return ct;
         }
-        return false;
+        return null;
     }
 
     /**
@@ -181,22 +182,28 @@ public class JoueurDu31 extends JeuAvecCartes {
             }
         }
     }
-
+    public int chercheMêmeValeur()
+    {
+        for(int i=0;i<nbrMêmeCarte.length;i++)
+            if(nbrMêmeCarte[i]>=2)
+                return i;
+        return 0;
+    }
     /**
      *
-     * @return retourne vrai si le joueur à par exemple 3 As sinon retourne faux.
+     * @return retourne la quantité la plus grande de carte si le joueur en possède plusieurs..
      */
-    public boolean détecterMêmeValeur()
+    public int détecterMêmeValeur()
     {
-        int[] NbrMêmeCarte = new int[13];
+        nbrMêmeCarte = new int[13];
         for(Carte ct: JeuEnMain)
         {
-           NbrMêmeCarte[ct.numero]+=1;
+           nbrMêmeCarte[ct.numero-1]+=1;
         }
-        for(int i=0;i<NbrMêmeCarte.length;i++)
-            if(NbrMêmeCarte[i]==3)
-                return true;
-        return false;
+        for(int i=0;i<nbrMêmeCarte.length;i++)
+            if(nbrMêmeCarte[i]>=2)
+                return nbrMêmeCarte[i];
+        return 0;
     }
 
     /**
@@ -205,7 +212,7 @@ public class JoueurDu31 extends JeuAvecCartes {
      */
     public int retournePlusHauteValeur()
     {
-        if(détecterMêmeValeur())
+        if(détecterMêmeValeur()==3)
             return 31;
         calculerSommeMêmeCouleur();
         if(SommeCarrés>=SommeTrèfles && SommeCarrés>=SommePiques && SommeCarrés>=SommeCoeurs)
@@ -216,8 +223,15 @@ public class JoueurDu31 extends JeuAvecCartes {
             return SommeCoeurs;
         return SommeTrèfles;
     }
-    @Override
-    public void Initialiser(int seed) {
-
+    public int retournePlusHauteSorte()
+    {
+        calculerSommeMêmeCouleur();
+        if(SommeCarrés>=SommeTrèfles && SommeCarrés>=SommePiques && SommeCarrés>=SommeCoeurs)
+            return 0;
+        if(SommePiques>=SommeCarrés && SommePiques>=SommeTrèfles && SommePiques>=SommeCoeurs)
+            return  2;
+        if(SommeCoeurs>=SommeCarrés && SommeCoeurs>=SommePiques && SommeCoeurs>=SommeTrèfles)
+            return 3;
+        return 1;
     }
 }

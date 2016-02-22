@@ -61,6 +61,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_column="1"
+                android:onClick="onClickPigerCarteAVue"
                 android:id="@+id/CarteDejaPiger"
 
                 />
@@ -69,6 +70,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_column="1"
+                android:onClick="onClickPaquetDeCartes"
                 android:id="@+id/PacketCarte"
                />
         </TableRow>
@@ -117,13 +119,26 @@
 
         <Button
             android:text="Cogner"
+            android:onClick="onClickCogner"
             android:id="@+id/btnCogner"/>
         <Button
             android:text="Miser"
+            android:onClick="onClickMiser"
             android:id="@+id/btnMiser"/>
         <NumberPicker
             android:id="@+id/nbPicker"/>
     </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblArgent"
+                android:layout_column="5" />
+        </TableRow>
     </TableLayout>
 
 

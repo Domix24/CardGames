@@ -22,6 +22,10 @@ public class VideoPokerActivity extends Activity {
     TextView argent;
     JoueurSingleton joueur = JoueurSingleton.getInstance();
     Toast message;
+
+    /**
+     * Lorsque l'activité est crée
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,10 @@ public class VideoPokerActivity extends Activity {
         } else
             replacerJeu();
     }
+
+    /**
+     * Permet de reinitialiser le jeu
+     */
     private void reinitialiserJeu(){
         jeu.reinitialiserJeu();
         carteValider.clear();
@@ -44,6 +52,10 @@ public class VideoPokerActivity extends Activity {
         mettreCarteANull(jeu.paquetPremier);
         mettreCarteANull(jeu.paquetFinal);
     }
+
+    /**
+     * Replacer le jeu
+     */
     private void replacerJeu(){
         if (jeu.aValider){
             placerCartes(jeu.paquetFinal);
@@ -55,6 +67,11 @@ public class VideoPokerActivity extends Activity {
             cartePresente = jeu.paquetPremier;
         }
     }
+
+    /**
+     * Replacer les images dans le jeu
+     * @param cartes les cartes a placer.
+     */
     private void placerCartes(JeuDeCarte cartes){
         if (cartes.get(0).nom != "null"){
             ImageView image = (ImageView) findViewById(R.id.imgVideo1);
@@ -85,13 +102,18 @@ public class VideoPokerActivity extends Activity {
         else
             effacerImage();
     }
+
+    /**
+     * Lorsqu'on clique sur valider, valider les cartes et compter les points
+     * @param v
+     */
     public void onValiderVideoClick(View v) {
         if (jeu.aMisé){
             jeu.validerCartes(carteValider);
             replacerJeu();
             jeu.aMisé = false;
             float gain = jeu.compterPoints();
-            joueur.AddMontant(gain);
+            joueur.addMontant(gain);
             float monnaie = joueur.getMonnaie();
 
             argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
@@ -104,14 +126,11 @@ public class VideoPokerActivity extends Activity {
         }
 
     }
-    public void onRecommencerClick(View v) {
-        if (jeu.aMisé){
-            jeu.reinitialiserJeu();
-            jeu.passerCartes();
-            replacerJeu();
-        }
 
-    }
+    /**
+     * Lorsqu'on clique sur miser, commencer la partie
+     * @param v la vue du bouton
+     */
     public void onMiserClick(View v) {
         if (!jeu.aMisé) {
             float miseTemp = Float.parseFloat(mise.getText().toString());
@@ -126,6 +145,11 @@ public class VideoPokerActivity extends Activity {
             }
         }
     }
+
+    /**
+     * Lorsqu'on clique sur une carte, la selectionner
+     * @param v la view du bouton
+     */
     public void onCardVideoClick(View v) {
 
         if (jeu.aMisé){
@@ -151,12 +175,24 @@ public class VideoPokerActivity extends Activity {
             }
         }
     }
+
+    /**
+     * Met le nom des cartes a "null"
+     * @param cartes le paquet de carte
+     */
     private void mettreCarteANull(JeuDeCarte cartes){
         Carte cartenull = new Carte(1,1,1,"null", JeuDeCarte.type.Carre);
         for (int i = 0; i < 5; i++){
             cartes.add(cartenull);
         }
     }
+
+    /**
+     * Permet de valider ou de d'invalider une carte.
+     * @param carte la carte a valider
+     * @param index l'index dans le jeu de carte
+     * @param img l'image de la carte
+     */
     private void validerCarte(Carte carte, int index,ImageView img){
         if (carteValider.get(index).nom == "null"){
             carteValider.set(index, carte);

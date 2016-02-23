@@ -3,18 +3,17 @@ package jeudu31;
 import java.util.List;
 
 import utilitaire.Carte;
-import utilitaire.JeuAvecCartes;
 import utilitaire.JeuDeCarte;
 
 /**
  * Created by Jean-Michel Lavoie on 11/02/2016.
  */
 public class JoueurDu31{
-    JeuDeCarte JeuEnMain;
-    private int SommeCarrés;
-    private int SommeCoeurs;
-    private int SommeTrèfles;
-    private int SommePiques;
+    JeuDeCarte jeuEnMain;
+    private int sommeCarrés;
+    private int sommeCoeurs;
+    private int sommeTrèfles;
+    private int sommePiques;
     protected boolean Cogne;
     protected String nom;
     int[] nbrMêmeCarte;
@@ -41,8 +40,8 @@ public class JoueurDu31{
     {
         nom="";
         Cogne=false;
-        JeuEnMain = new JeuDeCarte();
-        JeuEnMain.clear();
+        jeuEnMain = new JeuDeCarte();
+        jeuEnMain.clear();
 
     }
 
@@ -60,7 +59,7 @@ public class JoueurDu31{
      */
     public List<Carte> avoirLaMain()
     {
-        return JeuEnMain;
+        return jeuEnMain;
     }
 
     /**
@@ -70,8 +69,8 @@ public class JoueurDu31{
      */
     public Carte ajouterCarteALaMain(Carte ct)
     {
-        if(!JeuEnMain.contains(ct) && ct!=null) {
-            JeuEnMain.add(ct);
+        if(!jeuEnMain.contains(ct) && ct!=null) {
+            jeuEnMain.add(ct);
             return ct;
         }
         return null;
@@ -84,8 +83,8 @@ public class JoueurDu31{
      */
     public boolean enleverCarteALaMain(Carte ct)
     {
-        if(JeuEnMain.contains(ct) && ct!=null) {
-            JeuEnMain.remove(ct);
+        if(jeuEnMain.contains(ct) && ct!=null) {
+            jeuEnMain.remove(ct);
             return true;
         }
         return false;
@@ -104,13 +103,13 @@ public class JoueurDu31{
      */
     public boolean plafonne()
     {
-        if(SommeCarrés==31)
+        if(sommeCarrés ==31)
             return true;
-        else if (SommeCoeurs==31)
+        else if (sommeCoeurs ==31)
             return true;
-        else if(SommePiques==31)
+        else if(sommePiques ==31)
             return true;
-        else if(SommeTrèfles==31)
+        else if(sommeTrèfles ==31)
             return true;
         return false;
     }
@@ -119,69 +118,74 @@ public class JoueurDu31{
      */
     public void calculerSommeMêmeCouleur()
     {
-        SommeCarrés=0;
-        SommeCoeurs=0;
-        SommePiques=0;
-        SommeTrèfles=0;
-        JeuEnMain.ordonnerCartesDécroissant();
-        for(Carte ct: JeuEnMain)
+        sommeCarrés =0;
+        sommeCoeurs =0;
+        sommePiques =0;
+        sommeTrèfles =0;
+        jeuEnMain.ordonnerCartesDécroissant();
+        for(Carte ct: jeuEnMain)
         {
             switch(ct.typeCarte) {
                 case Carre:
                     if(ct.numero>=10) {
-                        SommeCarrés += 10;
+                        sommeCarrés += 10;
                     }
                     else {
                         if (ct.numero > 1 && ct.numero < 10)
-                            SommeCarrés += ct.numero;
+                            sommeCarrés += ct.numero;
                         else {
                             if (ct.numero == 1)
-                                SommeCarrés += 11;
+                                sommeCarrés += 11;
                         }
                     }
                     break;
                 case Coeur:
                     if(ct.numero>=10) {
-                        SommeCoeurs += 10;
+                        sommeCoeurs += 10;
                     }
                     else {
                         if (ct.numero > 1 && ct.numero < 10)
-                            SommeCoeurs += ct.numero;
+                            sommeCoeurs += ct.numero;
                         else {
                             if (ct.numero == 1)
-                                SommeCoeurs += 11;
+                                sommeCoeurs += 11;
                         }
                     }
                 break;
                 case Pique:
                     if(ct.numero>=10) {
-                        SommePiques += 10;
+                        sommePiques += 10;
                     }
                     else {
                         if (ct.numero > 1 && ct.numero < 10)
-                            SommePiques += ct.numero;
+                            sommePiques += ct.numero;
                         else {
                             if (ct.numero == 1)
-                                SommePiques += 11;
+                                sommePiques += 11;
                         }
                     }
                     break;
                 case Trèfle:
                     if(ct.numero>=10) {
-                        SommeTrèfles += 10;
+                        sommeTrèfles += 10;
                     }
                     else {
                         if (ct.numero > 1 && ct.numero < 10)
-                            SommeTrèfles += ct.numero;
+                            sommeTrèfles += ct.numero;
                         else {
                             if (ct.numero == 1)
-                                SommeTrèfles += 11;
+                                sommeTrèfles += 11;
                         }
                     }
                     break;
             }
         }
     }
+
+    /**
+     *
+     * @return retourne le numéro de la carte si elle est en double ou plus.
+     */
     public int chercheMêmeValeur()
     {
         for(int i=0;i<nbrMêmeCarte.length;i++)
@@ -196,7 +200,7 @@ public class JoueurDu31{
     public int détecterMêmeValeur()
     {
         nbrMêmeCarte = new int[13];
-        for(Carte ct: JeuEnMain)
+        for(Carte ct: jeuEnMain)
         {
            nbrMêmeCarte[ct.numero-1]+=1;
         }
@@ -215,22 +219,27 @@ public class JoueurDu31{
         if(détecterMêmeValeur()==3)
             return 31;
         calculerSommeMêmeCouleur();
-        if(SommeCarrés>=SommeTrèfles && SommeCarrés>=SommePiques && SommeCarrés>=SommeCoeurs)
-            return SommeCarrés;
-        if(SommePiques>=SommeCarrés && SommePiques>=SommeTrèfles && SommePiques>=SommeCoeurs)
-            return  SommePiques;
-        if(SommeCoeurs>=SommeCarrés && SommeCoeurs>=SommePiques && SommeCoeurs>=SommeTrèfles)
-            return SommeCoeurs;
-        return SommeTrèfles;
+        if(sommeCarrés >= sommeTrèfles && sommeCarrés >= sommePiques && sommeCarrés >= sommeCoeurs)
+            return sommeCarrés;
+        if(sommePiques >= sommeCarrés && sommePiques >= sommeTrèfles && sommePiques >= sommeCoeurs)
+            return sommePiques;
+        if(sommeCoeurs >= sommeCarrés && sommeCoeurs >= sommePiques && sommeCoeurs >= sommeTrèfles)
+            return sommeCoeurs;
+        return sommeTrèfles;
     }
+
+    /**
+     *
+     * @return retourne le numéro de la sorte qui a la puls haute valeur.
+     */
     public int retournePlusHauteSorte()
     {
         calculerSommeMêmeCouleur();
-        if(SommeCarrés>=SommeTrèfles && SommeCarrés>=SommePiques && SommeCarrés>=SommeCoeurs)
+        if(sommeCarrés >= sommeTrèfles && sommeCarrés >= sommePiques && sommeCarrés >= sommeCoeurs)
             return 0;
-        if(SommePiques>=SommeCarrés && SommePiques>=SommeTrèfles && SommePiques>=SommeCoeurs)
+        if(sommePiques >= sommeCarrés && sommePiques >= sommeTrèfles && sommePiques >= sommeCoeurs)
             return  2;
-        if(SommeCoeurs>=SommeCarrés && SommeCoeurs>=SommePiques && SommeCoeurs>=SommeTrèfles)
+        if(sommeCoeurs >= sommeCarrés && sommeCoeurs >= sommePiques && sommeCoeurs >= sommeTrèfles)
             return 3;
         return 1;
     }

@@ -22,7 +22,6 @@ public class Solitaire extends JeuAvecCartes {
     // 2. Carreau (typeCarte = type.Carre
     // 3. Trèfle
 
-    private JeuDeCarte paquet;
     private Carte carteSortie;
     private List<CarteColonne>[] tableau;
     private final int FOUNDATIONS_ARRAY_LENGTH = 4;
@@ -37,7 +36,7 @@ public class Solitaire extends JeuAvecCartes {
      * Initialise le jeu
      * @param seed
      */
-    @Override
+
     public void Initialiser(int seed) {
         InitialiserFoundations();
         paquet = new JeuDeCarte();

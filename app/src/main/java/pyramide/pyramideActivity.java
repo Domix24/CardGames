@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import utilitaire.Carte;
+import utilitaire.JoueurSingleton;
+
 import com.example.utilisateur.jeudepatience.R;
 
 import java.lang.reflect.Field;
@@ -19,18 +21,22 @@ public class pyramideActivity extends Activity {
     Field[] campos;
     String premiereCarte;
     String deuxièmeCarte;
-    int rangéeDestination;
-    int colonneDestination;
-    int rangéeOrigine;
-    int colonneOrigine;
+    int rangéeCarte2;
+    int colonneCarte2;
+    int rangéeCarte1;
+    int colonneCarte1;
     ImageView imageSélectionnée;
     boolean partieTerminée;
     boolean partieGagnée;
+    JoueurSingleton joueur;
+    PyramideMises pyramideMises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyramide);
+        joueur = JoueurSingleton.getInstance();
+        pyramideMises = new PyramideMises(5);
         commencerNouvellePartie();
     }
 
@@ -65,28 +71,38 @@ public class pyramideActivity extends Activity {
                     imageSélectionnée.setBackgroundColor(Color.BLUE);
                     premiereCarte = f.getName();
                     tempChar=premiereCarte.charAt(1);
-                    rangéeOrigine=Character.getNumericValue(tempChar);
+                    rangéeCarte1 =Character.getNumericValue(tempChar);
                     tempChar=premiereCarte.charAt(3);
-                    colonneOrigine=Character.getNumericValue(tempChar);
+                    colonneCarte1 =Character.getNumericValue(tempChar);
 
                     // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    if (jeuDePyramide.enleverCartes(rangéeOrigine, colonneOrigine) == true) {
+                    if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1) == true) {
                         imageSélectionnée.setImageDrawable(null);
                         imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                         premiereCarte = "";
-                        rangéeOrigine = -1;
-                        colonneOrigine = -1;
+                        rangéeCarte1 = -1;
+                        colonneCarte1 = -1;
+
+                        if (pyramideMises.chanceGagnerPeu() == true)
+                            Toast.makeText(getApplicationContext(),
+                                    (getString(R.string.pyramide_montantChance) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
+                                    Toast.LENGTH_LONG).show();
                     }
                 }
                 else if(deuxièmeCarte=="") {
                     deuxièmeCarte = f.getName();
                     tempChar = deuxièmeCarte.charAt(1);
-                    rangéeDestination = Character.getNumericValue(tempChar);
+                    rangéeCarte2 = Character.getNumericValue(tempChar);
                     tempChar = deuxièmeCarte.charAt(3);
-                    colonneDestination = Character.getNumericValue(tempChar);
+                    colonneCarte2 = Character.getNumericValue(tempChar);
 
                     // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    jeuDePyramide.enleverCartes(rangéeOrigine, colonneOrigine, rangéeDestination, colonneDestination);
+                    if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1, rangéeCarte2, colonneCarte2) == true) {
+                        if (pyramideMises.chanceGagnerPeu() == true)
+                            Toast.makeText(getApplicationContext(),
+                                    (getString(R.string.pyramide_montantChance) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
+                                    Toast.LENGTH_LONG).show();
+                    }
 
                     imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                     premiereCarte = "";
@@ -107,12 +123,14 @@ public class pyramideActivity extends Activity {
     public void afficherPyramide() {
         if (partieTerminée) {
             if (partieGagnée == true) {
-                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieGagnée), Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partiePerdue), Toast.LENGTH_LONG).show();
             }
         }
+
+        // Afficher la pyramide
         for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++) {
             for (int j = 0; j < jeuDePyramide.getCartesPyramide().get(i).length; j++) {
                 try {
@@ -136,6 +154,8 @@ public class pyramideActivity extends Activity {
                 }
             }
         }
+
+        // Afficher le waste
         ImageView image = (ImageView)findViewById(R.id.R7C0);
         try {
             image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
@@ -145,8 +165,9 @@ public class pyramideActivity extends Activity {
             image.setImageDrawable(null);
             image.setClickable(false);
         }
-        image = (ImageView)findViewById(R.id.stock);
 
+        // Afficher le stock
+        image = (ImageView)findViewById(R.id.stock);
         if (jeuDePyramide.getNombreStock() == 0) {;
             image.setImageDrawable(null);
             image.setClickable(false);
@@ -156,9 +177,17 @@ public class pyramideActivity extends Activity {
             image.setClickable(true);
         }
 
+        // Afficher le lbl du nombre de cartes dans le stock
         TextView lblStock = (TextView)findViewById(R.id.cartesStock);
         int nbCartesStock = jeuDePyramide.getNombreStock();
         lblStock.setText(Integer.toString(nbCartesStock));
+
+        // Afficher les lbl des montants
+        TextView lblMontant = (TextView)findViewById(R.id.montantTotal);
+        String sdsa = Float.toString(joueur.getMonnaie());
+        lblMontant.setText(getString(R.string.pyramide_montantTotal) + Float.toString(joueur.getMonnaie()) + "$");
+        lblMontant = (TextView)findViewById(R.id.montantMise);
+        lblMontant.setText(getString(R.string.pyramide_montantMise));
     }
 
     /**
@@ -166,6 +195,12 @@ public class pyramideActivity extends Activity {
      * @param v
      */
     public void Restart(View v) {
+        // Enlever la sélection visuelle de la carte
+        try {
+            ImageView img = (ImageView) findViewById(this.getBaseContext().getResources().getIdentifier(premiereCarte, "id", this.getBaseContext().getPackageName()));
+            img.setBackgroundColor(Color.TRANSPARENT);
+        } catch (Exception e) {}
+
         jeuDePyramide.commencerNouvellePartie();
         commencerNouvellePartie();
     }
@@ -176,10 +211,10 @@ public class pyramideActivity extends Activity {
     private void commencerNouvellePartie() {
         premiereCarte="";
         deuxièmeCarte="";
-        rangéeDestination = -1;
-        colonneDestination = -1;
-        rangéeOrigine = -1;
-        colonneOrigine = -1;
+        rangéeCarte2 = -1;
+        colonneCarte2 = -1;
+        rangéeCarte1 = -1;
+        colonneCarte1 = -1;
         partieTerminée = false;
         partieGagnée = false;
         jeuDePyramide = new PyramideLogique();

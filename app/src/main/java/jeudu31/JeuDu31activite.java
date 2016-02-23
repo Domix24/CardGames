@@ -14,12 +14,11 @@ import android.widget.Toast;
 import com.example.utilisateur.jeudepatience.R;
 
 import java.lang.reflect.Field;
-import java.util.Random;
 
 import utilitaire.Carte;
 
 public class JeuDu31activite extends Activity {
-    Field[] campos;
+    Field[] campos;//Variable contenant la colleciton des contrôles.
     String premiereCarte;
     String deuxiemeCarte;
     ImageView imageSélectionnée;
@@ -100,10 +99,10 @@ public class JeuDu31activite extends Activity {
     {
             ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("CarteJouer" + 1
                     , "id", this.getBaseContext().getPackageName()));
-            if (ct != null && jeu.lstJoueurs.get(0).JeuEnMain.size()==4) {
+            if (ct != null && jeu.lstJoueurs.get(0).jeuEnMain.size()==4) {
                 img.setImageResource(jeu.trouverIdCarte(ct.nom));
                 img.setClickable(true);
-            } else if(jeu.lstJoueurs.get(0).JeuEnMain.size()!=4)
+            } else if(jeu.lstJoueurs.get(0).jeuEnMain.size()!=4)
             {
                 img.setImageDrawable(null);
                 img.setClickable(false);
@@ -158,7 +157,7 @@ public class JeuDu31activite extends Activity {
             //Pour convertir en index tableau.
             position--;
             jeu.jouerUnChoix(jeu.lstJoueurs.get(0).avoirLaMain().get(position));
-            if(!jeu.CalculerSiFin()) {
+            if(!jeu.calculerSiFin()) {
                 ordonnerImages();
                 joueurHumanFin();
                 if (jeu.jouerOrdinateurs()) {
@@ -181,7 +180,7 @@ public class JeuDu31activite extends Activity {
         jeu.détermineGagnant();
         jeu.déterminePerdant();
         joueurHumanFin();
-        Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.pyramide_montantTotal), Toast.LENGTH_LONG).show();
         jeu.recommencer(3);
         miseAJourImageCarteDejaPiger();
         mettreAJourImageGauche(null);
@@ -278,6 +277,11 @@ public class JeuDu31activite extends Activity {
             imageSélectionnée=null;
         imagePremière=(ImageView) findViewById(v.getId());
     }
+
+    /**
+     * Annoncer son intention de finir la manche.
+     * @param v
+     */
     public void onClickCogner(View v)
     {
         jeu.annoncerFinDeManche();
@@ -285,6 +289,11 @@ public class JeuDu31activite extends Activity {
         jeu.jouerOrdinateurs();
         procedureFinDeManche();
     }
+
+    /**
+     * Placer une mise.
+     * @param v
+     */
     public void onClickMiser(View v)
     {
         NumberPicker numberPicker= (NumberPicker) this.findViewById(this.getBaseContext().getResources().getIdentifier("nbPicker"

@@ -21,10 +21,12 @@ public class JeuDu31Logique extends JeuAvecCartes {
     int joueurCourant;
     int cogneur;
     int nbrTour;
+    int seed;
     List<Carte> paquetTémoin;
-    @Override
+
+
     public void Initialiser(int seed) {
-        
+        this.seed=seed;
     }
 
     /**
@@ -56,13 +58,13 @@ public class JeuDu31Logique extends JeuAvecCartes {
     }
 
     /**
-     *
-     * @param valeur enleve une carte de valeur différente.
+     * enleve une carte de valeur différente.
+     * @param valeur
      */
     public void enleverValeurDifférente(int valeur)
     {
         boolean valeurIntrouvé=true;
-        for(Carte ct : lstJoueurs.get(joueurCourant).JeuEnMain)
+        for(Carte ct : lstJoueurs.get(joueurCourant).jeuEnMain)
         {
             if(ct.numero!=valeur) {
                 valeurIntrouvé=false;
@@ -73,7 +75,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         //Si elles sont tous de même valeur.
         if(valeurIntrouvé)
         {
-            Carte ct = lstJoueurs.get(joueurCourant).JeuEnMain.get(0);
+            Carte ct = lstJoueurs.get(joueurCourant).jeuEnMain.get(0);
             jouerUnChoix(ct);
         }
     }
@@ -84,7 +86,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
     public Carte pigerUneCarteAVue()
     {
         Carte ct=null;
-        if(paquetTémoin.size()>0 && lstJoueurs.get(joueurCourant).JeuEnMain.size()==3) {
+        if(paquetTémoin.size()>0 && lstJoueurs.get(joueurCourant).jeuEnMain.size()==3) {
             ct=paquetTémoin.get(paquetTémoin.size() - 1);
             lstJoueurs.get(joueurCourant).ajouterCarteALaMain(ct);
             paquetTémoin.remove(paquetTémoin.size() - 1);
@@ -120,7 +122,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
      */
     public Carte jouerUnePige()
     {
-        if(lstJoueurs.get(joueurCourant).Cogne==false && paquet.size()>0 && lstJoueurs.get(joueurCourant).JeuEnMain.size()==3) {
+        if(lstJoueurs.get(joueurCourant).Cogne==false && paquet.size()>0 && lstJoueurs.get(joueurCourant).jeuEnMain.size()==3) {
             //SI le paquet principal est vide.
             if (paquet.size() == 0) {
                 for (int i = 0; i < paquetTémoin.size(); i++)
@@ -140,7 +142,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
      */
     public Carte jouerUnChoix(Carte ct)
     {
-        if(lstJoueurs.get(joueurCourant).Cogne==false && lstJoueurs.get(joueurCourant).JeuEnMain.size()==4)
+        if(lstJoueurs.get(joueurCourant).Cogne==false && lstJoueurs.get(joueurCourant).jeuEnMain.size()==4)
             if(lstJoueurs.get(joueurCourant).enleverCarteALaMain(ct)) {
                 paquetTémoin.add(ct);
                 return ct;
@@ -152,7 +154,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
      * Calcul pour le joueur s'il a 31
      * @return retourne vrai s ic la fin sinon faux
      */
-    public boolean CalculerSiFin()
+    public boolean calculerSiFin()
     {
         if(joueurCourant==0 && lstJoueurs.get(joueurCourant).retournePlusHauteValeur()==31)
             return true;
@@ -227,7 +229,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         for(JoueurDu31 joueur : lstGagnants)
         {
             if(joueur.nom==idJoueur.getNom())
-                idJoueur.AddMontant(sommeArgent/lstGagnants.size());
+                idJoueur.addMontant(sommeArgent / lstGagnants.size());
         }
     }
     /**
@@ -259,7 +261,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
      */
     public void enleverSorteDifférente(int sorte) {
         boolean sorteIntrouvé=true;
-        for(Carte ct:lstJoueurs.get(joueurCourant).JeuEnMain)
+        for(Carte ct:lstJoueurs.get(joueurCourant).jeuEnMain)
         {
             if(ct.sorte!=sorte) {
                 jouerUnChoix(ct);
@@ -271,7 +273,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         if(sorteIntrouvé)
         {
             Carte ctTemp=null;
-            for(Carte ct:lstJoueurs.get(joueurCourant).JeuEnMain) {
+            for(Carte ct:lstJoueurs.get(joueurCourant).jeuEnMain) {
                 if(ctTemp==null)
                     ctTemp = ct;
                 if (ctTemp != null && ctTemp.numero > ct.numero) {
@@ -306,14 +308,14 @@ public class JeuDu31Logique extends JeuAvecCartes {
                     int memeCarte = lstJoueurs.get(joueurCourant).détecterMêmeValeur();
                     int noMemeCarte = lstJoueurs.get(joueurCourant).chercheMêmeValeur();
                     if (memeCarte > 0) {
-                        IAJouerValeur(noMemeCarte);
+                        iAJouerValeur(noMemeCarte);
                     }//sinon si la somme des cartes d'une couleur >=16
                     else if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 16) {
-                        IAJouerCouleur();
+                        iAJouerCouleur();
                     }//sinon prendre une carte aléatoire et la remplacer par une autre carte aléatoirement
                     //prise soit dans la paquet soit une carte à vue s'il n'y a aucune concordance.
                     else {
-                        Random rng = new Random();
+                        Random rng = new Random(seed);
                         boolean résultat = rng.nextBoolean();
                         if (résultat) {
                             if (pigerUneCarteAVue() == null)
@@ -321,7 +323,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
                         } else
                             jouerUnePige();
                         //Recommencer les vérifications après la pige.
-                        IAChoixFinal();
+                        iAChoixFinal();
                     }
                     if(lstJoueurs.get(joueurCourant).retournePlusHauteValeur()==31) {
                         nbrTour=0;
@@ -341,7 +343,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
     /**
      * Décision ultime de IA
      */
-    public void IAChoixFinal()
+    public void iAChoixFinal()
     {
         //Si 2 cartes ou + de la même valeurs
         int memeCarte=lstJoueurs.get(joueurCourant).chercheMêmeValeur();
@@ -356,15 +358,15 @@ public class JeuDu31Logique extends JeuAvecCartes {
         }//Si tjrs aucune possbilité on s'en remet au random.
         else
         {
-            Random rng = new Random();
+            Random rng = new Random(seed);
             int position=rng.nextInt(3);
-            jouerUnChoix(lstJoueurs.get(joueurCourant).JeuEnMain.get(position));
+            jouerUnChoix(lstJoueurs.get(joueurCourant).jeuEnMain.get(position));
         }
     }
     /**
      * Joue en supposant que nous avons une somme de 16
      */
-    public void IAJouerCouleur()
+    public void iAJouerCouleur()
     {
         int sorte = lstJoueurs.get(joueurCourant).retournePlusHauteSorte();
         if(paquetTémoin.size()>0) {
@@ -383,10 +385,10 @@ public class JeuDu31Logique extends JeuAvecCartes {
     }
 
     /**
-     * Joue e nsupposant que nous avaons des même valeur.
+     * Joue e nsupposant que nous avons des même valeur.
      * @param memeCarte valeur carte cible
      */
-    public void IAJouerValeur(int memeCarte) {
+    public void iAJouerValeur(int memeCarte) {
         if (paquetTémoin.size() > 0) {
             if (paquetTémoin.get(paquetTémoin.size() - 1).numero == memeCarte) {
                 pigerUneCarteAVue();

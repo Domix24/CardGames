@@ -268,9 +268,5 @@ public class BlackJack extends JeuAvecCartes {
         }
     }
 
-    @Override
-    public void Initialiser(int seed) {
-
-    }
 
 }

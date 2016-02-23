@@ -355,11 +355,11 @@ public class VideoPoker extends JeuAvecCartes {
 
     private boolean siSuiteCouleur() {
         //Vérifie si c'est une suite sans compter que l'as peut suivre le roi
-        int couleur = paquetFinal.get(0).couleur;
+        int couleur = paquetFinal.get(0).sorte;
         for (int i = 0; i < 4; i++) {
-            if (!(paquetFinal.get(i).numero == paquetFinal.get(i + 1).numero + 1)) {
+            if (!(paquetFinal.get(i).numero + 1 == paquetFinal.get(i + 1).numero)) {
                 return false;
-            } else if (paquetFinal.get(i).couleur != couleur || paquetFinal.get(i + 1).couleur != couleur)
+            } else if (paquetFinal.get(i).sorte != couleur || paquetFinal.get(i + 1).sorte != couleur)
                 return false;
         }
         return true;
@@ -372,7 +372,7 @@ public class VideoPoker extends JeuAvecCartes {
                 if (!(paquetFinal.get(i).numero == 1 && paquetFinal.get(1).numero == 10)) {
                     return false;
                 }
-            } else if (!(paquetFinal.get(i).numero == paquetFinal.get(i + 1).numero + 1)) {
+            } else if (!(paquetFinal.get(i).numero + 1 == paquetFinal.get(i + 1).numero)) {
                 return false;
             } else if (paquetFinal.get(i).sorte != couleur || paquetFinal.get(i + 1).sorte != couleur)
                 return false;

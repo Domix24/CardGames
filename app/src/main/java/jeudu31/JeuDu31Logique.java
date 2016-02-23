@@ -228,7 +228,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         for(JoueurDu31 joueur : lstGagnants)
         {
             if(joueur.nom==idJoueur.getNom())
-                idJoueur.AddMontant(sommeArgent/lstGagnants.size());
+                idJoueur.addMontant(sommeArgent / lstGagnants.size());
         }
     }
     /**

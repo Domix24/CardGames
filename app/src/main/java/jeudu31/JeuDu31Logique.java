@@ -23,7 +23,8 @@ public class JeuDu31Logique extends JeuAvecCartes {
     int nbrTour;
     int seed;
     List<Carte> paquetTémoin;
-    @Override
+
+
     public void Initialiser(int seed) {
         this.seed=seed;
     }

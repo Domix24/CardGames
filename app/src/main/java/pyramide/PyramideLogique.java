@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utilitaire.Carte;
+import utilitaire.JeuAvecCartes;
 import utilitaire.JeuDeCarte;
 
 /**
  * Classe contenant la logique du jeu Pyramide
  * @author Maxime Noel, Jean-Michel Lavoie le 2016-02-11.
  */
-public class PyramideLogique {
-    private JeuDeCarte paquet;
+public class PyramideLogique extends JeuAvecCartes {
     private ArrayList<Carte[]> pyramideArray;
     private List<Carte> lstStock;
     private List<Carte> lstWaste;

@@ -180,7 +180,7 @@ public class JeuDu31activite extends Activity {
         jeu.détermineGagnant();
         jeu.déterminePerdant();
         joueurHumanFin();
-        Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.pyramide_montantTotal), Toast.LENGTH_LONG).show();
         jeu.recommencer(3);
         miseAJourImageCarteDejaPiger();
         mettreAJourImageGauche(null);

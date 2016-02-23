@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import utilitaire.Carte;
+import utilitaire.JoueurSingleton;
+
 import com.example.utilisateur.jeudepatience.R;
 
 import java.lang.reflect.Field;
@@ -26,11 +28,15 @@ public class pyramideActivity extends Activity {
     ImageView imageSélectionnée;
     boolean partieTerminée;
     boolean partieGagnée;
+    JoueurSingleton joueur;
+    PyramideMises pyramideMises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyramide);
+        joueur = JoueurSingleton.getInstance();
+        pyramideMises = new PyramideMises(5);
         commencerNouvellePartie();
     }
 
@@ -76,6 +82,11 @@ public class pyramideActivity extends Activity {
                         premiereCarte = "";
                         rangéeCarte1 = -1;
                         colonneCarte1 = -1;
+
+                        if (pyramideMises.chanceGagnerPeu() == true)
+                            Toast.makeText(getApplicationContext(),
+                                    (getString(R.string.pyramide_montantChance) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
+                                    Toast.LENGTH_LONG).show();
                     }
                 }
                 else if(deuxièmeCarte=="") {
@@ -86,7 +97,12 @@ public class pyramideActivity extends Activity {
                     colonneCarte2 = Character.getNumericValue(tempChar);
 
                     // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1, rangéeCarte2, colonneCarte2);
+                    if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1, rangéeCarte2, colonneCarte2) == true) {
+                        if (pyramideMises.chanceGagnerPeu() == true)
+                            Toast.makeText(getApplicationContext(),
+                                    (getString(R.string.pyramide_montantChance) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
+                                    Toast.LENGTH_LONG).show();
+                    }
 
                     imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                     premiereCarte = "";
@@ -107,12 +123,14 @@ public class pyramideActivity extends Activity {
     public void afficherPyramide() {
         if (partieTerminée) {
             if (partieGagnée == true) {
-                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieGagnée), Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partiePerdue), Toast.LENGTH_LONG).show();
             }
         }
+
+        // Afficher la pyramide
         for(int i =0;i< jeuDePyramide.getCartesPyramide().size();i++) {
             for (int j = 0; j < jeuDePyramide.getCartesPyramide().get(i).length; j++) {
                 try {
@@ -136,6 +154,8 @@ public class pyramideActivity extends Activity {
                 }
             }
         }
+
+        // Afficher le waste
         ImageView image = (ImageView)findViewById(R.id.R7C0);
         try {
             image.setImageResource(jeuDePyramide.trouverIdCarte(jeuDePyramide.getCarteDessusWaste().nom));
@@ -145,8 +165,9 @@ public class pyramideActivity extends Activity {
             image.setImageDrawable(null);
             image.setClickable(false);
         }
-        image = (ImageView)findViewById(R.id.stock);
 
+        // Afficher le stock
+        image = (ImageView)findViewById(R.id.stock);
         if (jeuDePyramide.getNombreStock() == 0) {;
             image.setImageDrawable(null);
             image.setClickable(false);
@@ -156,9 +177,17 @@ public class pyramideActivity extends Activity {
             image.setClickable(true);
         }
 
+        // Afficher le lbl du nombre de cartes dans le stock
         TextView lblStock = (TextView)findViewById(R.id.cartesStock);
         int nbCartesStock = jeuDePyramide.getNombreStock();
         lblStock.setText(Integer.toString(nbCartesStock));
+
+        // Afficher les lbl des montants
+        TextView lblMontant = (TextView)findViewById(R.id.montantTotal);
+        String sdsa = Float.toString(joueur.getMonnaie());
+        lblMontant.setText(getString(R.string.pyramide_montantTotal) + Float.toString(joueur.getMonnaie()) + "$");
+        lblMontant = (TextView)findViewById(R.id.montantMise);
+        lblMontant.setText(getString(R.string.pyramide_montantMise));
     }
 
     /**

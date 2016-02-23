@@ -5,7 +5,6 @@ package utilitaire;
  */
 public abstract  class Jeu {
 
-    public abstract void Initialiser(int seed);
 
     public String Information()
     {

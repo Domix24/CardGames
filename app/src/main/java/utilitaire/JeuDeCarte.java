@@ -26,7 +26,7 @@ public class JeuDeCarte extends ArrayList<Carte> {
             add(carteTemp2);
             Carte carteTemp3  = new Carte(i+1,Color.BLACK,2,"" + type.Pique + ""+ (i+1), type.Pique);
             add(carteTemp3);
-            Carte carteTemp4  = new Carte(i+1,Color.RED,0,"" + type.Coeur + ""+ (i+1), type.Coeur);
+            Carte carteTemp4  = new Carte(i+1,Color.RED,3,"" + type.Coeur + ""+ (i+1), type.Coeur);
             add(carteTemp4);
         }
         mélangerPaquet();

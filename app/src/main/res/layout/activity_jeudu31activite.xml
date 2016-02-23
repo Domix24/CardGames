@@ -19,38 +19,38 @@
                 android:layout_column="1"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:id="@+id/CarteEnemi11"/>
+                android:id="@+id/CarteEnemi1"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:id="@+id/CarteEnemi12"/>
+                android:id="@+id/CarteEnemi2"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginRight="40dp"
-                android:id="@+id/CarteEnemi13"/>
+                android:id="@+id/CarteEnemi3"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:id="@+id/CarteEnemi21"/>
+                android:id="@+id/CarteEnemi4"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:id="@+id/CarteEnemi22"/>
+                android:id="@+id/CarteEnemi5"/>
             <ImageView
                 android:src="@drawable/back"
                 android:layout_column="1"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:id="@+id/CarteEnemi23"/>
+                android:id="@+id/CarteEnemi6"/>
         </TableRow>
         <TableRow
             android:layout_marginTop="00dp"
@@ -61,6 +61,7 @@
                 android:layout_width="70dp"
                 android:layout_height="100dp"
                 android:layout_column="1"
+                android:onClick="onClickPigerCarteAVue"
                 android:id="@+id/CarteDejaPiger"
 
                 />
@@ -69,6 +70,7 @@
                 android:layout_width="70dp"
                 android:layout_height="100dp"
                 android:layout_column="1"
+                android:onClick="onClickPaquetDeCartes"
                 android:id="@+id/PacketCarte"
                 />
 
@@ -86,18 +88,21 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_column="1"
+                android:onClick="onClickJeuDuJoueur"
                 android:id="@+id/CarteJouer1" />
             <ImageView
                 android:src="@drawable/clubs_k"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_column="1"
+                android:onClick="onClickJeuDuJoueur"
                 android:id="@+id/CarteJouer2" />
             <ImageView
                 android:src="@drawable/clubs_k"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_column="1"
+                android:onClick="onClickJeuDuJoueur"
                 android:id="@+id/CarteJouer3"
                 />
             <ImageView
@@ -105,16 +110,29 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_column="1"
+                android:onClick="onClickJeuDuJoueur"
                 android:id="@+id/CarteJouer4"
                 />
 
             <Button
                 android:text="Cogner"
+                android:onClick="onClickCogner"
                 android:id="@+id/btnCogner"/>
             <Button
                 android:text="Miser"
+                android:onClick="onClickMiser"
                 android:id="@+id/btnMiser"/>
 
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblArgent"
+                android:layout_column="5" />
         </TableRow>
     </TableLayout>
 

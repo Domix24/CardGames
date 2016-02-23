@@ -29,12 +29,14 @@ public class pyramideActivity extends Activity {
     boolean partieTerminée;
     boolean partieGagnée;
     JoueurSingleton joueur;
+    PyramideMises pyramideMises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyramide);
         joueur = JoueurSingleton.getInstance();
+        pyramideMises = new PyramideMises(5);
         commencerNouvellePartie();
     }
 
@@ -80,6 +82,11 @@ public class pyramideActivity extends Activity {
                         premiereCarte = "";
                         rangéeCarte1 = -1;
                         colonneCarte1 = -1;
+
+                        if (pyramideMises.chanceGagnerPeu() == true)
+                            Toast.makeText(getApplicationContext(),
+                                    (getString(R.string.pyramide_montantChance) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
+                                    Toast.LENGTH_LONG).show();
                     }
                 }
                 else if(deuxièmeCarte=="") {
@@ -90,7 +97,12 @@ public class pyramideActivity extends Activity {
                     colonneCarte2 = Character.getNumericValue(tempChar);
 
                     // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1, rangéeCarte2, colonneCarte2);
+                    if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1, rangéeCarte2, colonneCarte2) == true) {
+                        if (pyramideMises.chanceGagnerPeu() == true)
+                            Toast.makeText(getApplicationContext(),
+                                    (getString(R.string.pyramide_montantChance) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
+                                    Toast.LENGTH_LONG).show();
+                    }
 
                     imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                     premiereCarte = "";

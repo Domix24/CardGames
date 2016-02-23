@@ -29,6 +29,7 @@
 
     <string name="pyramide_montantTotal">Total amount : </string>
     <string name="pyramide_montantMise">Betting amount : </string>
+    <string name="pyramide_montantChance">Amount won : </string>
     <string name="pyramide_partieGagnée">Game won!</string>
     <string name="pyramide_partiePerdue">Game lost...</string>
 </resources>

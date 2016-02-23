@@ -11,15 +11,22 @@ public class PyramideMises {
 
     private float montantMise;
     private JoueurSingleton joueur;
+    private int randomMaxPourGagner;
+    private int dernierMontantChanceGagné;
 
     public PyramideMises(float miseDépart) {
         joueur = JoueurSingleton.getInstance();
 
         montantMise = joueur.getMontant(miseDépart);
+        randomMaxPourGagner = 0;
     }
 
     public float getMontantMise() {
         return montantMise;
+    }
+
+    public int getDernierMontantChanceGagné() {
+        return dernierMontantChanceGagné;
     }
 
     public void perdre() {
@@ -31,8 +38,18 @@ public class PyramideMises {
         joueur.addMontant(montantMise);
     }
 
-    public void chanceGagnerPeu() {
+    public boolean chanceGagnerPeu() {
         Random rnd = new Random();
-        joueur.addMontant(rnd.nextInt(10) + 1);
+
+        if (rnd.nextInt(25) < randomMaxPourGagner) {
+            dernierMontantChanceGagné = rnd.nextInt(5) + 1;
+            joueur.addMontant(dernierMontantChanceGagné);
+            randomMaxPourGagner = 0;
+            return true;
+        }
+        else
+            randomMaxPourGagner++;
+
+        return false;
     }
 }

@@ -42,7 +42,7 @@ public class PyramideMises {
         Random rnd = new Random();
 
         if (rnd.nextInt(25) < randomMaxPourGagner) {
-            dernierMontantChanceGagné = rnd.nextInt(5) + 1;
+            dernierMontantChanceGagné = rnd.nextInt(3) + 1;
             joueur.addMontant(dernierMontantChanceGagné);
             randomMaxPourGagner = 0;
             return true;

@@ -50,7 +50,8 @@ public class Solitaire extends JeuAvecCartes {
      */
     public  Carte PigerNouvelleCarte()
     {
-        carteSortie = paquet.pigerDessus();
+        if (paquet.size() > 0)
+            carteSortie = paquet.pigerDessus();
         return carteSortie;
     }
 
@@ -241,9 +242,11 @@ public class Solitaire extends JeuAvecCartes {
 
         if((foundations[foundationIndex] == null && carteSortie.numero != 1) || (foundations[foundationIndex] != null && foundations[foundationIndex].numero + 1 != carteSortie.numero))
             return false;
-        foundations[foundationIndex] = carteSortie;
-        carteSortie = null;
-        return true;
+        else {
+            foundations[foundationIndex] = carteSortie;
+            carteSortie = null;
+            return true;
+        }
     }
 
     public Carte avoirCarteSortie() { return carteSortie; }

@@ -91,7 +91,7 @@ public class VideoPokerActivity extends Activity {
             replacerJeu();
             jeu.aMisé = false;
             float gain = jeu.compterPoints();
-            joueur.AddMontant(gain);
+            joueur.addMontant(gain);
             float monnaie = joueur.getMonnaie();
 
             argent.setText(getString(R.string.argent) + String.valueOf(monnaie));

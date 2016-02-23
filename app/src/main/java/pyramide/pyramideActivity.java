@@ -19,10 +19,10 @@ public class pyramideActivity extends Activity {
     Field[] campos;
     String premiereCarte;
     String deuxièmeCarte;
-    int rangéeDestination;
-    int colonneDestination;
-    int rangéeOrigine;
-    int colonneOrigine;
+    int rangéeCarte2;
+    int colonneCarte2;
+    int rangéeCarte1;
+    int colonneCarte1;
     ImageView imageSélectionnée;
     boolean partieTerminée;
     boolean partieGagnée;
@@ -65,28 +65,28 @@ public class pyramideActivity extends Activity {
                     imageSélectionnée.setBackgroundColor(Color.BLUE);
                     premiereCarte = f.getName();
                     tempChar=premiereCarte.charAt(1);
-                    rangéeOrigine=Character.getNumericValue(tempChar);
+                    rangéeCarte1 =Character.getNumericValue(tempChar);
                     tempChar=premiereCarte.charAt(3);
-                    colonneOrigine=Character.getNumericValue(tempChar);
+                    colonneCarte1 =Character.getNumericValue(tempChar);
 
                     // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    if (jeuDePyramide.enleverCartes(rangéeOrigine, colonneOrigine) == true) {
+                    if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1) == true) {
                         imageSélectionnée.setImageDrawable(null);
                         imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                         premiereCarte = "";
-                        rangéeOrigine = -1;
-                        colonneOrigine = -1;
+                        rangéeCarte1 = -1;
+                        colonneCarte1 = -1;
                     }
                 }
                 else if(deuxièmeCarte=="") {
                     deuxièmeCarte = f.getName();
                     tempChar = deuxièmeCarte.charAt(1);
-                    rangéeDestination = Character.getNumericValue(tempChar);
+                    rangéeCarte2 = Character.getNumericValue(tempChar);
                     tempChar = deuxièmeCarte.charAt(3);
-                    colonneDestination = Character.getNumericValue(tempChar);
+                    colonneCarte2 = Character.getNumericValue(tempChar);
 
                     // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    jeuDePyramide.enleverCartes(rangéeOrigine, colonneOrigine, rangéeDestination, colonneDestination);
+                    jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1, rangéeCarte2, colonneCarte2);
 
                     imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                     premiereCarte = "";
@@ -166,6 +166,12 @@ public class pyramideActivity extends Activity {
      * @param v
      */
     public void Restart(View v) {
+        // Enlever la sélection visuelle de la carte
+        try {
+            ImageView img = (ImageView) findViewById(this.getBaseContext().getResources().getIdentifier(premiereCarte, "id", this.getBaseContext().getPackageName()));
+            img.setBackgroundColor(Color.TRANSPARENT);
+        } catch (Exception e) {}
+
         jeuDePyramide.commencerNouvellePartie();
         commencerNouvellePartie();
     }
@@ -176,10 +182,10 @@ public class pyramideActivity extends Activity {
     private void commencerNouvellePartie() {
         premiereCarte="";
         deuxièmeCarte="";
-        rangéeDestination = -1;
-        colonneDestination = -1;
-        rangéeOrigine = -1;
-        colonneOrigine = -1;
+        rangéeCarte2 = -1;
+        colonneCarte2 = -1;
+        rangéeCarte1 = -1;
+        colonneCarte1 = -1;
         partieTerminée = false;
         partieGagnée = false;
         jeuDePyramide = new PyramideLogique();

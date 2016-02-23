@@ -39,6 +39,9 @@ public class VideoPoker extends JeuAvecCartes {
         return instance;
     }
 
+    /**
+     * Permet de reinitialiser le jeu
+     */
     public void reinitialiserJeu() {
         paquet = new JeuDeCarte();
         paquetFinal.clear();
@@ -353,6 +356,10 @@ public class VideoPoker extends JeuAvecCartes {
         return false;
     }
 
+    /**
+     * Verifie si c'est une suite couleur
+     * @return vrai si suite couleur, faux si non
+     */
     private boolean siSuiteCouleur() {
         //Vérifie si c'est une suite sans compter que l'as peut suivre le roi
         int couleur = paquetFinal.get(0).sorte;
@@ -365,6 +372,10 @@ public class VideoPoker extends JeuAvecCartes {
         return true;
     }
 
+    /**
+     * Vérifie si c'est une suite de couleur Royal A 10 V D R de la même couleur
+     * @return vrai si suite de couleur roal, faux si non
+     */
     private boolean siSuiteCouleurRoyal() {
         int couleur = paquetFinal.get(0).sorte;
         for (int i = 0; i < 4; i++) {

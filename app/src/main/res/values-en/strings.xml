@@ -27,5 +27,8 @@
     <string name="videopoker">Video Poker</string>
     <string name="inconnue">Unknown</string>
 
-    <string name="pyramide_partieterminer">Game Over.</string>
+    <string name="pyramide_montantTotal">Total amount : </string>
+    <string name="pyramide_montantMise">Betting amount : </string>
+    <string name="pyramide_partieGagnée">Game won!</string>
+    <string name="pyramide_partiePerdue">Game lost...</string>
 </resources>

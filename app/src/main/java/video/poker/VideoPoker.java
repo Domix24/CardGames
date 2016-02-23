@@ -402,8 +402,5 @@ public class VideoPoker extends JeuAvecCartes {
         }
     }
 
-    @Override
-    public void Initialiser(int seed) {
 
-    }
 }

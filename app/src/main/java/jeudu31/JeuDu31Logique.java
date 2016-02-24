@@ -23,7 +23,8 @@ public class JeuDu31Logique extends JeuAvecCartes {
     int nbrTour;
     int seed;
     List<Carte> paquetTémoin;
-    @Override
+
+
     public void Initialiser(int seed) {
         this.seed=seed;
     }
@@ -230,7 +231,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
         for(JoueurDu31 joueur : lstGagnants)
         {
             if(joueur.nom==idJoueur.getNom())
-                idJoueur.AddMontant(sommeArgent/lstGagnants.size());
+                idJoueur.addMontant(sommeArgent / lstGagnants.size());
         }
     }
     /**
@@ -301,34 +302,38 @@ public class JeuDu31Logique extends JeuAvecCartes {
             //Pour chaque IA
             for (int i = 1; i < lstJoueurs.size(); i++) {
                 joueurSuivant();
-                //Annonce une fin de manche sinon il joue.
-                if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 21 && cogneur == -1)
-                    annoncerFinDeManche();
-                else {
-                    //Si 2 cartes ou + de la même valeurs
-                    int memeCarte = lstJoueurs.get(joueurCourant).détecterMêmeValeur();
-                    int noMemeCarte = lstJoueurs.get(joueurCourant).chercheMêmeValeur();
-                    if (memeCarte > 0) {
-                        iAJouerValeur(noMemeCarte);
-                    }//sinon si la somme des cartes d'une couleur >=16
-                    else if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 16) {
-                        iAJouerCouleur();
-                    }//sinon prendre une carte aléatoire et la remplacer par une autre carte aléatoirement
-                    //prise soit dans la paquet soit une carte à vue s'il n'y a aucune concordance.
+                if(nbrTour==0)
+                    return false;
+                if (cogneur != joueurCourant) {
+                    //Annonce une fin de manche sinon il joue.
+                    if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 21 && cogneur==-1)
+                        annoncerFinDeManche();
                     else {
-                        Random rng = new Random(seed);
-                        boolean résultat = rng.nextBoolean();
-                        if (résultat) {
-                            if (pigerUneCarteAVue() == null)
+                        //Si 2 cartes ou + de la même valeurs
+                        int memeCarte = lstJoueurs.get(joueurCourant).détecterMêmeValeur();
+                        int noMemeCarte = lstJoueurs.get(joueurCourant).chercheMêmeValeur();
+                        if (memeCarte > 0) {
+                            iAJouerValeur(noMemeCarte);
+                        }//sinon si la somme des cartes d'une couleur >=16
+                        else if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 16) {
+                            iAJouerCouleur();
+                        }//sinon prendre une carte aléatoire et la remplacer par une autre carte aléatoirement
+                        //prise soit dans la paquet soit une carte à vue s'il n'y a aucune concordance.
+                        else {
+                            Random rng = new Random(seed);
+                            boolean résultat = rng.nextBoolean();
+                            if (résultat) {
+                                if (pigerUneCarteAVue() == null)
+                                    jouerUnePige();
+                            } else
                                 jouerUnePige();
-                        } else
-                            jouerUnePige();
-                        //Recommencer les vérifications après la pige.
-                        iAChoixFinal();
-                    }
-                    if(lstJoueurs.get(joueurCourant).retournePlusHauteValeur()==31) {
-                        nbrTour=0;
-                        return false;
+                            //Recommencer les vérifications après la pige.
+                            iAChoixFinal();
+                        }
+                        if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() == 31) {
+                            nbrTour = 0;
+                            return false;
+                        }
                     }
                 }
             }

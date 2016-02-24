@@ -115,13 +115,13 @@ public class BlackJackActivity extends Activity {
         }
         else if (jeu.drapeauFinPartie == 2){
             message.setText(R.string.blackjack_egaliter);
-            joueur.AddMontant(jeu.mise);
+            joueur.addMontant(jeu.mise);
             mettreÀJourAffichage();
         }
         else if (jeu.drapeauFinPartie == 3){
             float gain = jeu.mise * 2;
-            message.setText(getString(R.string.blackjack_gagnier) + " " +String.valueOf(gain));
-            joueur.AddMontant(gain);
+            message.setText(getString(R.string.blackjack_gagner) + " " +String.valueOf(gain));
+            joueur.addMontant(gain);
             mettreÀJourAffichage();
         }
         message.show();

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.utilisateur.jeudepatience.R;
 
@@ -41,6 +42,9 @@ public class SolitaireActivity extends Activity {
 
     }
 
+    /*
+    Lorsque l'utilisateur appuie sur une des cartes du jeu, celle-ci est sélectionnée, déplacée ou ajoutée au jeu
+     */
     public void onClick(View v){
         String tempChar;
         for (Field f : campos)
@@ -77,9 +81,11 @@ public class SolitaireActivity extends Activity {
                             premiereCarte = "";
                             ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
                             Carte carte = jeuSolitaire.PigerNouvelleCarte();
-                            imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
-                            imageCarteJouable.setTag(carte);
-                            imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                            if (carte != null) {
+                                imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
+                                imageCarteJouable.setTag(carte);
+                                imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                            }
                         }
                         else if (jeuSolitaire.DéplacerPaquetVersAutreColonne(premierecc.carte, colonneOrigine, rangéeOrigine, colonneDestination))
                         {
@@ -93,28 +99,38 @@ public class SolitaireActivity extends Activity {
             }
     }
 
+    /*
+    Lorsque l'utilisateur appuie sur une fondation (4 paquets de cartes)
+     */
     public  void onFondationClick(View v)
     {
         if (premiereCarte != "")
         {
-            if (premiereCarte == "carte" && jeuSolitaire.placerNouvelleCarteDansFondations()) {
-                rafraîchirJeu();
-                premiereCarte = "";
-                ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
-                Carte carte = jeuSolitaire.PigerNouvelleCarte();
-                imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
-                imageCarteJouable.setTag(carte);
-                imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+            try {
+                if (premiereCarte == "carte" && jeuSolitaire.placerNouvelleCarteDansFondations()) {
+                    rafraîchirJeu();
+                    premiereCarte = "";
+                    ImageView imageCarteJouable = (ImageView) findViewById(R.id.Card);
+                    Carte carte = jeuSolitaire.PigerNouvelleCarte();
+                    imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
+                    imageCarteJouable.setTag(carte);
+                    imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                } else if (jeuSolitaire.PlacerCarteDansFoundations(premierecc.carte, colonneOrigine)) {
+                    premiereCarte = "";
+                    rafraîchirJeu();
+                }
             }
-            else if (jeuSolitaire.PlacerCarteDansFoundations(premierecc.carte, colonneOrigine))
+            catch (Exception e)
             {
-                premiereCarte = "";
-                rafraîchirJeu();
+
             }
         }
     }
 
 
+    /*
+    Rafraichit le jeu apres chaque coup pour que le jeu ait l'air des données
+     */
     public void rafraîchirJeu()
     {
 
@@ -165,9 +181,28 @@ public class SolitaireActivity extends Activity {
                 img.setImageResource(carteFondationsvide[i]);
         }
 
+        ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
+        Carte carte = jeuSolitaire.avoirCarteSortie();
+        if (carte == null) {
+            imageCarteJouable.setTag(null);
+            imageCarteJouable.setImageResource(R.drawable.emptycard);
+            imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        }
+        if (jeuSolitaire.avoirGrandeur()){
+            imageCarteJouable = (ImageView)findViewById(R.id.DeckCard);
+            imageCarteJouable.setImageResource(R.drawable.emptycard);
+        }
+
+        if (jeuSolitaire.avoirGagner()){
+            Toast tt = Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieGagnée), Toast.LENGTH_LONG);
+            tt.show();
+        }
+
     }
 
-
+    /*
+    Permet de recommencer le jeu
+     */
     public  void Recommencer(View v)
     {
         campos = R.id.class.getFields();
@@ -177,23 +212,41 @@ public class SolitaireActivity extends Activity {
         rafraîchirJeu();
         ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
         imageCarteJouable.setImageResource(R.drawable.emptycard);
+        imageCarteJouable = (ImageView)findViewById(R.id.DeckCard);
+        imageCarteJouable.setImageResource(R.drawable.back);
     }
 
+    /*
+    Lorsque l'utilisateur appuie sur le paquet, une nouvelle carte sort
+     */
     public void onPaquetClic(View v) {
        // System.err.println("Clic sur le paquet");
 
         ImageView imageCarteJouable = (ImageView)findViewById(R.id.Card);
-        Carte carte = jeuSolitaire.PigerNouvelleCarte();
         if (imageCarteJouable.getTag() != null) {
-            Carte carteChangee = (Carte)imageCarteJouable.getTag();
+            Carte carteChangee = (Carte) imageCarteJouable.getTag();
             jeuSolitaire.AjouterCarteAuPaquet(carteChangee);
         }
-
+        Carte carte = jeuSolitaire.PigerNouvelleCarte();
+        if (carte != null) {
             imageCarteJouable.setImageResource(jeuSolitaire.trouverIdCarte(carte.nom));
             imageCarteJouable.setTag(carte);
+        }
+        else
+        {
+            imageCarteJouable.setTag(null);
+            imageCarteJouable.setImageResource(R.drawable.emptycard);
+            imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+            imageCarteJouable = (ImageView)findViewById(R.id.DeckCard);
+            imageCarteJouable.setImageResource(R.drawable.emptycard);
+        }
+        rafraîchirJeu();
 
     }
 
+    /*
+    Lorsqu'un utilisteur appiue sur la carte de sortie du paquet, celle-ci est sélectionnée
+     */
     public void onSortiePaquetClick(View v){
         if (premiereCarte == ""){
             imageSélectionnée = (ImageView) findViewById(v.getId());

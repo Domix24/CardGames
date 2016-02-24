@@ -51,7 +51,7 @@ public class JoueurSingleton {
     /**
      * @param montant à ajouter dans la monnaie totale
      */
-    public void AddMontant(float montant) {
+    public void addMontant(float montant) {
         monnaie += montant;
     }
 

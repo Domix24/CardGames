@@ -22,7 +22,6 @@ public class Solitaire extends JeuAvecCartes {
     // 2. Carreau (typeCarte = type.Carre
     // 3. Trèfle
 
-    private JeuDeCarte paquet;
     private Carte carteSortie;
     private List<CarteColonne>[] tableau;
     private final int FOUNDATIONS_ARRAY_LENGTH = 4;
@@ -37,7 +36,7 @@ public class Solitaire extends JeuAvecCartes {
      * Initialise le jeu
      * @param seed
      */
-    @Override
+
     public void Initialiser(int seed) {
         InitialiserFoundations();
         paquet = new JeuDeCarte();
@@ -50,7 +49,8 @@ public class Solitaire extends JeuAvecCartes {
      */
     public  Carte PigerNouvelleCarte()
     {
-        carteSortie = paquet.pigerDessus();
+        if (!paquet.isEmpty())
+            carteSortie = paquet.pigerDessus();
         return carteSortie;
     }
 
@@ -241,10 +241,19 @@ public class Solitaire extends JeuAvecCartes {
 
         if((foundations[foundationIndex] == null && carteSortie.numero != 1) || (foundations[foundationIndex] != null && foundations[foundationIndex].numero + 1 != carteSortie.numero))
             return false;
-        foundations[foundationIndex] = carteSortie;
-        carteSortie = null;
-        return true;
+        else {
+            foundations[foundationIndex] = carteSortie;
+            carteSortie = null;
+            return true;
+        }
     }
 
     public Carte avoirCarteSortie() { return carteSortie; }
+
+    public boolean avoirGrandeur() {return  paquet.isEmpty();}
+
+    public  boolean avoirGagner()
+    {
+        return (foundations[0] == foundations[1] && foundations[1] == foundations[2] && foundations[2] == foundations[3] && foundations[3] != null && foundations[3].numero == 13);
+    }
 }

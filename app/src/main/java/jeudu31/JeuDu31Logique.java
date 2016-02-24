@@ -114,6 +114,8 @@ public class JeuDu31Logique extends JeuAvecCartes {
             for(int i=0;i<nbrJoueurs;i++)
                 joueur.ajouterCarteALaMain(paquet.pigerUneCarte());
         lstJoueurs.get(0).déterminerNom(idJoueur.getNom());
+        for(int i=1;i<nbrJoueurs;i++)
+            lstJoueurs.get(i).déterminerNom("ordinateur"+i);
     }
 
     /**
@@ -241,7 +243,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
             perdant=lstJoueurs.get(0);
         if(perdant.Cogne && perdant.nom!="")
             idJoueur.getMontant(sommeArgent/lstJoueurs.size());
-        else if(perdant.Cogne && perdant.nom=="")
+        else if(perdant.Cogne && perdant.nom.contains("ordinateur"))
             sommeArgent+=sommeArgent/lstGagnants.size();
         ajouterMontant();
 
@@ -300,34 +302,38 @@ public class JeuDu31Logique extends JeuAvecCartes {
             //Pour chaque IA
             for (int i = 1; i < lstJoueurs.size(); i++) {
                 joueurSuivant();
-                //Annonce une fin de manche sinon il joue.
-                if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 21 && cogneur == -1)
-                    annoncerFinDeManche();
-                else {
-                    //Si 2 cartes ou + de la même valeurs
-                    int memeCarte = lstJoueurs.get(joueurCourant).détecterMêmeValeur();
-                    int noMemeCarte = lstJoueurs.get(joueurCourant).chercheMêmeValeur();
-                    if (memeCarte > 0) {
-                        iAJouerValeur(noMemeCarte);
-                    }//sinon si la somme des cartes d'une couleur >=16
-                    else if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 16) {
-                        iAJouerCouleur();
-                    }//sinon prendre une carte aléatoire et la remplacer par une autre carte aléatoirement
-                    //prise soit dans la paquet soit une carte à vue s'il n'y a aucune concordance.
+                if(nbrTour==0)
+                    return false;
+                if (cogneur != joueurCourant) {
+                    //Annonce une fin de manche sinon il joue.
+                    if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 21 && cogneur==-1)
+                        annoncerFinDeManche();
                     else {
-                        Random rng = new Random(seed);
-                        boolean résultat = rng.nextBoolean();
-                        if (résultat) {
-                            if (pigerUneCarteAVue() == null)
+                        //Si 2 cartes ou + de la même valeurs
+                        int memeCarte = lstJoueurs.get(joueurCourant).détecterMêmeValeur();
+                        int noMemeCarte = lstJoueurs.get(joueurCourant).chercheMêmeValeur();
+                        if (memeCarte > 0) {
+                            iAJouerValeur(noMemeCarte);
+                        }//sinon si la somme des cartes d'une couleur >=16
+                        else if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() >= 16) {
+                            iAJouerCouleur();
+                        }//sinon prendre une carte aléatoire et la remplacer par une autre carte aléatoirement
+                        //prise soit dans la paquet soit une carte à vue s'il n'y a aucune concordance.
+                        else {
+                            Random rng = new Random(seed);
+                            boolean résultat = rng.nextBoolean();
+                            if (résultat) {
+                                if (pigerUneCarteAVue() == null)
+                                    jouerUnePige();
+                            } else
                                 jouerUnePige();
-                        } else
-                            jouerUnePige();
-                        //Recommencer les vérifications après la pige.
-                        iAChoixFinal();
-                    }
-                    if(lstJoueurs.get(joueurCourant).retournePlusHauteValeur()==31) {
-                        nbrTour=0;
-                        return false;
+                            //Recommencer les vérifications après la pige.
+                            iAChoixFinal();
+                        }
+                        if (lstJoueurs.get(joueurCourant).retournePlusHauteValeur() == 31) {
+                            nbrTour = 0;
+                            return false;
+                        }
                     }
                 }
             }

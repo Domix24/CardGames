@@ -209,6 +209,10 @@ public class SolitaireActivity extends Activity {
             imageCarteJouable.setTag(null);
             imageCarteJouable.setImageResource(R.drawable.emptycard);
             imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
+            imageCarteJouable = (ImageView)findViewById(R.id.DeckCard);
+            imageCarteJouable.setTag(null);
+            imageCarteJouable.setImageResource(R.drawable.emptycard);
+            imageCarteJouable.setBackgroundColor(Color.argb(0, 0, 0, 0));
         }
 
     }

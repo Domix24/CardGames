@@ -49,7 +49,7 @@ public class Solitaire extends JeuAvecCartes {
      */
     public  Carte PigerNouvelleCarte()
     {
-        if (paquet.size() > 0)
+        if (paquet.size() > 1)
             carteSortie = paquet.pigerDessus();
         return carteSortie;
     }

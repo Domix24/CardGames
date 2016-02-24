@@ -3,7 +3,10 @@ package pyramide;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,7 @@ public class pyramideActivity extends Activity {
     boolean partieGagnée;
     JoueurSingleton joueur;
     PyramideMises pyramideMises;
+    EditText nbpMise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,40 @@ public class pyramideActivity extends Activity {
         joueur = JoueurSingleton.getInstance();
         pyramideMises = new PyramideMises(5);
         commencerNouvellePartie();
+
+        nbpMise = (EditText)findViewById(R.id.nbpMisePyramide);
+        // Code trouvé : http://stackoverflow.com/questions/2434532/android-set-hidden-the-keybord-on-press-enter-in-a-edittext
+        // En date du 24 février 2016
+        nbpMise.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == event.KEYCODE_ENTER) {
+                    // Créer une nouvelle mise
+                    float mise;
+                    try {
+                        mise = Float.parseFloat(nbpMise.getText().toString());
+                    }
+                    catch (Exception e) {
+                        mise = -1;
+                    }
+                    if (mise < 0)
+                        mise = 0;
+                    pyramideMises = new PyramideMises(mise);
+
+                    afficherPyramide();
+
+                    // Faire visuelement disparaitre le numberPicker
+                    nbpMise.setVisibility(View.INVISIBLE);
+                    nbpMise.clearFocus();
+                    InputMethodManager in = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(nbpMise.getApplicationWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     /**
@@ -186,7 +224,7 @@ public class pyramideActivity extends Activity {
         String sdsa = Float.toString(joueur.getMonnaie());
         lblMontant.setText(getString(R.string.pyramide_montantTotal) + Float.toString(joueur.getMonnaie()) + "$");
         lblMontant = (TextView)findViewById(R.id.montantMise);
-        lblMontant.setText(getString(R.string.pyramide_montantMise));
+        lblMontant.setText(getString(R.string.pyramide_montantMise) + Float.toString(pyramideMises.getMontantMise()) + "$");
     }
 
     /**

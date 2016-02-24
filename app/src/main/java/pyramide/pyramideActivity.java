@@ -170,7 +170,6 @@ public class pyramideActivity extends Activity {
         image = (ImageView)findViewById(R.id.stock);
         if (jeuDePyramide.getNombreStock() == 0) {;
             image.setImageDrawable(null);
-            image.setClickable(false);
         }
         else {
             image.setImageResource(R.drawable.back);

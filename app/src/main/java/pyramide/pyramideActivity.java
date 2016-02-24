@@ -82,7 +82,8 @@ public class pyramideActivity extends Activity {
      * @param v Vue qui déclenche l'event
      */
     public void OnClickStock(View v) {
-        if (nbpMise.getVisibility() == View.INVISIBLE) { // Ne jouer que si la mise a été faite
+        if (nbpMise.getVisibility() == View.INVISIBLE && // Ne jouer que si la mise a été faite
+                partieTerminée == false) {
             jeuDePyramide.envoyerCarteAuWaste();
 
             if (jeuDePyramide.vérifierFinPartie() == true) {
@@ -118,7 +119,8 @@ public class pyramideActivity extends Activity {
      * @param v Objet qui a provoqué l'event
      */
     public void OnClickPyramide(View v) throws IllegalAccessException {
-        if (nbpMise.getVisibility() == View.INVISIBLE) {
+        if (nbpMise.getVisibility() == View.INVISIBLE &&
+                partieTerminée == false) {
             char tempChar;
 
             for (Field f : campos)

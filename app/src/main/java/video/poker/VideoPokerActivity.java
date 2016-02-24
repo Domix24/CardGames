@@ -123,7 +123,7 @@ public class VideoPokerActivity extends Activity {
 
             argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
             if (gain != 0)
-                message.setText(getString(R.string.blackjack_gagnier) + " " +String.valueOf(gain));
+                message.setText(getString(R.string.blackjack_gagner) + " " +String.valueOf(gain));
             else
                 message.setText(R.string.blackjack_perdu);
             message.show();

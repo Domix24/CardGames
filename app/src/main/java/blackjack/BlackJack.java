@@ -161,10 +161,10 @@ public class BlackJack extends JeuAvecCartes {
             message = R.string.blackjack_perdu;
             drapeauFinPartie = 1;
         } else if (plusHautScoreCroupier > 21) {
-            message = R.string.blackjack_gagnier;
+            message = R.string.blackjack_gagner;
             drapeauFinPartie = 3;
         } else if (plusHautScoreJoueur > plusHautScoreCroupier) {
-            message = R.string.blackjack_gagnier;
+            message = R.string.blackjack_gagner;
             drapeauFinPartie = 3;
         } else if (plusHautScoreJoueur == plusHautScoreCroupier) {
             message = R.string.blackjack_egaliter;

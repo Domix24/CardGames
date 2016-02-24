@@ -123,7 +123,7 @@ public class pyramideActivity extends Activity {
     public void afficherPyramide() {
         if (partieTerminée) {
             if (partieGagnée == true) {
-                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieGagnée), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieGagner), Toast.LENGTH_LONG).show();
             }
             else {
                 Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partiePerdue), Toast.LENGTH_LONG).show();

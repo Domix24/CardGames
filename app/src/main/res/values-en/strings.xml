@@ -6,7 +6,7 @@
     <string name="blackjack_hit">Hit</string>
     <string name="blackjack_hold">Hold</string>
     <string name="blackjack_perdu">You lost :(</string>
-    <string name="blackjack_gagnier">You won : </string>
+    <string name="blackjack_gagner">You won : </string>
     <string name="blackjack_egaliter">Draw :| !</string>
     <string name="blackjack_points">points</string>
     <string name="blackjack_sespoints">His score :</string>
@@ -29,7 +29,8 @@
 
     <string name="pyramide_montantTotal">Total amount : </string>
     <string name="pyramide_montantMise">Betting amount : </string>
-    <string name="pyramide_montantChance">Amount won : </string>
+    <string name="pyramide_montantGagné">Amount won : </string>
+    <string name="pyramide_montantPerdu">Amount lost : </string>
     <string name="pyramide_partieGagnée">Game won!</string>
     <string name="pyramide_partiePerdue">Game lost...</string>
 </resources>

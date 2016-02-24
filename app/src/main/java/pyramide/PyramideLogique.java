@@ -17,6 +17,7 @@ public class PyramideLogique extends JeuAvecCartes {
     private List<Carte> lstWaste;
     private boolean partieTerminée;
     private boolean partieGagnée;
+    private int tourStockRestants;
 
     public PyramideLogique() {
         commencerNouvellePartie();
@@ -32,6 +33,7 @@ public class PyramideLogique extends JeuAvecCartes {
         lstWaste = new ArrayList<Carte>();
         partieTerminée = false;
         partieGagnée = false;
+        tourStockRestants = 2;
         envoyerPaquetAPyramide();
         remplirStock();
     }
@@ -40,8 +42,18 @@ public class PyramideLogique extends JeuAvecCartes {
      * Envoyer la carte du dessus du stock sur le dessus du waste
      */
     public void envoyerCarteAuWaste() {
-        lstWaste.add(lstStock.get(lstStock.size() - 1));
-        lstStock.remove(lstStock.size() - 1);
+        if (lstStock.size() <= 0 && tourStockRestants > 0) {
+            // Si le stock est vide et qu'il a été traversé une seule fois, envoyer la totalité du waste au stock
+            for (int i = lstWaste.size() - 1; i >= 0; i--) {
+                lstStock.add(lstWaste.get(lstWaste.size() - 1));
+                lstWaste.remove(lstWaste.size() - 1);
+            }
+            tourStockRestants--;
+        }
+        else if (lstStock.size() > 0) {
+            lstWaste.add(lstStock.get(lstStock.size() - 1));
+            lstStock.remove(lstStock.size() - 1);
+        }
     }
 
     /**
@@ -163,7 +175,7 @@ public class PyramideLogique extends JeuAvecCartes {
             partieTerminée = true;
             partieGagnée = true;
         }
-        else if (lstStock.size() <= 0) { // Ne vérifier la fin de partie que si le stock est vide
+        else if (lstStock.size() <= 0 && tourStockRestants <= 0) { // Ne vérifier la fin de partie que si le stock est vide
             lstCartesDisponiblesRestantes.add(lstWaste.get(lstWaste.size() - 1));
             for (int i = pyramideArray.size() - 1; i >= 0; i--) {
                 for (int j = pyramideArray.get(i).length - 1; j >= 0; j--) {

@@ -398,11 +398,12 @@
         </TableRow>
         <TableRow>
             <EditText
+                android:text="5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="4"
-                android:id="@+id/editText"/>
+                android:id="@+id/nbpMisePyramide"/>
         </TableRow>
         <TableRow>
             <TextView

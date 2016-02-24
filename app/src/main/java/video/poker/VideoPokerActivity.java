@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +20,7 @@ public class VideoPokerActivity extends Activity {
     JeuDeCarte cartePresente = null;
     JeuDeCarte carteValider = new JeuDeCarte();
     VideoPoker jeu = VideoPoker.avoirInstance();
-    TextView mise;
+    NumberPicker mise;
     TextView argent;
     JoueurSingleton joueur = JoueurSingleton.getInstance();
     Toast message;
@@ -30,7 +32,10 @@ public class VideoPokerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_poker);
-        mise = (TextView)findViewById(R.id.lblMise);
+        mise = (NumberPicker)findViewById(R.id.nbpMise);
+        mise.setMinValue(5);
+        mise.setMaxValue(5000);
+        mise.setValue(5);
         argent = (TextView)findViewById(R.id.lblArgent);
         message = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         float monnaie = joueur.getMonnaie();
@@ -118,7 +123,7 @@ public class VideoPokerActivity extends Activity {
 
             argent.setText(getString(R.string.argent) + String.valueOf(monnaie));
             if (gain != 0)
-                message.setText(getString(R.string.blackjack_gagnier) + " " +String.valueOf(gain));
+                message.setText(getString(R.string.blackjack_gagner) + " " +String.valueOf(gain));
             else
                 message.setText(R.string.blackjack_perdu);
             message.show();
@@ -133,7 +138,8 @@ public class VideoPokerActivity extends Activity {
      */
     public void onMiserClick(View v) {
         if (!jeu.aMisé) {
-            float miseTemp = Float.parseFloat(mise.getText().toString());
+            mise.clearFocus();
+            float miseTemp = (float)(mise.getValue());
             jeu.mise = joueur.getMontant(miseTemp);
             if (jeu.mise != 0){
                 jeu.aMisé = true;
@@ -228,5 +234,57 @@ public class VideoPokerActivity extends Activity {
          image = (ImageView) findViewById(R.id.imgVideo5);
         image.setVisibility(View.INVISIBLE);
         image.setBackgroundColor(Color.TRANSPARENT);
+    }
+    public void onGridClick(View v)
+    {
+        ImageView img = (ImageView)this.findViewById(R.id.grille);
+        img.setVisibility(View.INVISIBLE);
+        Button btnValider = (Button)this.findViewById(R.id.btnValiderVideo);
+        btnValider.setVisibility(View.VISIBLE);
+        Button btnMiser = (Button)this.findViewById(R.id.btnMiser);
+        btnMiser.setVisibility(View.VISIBLE);
+        NumberPicker nbp = (NumberPicker)this.findViewById(R.id.nbpMise);
+        nbp.setVisibility(View.VISIBLE);
+        TextView txtArgent = (TextView)this.findViewById(R.id.lblArgent);
+        txtArgent.setVisibility(View.VISIBLE);
+        Button btnAfficher = (Button)this.findViewById(R.id.btnAfficher);
+        btnAfficher.setVisibility(View.VISIBLE);
+        if(jeu.aMisé) {
+            ImageView image = (ImageView) findViewById(R.id.imgVideo1);
+            image.setVisibility(View.VISIBLE);
+            image = (ImageView) findViewById(R.id.imgVideo2);
+            image.setVisibility(View.VISIBLE);
+            image = (ImageView) findViewById(R.id.imgVideo3);
+            image.setVisibility(View.VISIBLE);
+            image = (ImageView) findViewById(R.id.imgVideo4);
+            image.setVisibility(View.VISIBLE);
+            image = (ImageView) findViewById(R.id.imgVideo5);
+            image.setVisibility(View.VISIBLE);
+        }
+    }
+    public void onAfficherClick(View v)
+    {
+      ImageView img = (ImageView)this.findViewById(R.id.grille);
+        img.setVisibility(View.VISIBLE);
+        Button btnValider = (Button)this.findViewById(R.id.btnValiderVideo);
+        btnValider.setVisibility(View.INVISIBLE);
+        Button btnMiser = (Button)this.findViewById(R.id.btnMiser);
+        btnMiser.setVisibility(View.INVISIBLE);
+        Button btnAfficher = (Button)this.findViewById(R.id.btnAfficher);
+        btnAfficher.setVisibility(View.INVISIBLE);
+        NumberPicker nbp = (NumberPicker)this.findViewById(R.id.nbpMise);
+        nbp.setVisibility(View.INVISIBLE);
+        TextView txtArgent = (TextView)this.findViewById(R.id.lblArgent);
+        txtArgent.setVisibility(View.INVISIBLE);
+        ImageView image = (ImageView) findViewById(R.id.imgVideo1);
+        image.setVisibility(View.INVISIBLE);
+        image = (ImageView) findViewById(R.id.imgVideo2);
+        image.setVisibility(View.INVISIBLE);
+        image = (ImageView) findViewById(R.id.imgVideo3);
+        image.setVisibility(View.INVISIBLE);
+        image = (ImageView) findViewById(R.id.imgVideo4);
+        image.setVisibility(View.INVISIBLE);
+        image = (ImageView) findViewById(R.id.imgVideo5);
+        image.setVisibility(View.INVISIBLE);
     }
 }

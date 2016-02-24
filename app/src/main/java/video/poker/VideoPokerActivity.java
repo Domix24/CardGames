@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,15 +20,22 @@ public class VideoPokerActivity extends Activity {
     JeuDeCarte cartePresente = null;
     JeuDeCarte carteValider = new JeuDeCarte();
     VideoPoker jeu = VideoPoker.avoirInstance();
-    TextView mise;
+    NumberPicker mise;
     TextView argent;
     JoueurSingleton joueur = JoueurSingleton.getInstance();
     Toast message;
+
+    /**
+     * Lorsque l'activité est crée
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_poker);
-        mise = (TextView)findViewById(R.id.lblMise);
+        mise = (NumberPicker)findViewById(R.id.nbpMise);
+        mise.setMinValue(5);
+        mise.setMaxValue(5000);
+        mise.setValue(5);
         argent = (TextView)findViewById(R.id.lblArgent);
         message = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         float monnaie = joueur.getMonnaie();
@@ -37,6 +46,10 @@ public class VideoPokerActivity extends Activity {
         } else
             replacerJeu();
     }
+
+    /**
+     * Permet de reinitialiser le jeu
+     */
     private void reinitialiserJeu(){
         jeu.reinitialiserJeu();
         carteValider.clear();
@@ -44,6 +57,10 @@ public class VideoPokerActivity extends Activity {
         mettreCarteANull(jeu.paquetPremier);
         mettreCarteANull(jeu.paquetFinal);
     }
+
+    /**
+     * Replacer le jeu
+     */
     private void replacerJeu(){
         if (jeu.aValider){
             placerCartes(jeu.paquetFinal);
@@ -55,6 +72,11 @@ public class VideoPokerActivity extends Activity {
             cartePresente = jeu.paquetPremier;
         }
     }
+
+    /**
+     * Replacer les images dans le jeu
+     * @param cartes les cartes a placer.
+     */
     private void placerCartes(JeuDeCarte cartes){
         if (cartes.get(0).nom != "null"){
             ImageView image = (ImageView) findViewById(R.id.imgVideo1);
@@ -85,6 +107,11 @@ public class VideoPokerActivity extends Activity {
         else
             effacerImage();
     }
+
+    /**
+     * Lorsqu'on clique sur valider, valider les cartes et compter les points
+     * @param v
+     */
     public void onValiderVideoClick(View v) {
         if (jeu.aMisé){
             jeu.validerCartes(carteValider);
@@ -104,17 +131,15 @@ public class VideoPokerActivity extends Activity {
         }
 
     }
-    public void onRecommencerClick(View v) {
-        if (jeu.aMisé){
-            jeu.reinitialiserJeu();
-            jeu.passerCartes();
-            replacerJeu();
-        }
 
-    }
+    /**
+     * Lorsqu'on clique sur miser, commencer la partie
+     * @param v la vue du bouton
+     */
     public void onMiserClick(View v) {
         if (!jeu.aMisé) {
-            float miseTemp = Float.parseFloat(mise.getText().toString());
+            mise.clearFocus();
+            float miseTemp = (float)(mise.getValue());
             jeu.mise = joueur.getMontant(miseTemp);
             if (jeu.mise != 0){
                 jeu.aMisé = true;
@@ -126,6 +151,11 @@ public class VideoPokerActivity extends Activity {
             }
         }
     }
+
+    /**
+     * Lorsqu'on clique sur une carte, la selectionner
+     * @param v la view du bouton
+     */
     public void onCardVideoClick(View v) {
 
         if (jeu.aMisé){
@@ -151,12 +181,24 @@ public class VideoPokerActivity extends Activity {
             }
         }
     }
+
+    /**
+     * Met le nom des cartes a "null"
+     * @param cartes le paquet de carte
+     */
     private void mettreCarteANull(JeuDeCarte cartes){
         Carte cartenull = new Carte(1,1,1,"null", JeuDeCarte.type.Carre);
         for (int i = 0; i < 5; i++){
             cartes.add(cartenull);
         }
     }
+
+    /**
+     * Permet de valider ou de d'invalider une carte.
+     * @param carte la carte a valider
+     * @param index l'index dans le jeu de carte
+     * @param img l'image de la carte
+     */
     private void validerCarte(Carte carte, int index,ImageView img){
         if (carteValider.get(index).nom == "null"){
             carteValider.set(index, carte);
@@ -192,5 +234,57 @@ public class VideoPokerActivity extends Activity {
          image = (ImageView) findViewById(R.id.imgVideo5);
         image.setVisibility(View.INVISIBLE);
         image.setBackgroundColor(Color.TRANSPARENT);
+    }
+    public void onGridClick(View v)
+    {
+        ImageView img = (ImageView)this.findViewById(R.id.grille);
+        img.setVisibility(View.INVISIBLE);
+        Button btnValider = (Button)this.findViewById(R.id.btnValiderVideo);
+        btnValider.setVisibility(View.VISIBLE);
+        Button btnMiser = (Button)this.findViewById(R.id.btnMiser);
+        btnMiser.setVisibility(View.VISIBLE);
+        NumberPicker nbp = (NumberPicker)this.findViewById(R.id.nbpMise);
+        nbp.setVisibility(View.VISIBLE);
+        TextView txtArgent = (TextView)this.findViewById(R.id.lblArgent);
+        txtArgent.setVisibility(View.VISIBLE);
+        Button btnAfficher = (Button)this.findViewById(R.id.btnAfficher);
+        btnAfficher.setVisibility(View.VISIBLE);
+        if(jeu.aMisé) {
+            ImageView image = (ImageView) findViewById(R.id.imgVideo1);
+            image.setVisibility(View.VISIBLE);
+            image = (ImageView) findViewById(R.id.imgVideo2);
+            image.setVisibility(View.VISIBLE);
+            image = (ImageView) findViewById(R.id.imgVideo3);
+            image.setVisibility(View.VISIBLE);
+            image = (ImageView) findViewById(R.id.imgVideo4);
+            image.setVisibility(View.VISIBLE);
+            image = (ImageView) findViewById(R.id.imgVideo5);
+            image.setVisibility(View.VISIBLE);
+        }
+    }
+    public void onAfficherClick(View v)
+    {
+      ImageView img = (ImageView)this.findViewById(R.id.grille);
+        img.setVisibility(View.VISIBLE);
+        Button btnValider = (Button)this.findViewById(R.id.btnValiderVideo);
+        btnValider.setVisibility(View.INVISIBLE);
+        Button btnMiser = (Button)this.findViewById(R.id.btnMiser);
+        btnMiser.setVisibility(View.INVISIBLE);
+        Button btnAfficher = (Button)this.findViewById(R.id.btnAfficher);
+        btnAfficher.setVisibility(View.INVISIBLE);
+        NumberPicker nbp = (NumberPicker)this.findViewById(R.id.nbpMise);
+        nbp.setVisibility(View.INVISIBLE);
+        TextView txtArgent = (TextView)this.findViewById(R.id.lblArgent);
+        txtArgent.setVisibility(View.INVISIBLE);
+        ImageView image = (ImageView) findViewById(R.id.imgVideo1);
+        image.setVisibility(View.INVISIBLE);
+        image = (ImageView) findViewById(R.id.imgVideo2);
+        image.setVisibility(View.INVISIBLE);
+        image = (ImageView) findViewById(R.id.imgVideo3);
+        image.setVisibility(View.INVISIBLE);
+        image = (ImageView) findViewById(R.id.imgVideo4);
+        image.setVisibility(View.INVISIBLE);
+        image = (ImageView) findViewById(R.id.imgVideo5);
+        image.setVisibility(View.INVISIBLE);
     }
 }

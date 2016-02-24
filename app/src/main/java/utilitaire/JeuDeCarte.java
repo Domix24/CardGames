@@ -16,6 +16,10 @@ import java.util.Random;
 public class JeuDeCarte extends ArrayList<Carte> {
     Map<String,Integer> dictionnaire = new HashMap<String,Integer>();
     public enum type{Trèfle,Carre,Coeur,Pique};
+
+    /**
+     * Constructeur du paquet de carte
+     */
     public JeuDeCarte()
     {
         for(int i=0;i<13;i++)
@@ -110,11 +114,18 @@ public class JeuDeCarte extends ArrayList<Carte> {
         return dictionnaire.get(nom);
     }
 
+    /**
+     * Retourne les cartes restante du paquet
+     * @return les cartes restante
+     */
     public ArrayList<Carte> RetourneCartesRestantes()
     {
         return (ArrayList<Carte>)this.clone();
     }
 
+    /**
+     * Ordonne les cartes par numéro croissant
+     */
     public void ordonnerCartes()
     {
         ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
@@ -132,6 +143,10 @@ public class JeuDeCarte extends ArrayList<Carte> {
             }
         }
     }
+
+    /**
+     * Ordonne les cartes par numéro et par sorte de facon croissante
+    */
     public void ordonnerCartesCroissant()
     {
         ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
@@ -155,6 +170,9 @@ public class JeuDeCarte extends ArrayList<Carte> {
             }
         }
     }
+    /**
+     * Ordonne les cartes par numéro et par sorte de facon décroissante
+     */
     public void ordonnerCartesDécroissant()
     {
         ArrayList<Carte> paquetTemoin = (ArrayList<Carte>)this.clone();
@@ -178,6 +196,10 @@ public class JeuDeCarte extends ArrayList<Carte> {
             }
         }
     }
+
+    /**
+     * Mélanger le paquet
+     */
     public void mélangerPaquet()
     {
         List<Carte> paquetmélangeur = new ArrayList<Carte>();
@@ -224,6 +246,10 @@ public class JeuDeCarte extends ArrayList<Carte> {
         return carteTemporaire;
     }
 
+    /**
+     * Retourne la carte sur le dessus du paquet
+     * @return La carte sur le dessus du paquet
+     */
     public Carte pigerDessus() {
         Carte carteTemporaire = null;
         if (this.size()>0) {

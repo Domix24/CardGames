@@ -138,7 +138,8 @@ public class VideoPokerActivity extends Activity {
      */
     public void onMiserClick(View v) {
         if (!jeu.aMisé) {
-            float miseTemp = mise.getValue();
+            mise.clearFocus();
+            float miseTemp = (float)(mise.getValue());
             jeu.mise = joueur.getMontant(miseTemp);
             if (jeu.mise != 0){
                 jeu.aMisé = true;

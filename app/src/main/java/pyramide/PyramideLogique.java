@@ -78,6 +78,13 @@ public class PyramideLogique extends JeuAvecCartes {
     }
 
     /**
+     * @return Le nombre de tours de stock restants
+     */
+    public int getNbTourStock() {
+        return tourStockRestants;
+    }
+
+    /**
      * Enlève la carte de la pyramide si c'est un roi non-obstrué par une autre carte
      * Pour cliquer le waste, passer rangée 7, colonne pas importante
      * @param rangée

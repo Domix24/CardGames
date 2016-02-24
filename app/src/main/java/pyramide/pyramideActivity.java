@@ -40,7 +40,7 @@ public class pyramideActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyramide);
         joueur = JoueurSingleton.getInstance();
-        pyramideMises = new PyramideMises(5);
+        pyramideMises = new PyramideMises(0);
         commencerNouvellePartie();
 
         nbpMise = (EditText)findViewById(R.id.nbpMisePyramide);
@@ -54,8 +54,7 @@ public class pyramideActivity extends Activity {
                     float mise;
                     try {
                         mise = Float.parseFloat(nbpMise.getText().toString());
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         mise = -1;
                     }
                     if (mise < 0)
@@ -83,14 +82,33 @@ public class pyramideActivity extends Activity {
      * @param v Vue qui déclenche l'event
      */
     public void OnClickStock(View v) {
-        jeuDePyramide.envoyerCarteAuWaste();
+        if (nbpMise.getVisibility() == View.INVISIBLE) { // Ne jouer que si la mise a été faite
+            jeuDePyramide.envoyerCarteAuWaste();
 
-        if (jeuDePyramide.vérifierFinPartie() == true) {
-            partieTerminée = true;
-            partieGagnée = jeuDePyramide.vérifierPartieGagnée();
+            if (jeuDePyramide.vérifierFinPartie() == true) {
+                partieTerminée = true;
+                partieGagnée = jeuDePyramide.vérifierPartieGagnée();
+                if (partieGagnée == true) {
+                    // La mise gagnée sera différente depandant du nombre de fois que le stock a été traversé
+                    switch (jeuDePyramide.getNombreStock()) {
+                        case 0 :
+                            pyramideMises.gagner(1);
+                            break;
+                        case 1 :
+                            pyramideMises.gagner(2);
+                            break;
+                        case 2 :
+                            pyramideMises.gagner(5);
+                            break;
+                        default :
+                            pyramideMises.gagner(0);
+                            break;
+                    }
+                }
+            }
+
+            afficherPyramide();
         }
-
-        afficherPyramide();
     }
 
     /**
@@ -100,58 +118,74 @@ public class pyramideActivity extends Activity {
      * @param v Objet qui a provoqué l'event
      */
     public void OnClickPyramide(View v) throws IllegalAccessException {
-        char tempChar;
+        if (nbpMise.getVisibility() == View.INVISIBLE) {
+            char tempChar;
 
-        for(Field f: campos)
-        if(f.getInt(null)==v.getId()) {
-                if(premiereCarte=="") {
-                    imageSélectionnée = (ImageView)findViewById(v.getId());
-                    imageSélectionnée.setBackgroundColor(Color.BLUE);
-                    premiereCarte = f.getName();
-                    tempChar=premiereCarte.charAt(1);
-                    rangéeCarte1 =Character.getNumericValue(tempChar);
-                    tempChar=premiereCarte.charAt(3);
-                    colonneCarte1 =Character.getNumericValue(tempChar);
+            for (Field f : campos)
+                if (f.getInt(null) == v.getId()) {
+                    if (premiereCarte == "") {
+                        imageSélectionnée = (ImageView) findViewById(v.getId());
+                        imageSélectionnée.setBackgroundColor(Color.BLUE);
+                        premiereCarte = f.getName();
+                        tempChar = premiereCarte.charAt(1);
+                        rangéeCarte1 = Character.getNumericValue(tempChar);
+                        tempChar = premiereCarte.charAt(3);
+                        colonneCarte1 = Character.getNumericValue(tempChar);
 
-                    // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1) == true) {
-                        imageSélectionnée.setImageDrawable(null);
+                        // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
+                        if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1) == true) {
+                            imageSélectionnée.setImageDrawable(null);
+                            imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
+                            premiereCarte = "";
+                            rangéeCarte1 = -1;
+                            colonneCarte1 = -1;
+
+                            if (pyramideMises.chanceGagnerPeu() == true)
+                                Toast.makeText(getApplicationContext(),
+                                        (getString(R.string.pyramide_montantGagné) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
+                                        Toast.LENGTH_LONG).show();
+                        }
+                    } else if (deuxièmeCarte == "") {
+                        deuxièmeCarte = f.getName();
+                        tempChar = deuxièmeCarte.charAt(1);
+                        rangéeCarte2 = Character.getNumericValue(tempChar);
+                        tempChar = deuxièmeCarte.charAt(3);
+                        colonneCarte2 = Character.getNumericValue(tempChar);
+
+                        // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
+                        if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1, rangéeCarte2, colonneCarte2) == true) {
+                            if (pyramideMises.chanceGagnerPeu() == true)
+                                Toast.makeText(getApplicationContext(),
+                                        (getString(R.string.pyramide_montantGagné) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
+                                        Toast.LENGTH_LONG).show();
+                        }
+
                         imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
                         premiereCarte = "";
-                        rangéeCarte1 = -1;
-                        colonneCarte1 = -1;
-
-                        if (pyramideMises.chanceGagnerPeu() == true)
-                            Toast.makeText(getApplicationContext(),
-                                    (getString(R.string.pyramide_montantChance) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
-                                    Toast.LENGTH_LONG).show();
+                        deuxièmeCarte = "";
                     }
                 }
-                else if(deuxièmeCarte=="") {
-                    deuxièmeCarte = f.getName();
-                    tempChar = deuxièmeCarte.charAt(1);
-                    rangéeCarte2 = Character.getNumericValue(tempChar);
-                    tempChar = deuxièmeCarte.charAt(3);
-                    colonneCarte2 = Character.getNumericValue(tempChar);
-
-                    // Envoyer la carte seule. Si elle est un roi, ça fonctionnera
-                    if (jeuDePyramide.enleverCartes(rangéeCarte1, colonneCarte1, rangéeCarte2, colonneCarte2) == true) {
-                        if (pyramideMises.chanceGagnerPeu() == true)
-                            Toast.makeText(getApplicationContext(),
-                                    (getString(R.string.pyramide_montantChance) + Integer.toString(pyramideMises.getDernierMontantChanceGagné()) + "$"),
-                                    Toast.LENGTH_LONG).show();
-                    }
-
-                    imageSélectionnée.setBackgroundColor(Color.TRANSPARENT);
-                    premiereCarte = "";
-                    deuxièmeCarte = "";
+            if (jeuDePyramide.vérifierFinPartie() == true) {
+                partieTerminée = true;
+                partieGagnée = jeuDePyramide.vérifierPartieGagnée();
+                // La mise gagnée sera différente depandant du nombre de fois que le stock a été traversé
+                switch (jeuDePyramide.getNombreStock()) {
+                    case 0 :
+                        pyramideMises.gagner(1);
+                        break;
+                    case 1 :
+                        pyramideMises.gagner(2);
+                        break;
+                    case 2 :
+                        pyramideMises.gagner(5);
+                        break;
+                    default :
+                        pyramideMises.gagner(0);
+                        break;
                 }
             }
-        if (jeuDePyramide.vérifierFinPartie() == true) {
-            partieTerminée = true;
-            partieGagnée = jeuDePyramide.vérifierPartieGagnée();
+            afficherPyramide();
         }
-        afficherPyramide();
     }
 
     /**
@@ -161,10 +195,13 @@ public class pyramideActivity extends Activity {
     public void afficherPyramide() {
         if (partieTerminée) {
             if (partieGagnée == true) {
-                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieGagner), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieGagnée), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_montantGagné) + pyramideMises.getMontantGagné() + "$", Toast.LENGTH_LONG).show();
             }
             else {
                 Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partiePerdue), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.pyramide_montantPerdu) + pyramideMises.getMontantMise() + "$", Toast.LENGTH_LONG).show();
+                pyramideMises.perdre();
             }
         }
 
@@ -256,6 +293,10 @@ public class pyramideActivity extends Activity {
         partieGagnée = false;
         jeuDePyramide = new PyramideLogique();
         campos = R.id.class.getFields();
+        pyramideMises = new PyramideMises(0);
+        try { // Ne fonctionnera pas si c'est la première fois que la partie commence car il n'a pas été initialisé
+            nbpMise.setVisibility(View.VISIBLE);
+        } catch (Exception e) {}
         afficherPyramide();
     }
 }

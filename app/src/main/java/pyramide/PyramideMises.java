@@ -10,6 +10,7 @@ import utilitaire.JoueurSingleton;
 public class PyramideMises {
 
     private float montantMise;
+    private float montantGagné;
     private JoueurSingleton joueur;
     private int randomMaxPourGagner;
     private int dernierMontantChanceGagné;
@@ -18,11 +19,16 @@ public class PyramideMises {
         joueur = JoueurSingleton.getInstance();
 
         montantMise = joueur.getMontant(miseDépart);
+        montantGagné = 0;
         randomMaxPourGagner = 0;
     }
 
     public float getMontantMise() {
         return montantMise;
+    }
+
+    public float getMontantGagné() {
+        return montantGagné;
     }
 
     public int getDernierMontantChanceGagné() {
@@ -31,6 +37,12 @@ public class PyramideMises {
 
     public void perdre() {
         montantMise = 0;
+    }
+
+    public void gagner(int facteur) {
+        montantGagné = montantMise * facteur;
+        montantMise = 0;
+        joueur.addMontant(montantGagné);
     }
 
     public void gagnerPremierTourStock() {

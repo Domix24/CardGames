@@ -30,8 +30,9 @@
 
     <string name="pyramide_montantTotal">Montant total : </string>
     <string name="pyramide_montantMise">Montant de la mise : </string>
-    <string name="pyramide_montantChance">Montant gagné : </string>
-    <string name="pyramide_partieGagner">Partie gagnée!</string>
+    <string name="pyramide_montantGagné">Montant gagné : </string>
+    <string name="pyramide_montantPerdu">Montant perdu : </string>
+    <string name="pyramide_partieGagnée">Partie gagnée!</string>
     <string name="pyramide_partiePerdue">Partie perdue...</string>
 
     <string name="title_activity_jeudu31activite">jeudu31activite</string>

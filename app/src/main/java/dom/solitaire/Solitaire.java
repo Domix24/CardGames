@@ -49,7 +49,7 @@ public class Solitaire extends JeuAvecCartes {
      */
     public  Carte PigerNouvelleCarte()
     {
-        if (paquet.size() > 1)
+        if (!paquet.isEmpty())
             carteSortie = paquet.pigerDessus();
         return carteSortie;
     }
@@ -249,4 +249,11 @@ public class Solitaire extends JeuAvecCartes {
     }
 
     public Carte avoirCarteSortie() { return carteSortie; }
+
+    public boolean avoirGrandeur() {return  paquet.isEmpty();}
+
+    public  boolean avoirGagner()
+    {
+        return (foundations[0] == foundations[1] && foundations[1] == foundations[2] && foundations[2] == foundations[3] && foundations[3] != null && foundations[3].numero == 13);
+    }
 }

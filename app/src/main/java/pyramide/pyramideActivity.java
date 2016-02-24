@@ -90,7 +90,7 @@ public class pyramideActivity extends Activity {
                 partieGagnée = jeuDePyramide.vérifierPartieGagnée();
                 if (partieGagnée == true) {
                     // La mise gagnée sera différente depandant du nombre de fois que le stock a été traversé
-                    switch (jeuDePyramide.getNombreStock()) {
+                    switch (jeuDePyramide.getNbTourStock()) {
                         case 0 :
                             pyramideMises.gagner(1);
                             break;
@@ -169,7 +169,7 @@ public class pyramideActivity extends Activity {
                 partieTerminée = true;
                 partieGagnée = jeuDePyramide.vérifierPartieGagnée();
                 // La mise gagnée sera différente depandant du nombre de fois que le stock a été traversé
-                switch (jeuDePyramide.getNombreStock()) {
+                switch (jeuDePyramide.getNbTourStock()) {
                     case 0 :
                         pyramideMises.gagner(1);
                         break;

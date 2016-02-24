@@ -218,7 +218,29 @@ public class JeuDeCarte extends ArrayList<Carte> {
         for(Carte ct: paquetmélangeur)
             this.add(ct);
         paquetmélangeur.clear();
+    }
 
+    /**
+     * Mélanger le paquet avec un "seed"
+     */
+    public void mélangerPaquetAvecGraine(int graine)
+    {
+        List<Carte> paquetmélangeur = new ArrayList<Carte>();
+        Random rng = new Random(graine);
+        int position=0;
+        while(this.size()>0)
+        {
+            position = rng.nextInt(this.size());
+            Carte carteTemp = this.get(position);
+            if(!paquetmélangeur.contains(carteTemp))
+            {
+                paquetmélangeur.add(carteTemp);
+                this.remove(carteTemp);
+            }
+        }
+        for(Carte ct: paquetmélangeur)
+            this.add(ct);
+        paquetmélangeur.clear();
     }
 
     /**

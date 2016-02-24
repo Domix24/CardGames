@@ -113,6 +113,8 @@ public class JeuDu31Logique extends JeuAvecCartes {
             for(int i=0;i<nbrJoueurs;i++)
                 joueur.ajouterCarteALaMain(paquet.pigerUneCarte());
         lstJoueurs.get(0).déterminerNom(idJoueur.getNom());
+        for(int i=1;i<nbrJoueurs;i++)
+            lstJoueurs.get(i).déterminerNom("ordinateur"+i);
     }
 
     /**
@@ -240,7 +242,7 @@ public class JeuDu31Logique extends JeuAvecCartes {
             perdant=lstJoueurs.get(0);
         if(perdant.Cogne && perdant.nom!="")
             idJoueur.getMontant(sommeArgent/lstJoueurs.size());
-        else if(perdant.Cogne && perdant.nom=="")
+        else if(perdant.Cogne && perdant.nom.contains("ordinateur"))
             sommeArgent+=sommeArgent/lstGagnants.size();
         ajouterMontant();
 

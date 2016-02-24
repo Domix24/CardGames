@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.utilisateur.jeudepatience.R;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 
 import utilitaire.Carte;
 
@@ -40,7 +41,7 @@ public class JeuDu31activite extends Activity {
     }
 
     /**
-     * Initiliase
+     * Initilise
      */
     @Override
     protected  void onStart()
@@ -55,6 +56,12 @@ public class JeuDu31activite extends Activity {
         TextView lblArgent = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblArgent"
                 , "id", this.getBaseContext().getPackageName()));
         lblArgent.setText(String.valueOf(jeu.idJoueur.getMonnaie()));
+        ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("imgRecommencer"
+                , "id", this.getBaseContext().getPackageName()));
+        img.setClickable(false);
+        TextView lblIndication = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblIndications"
+                , "id", this.getBaseContext().getPackageName()));
+        lblIndication.setText("Mettez une mise");
     }
 
     /**
@@ -76,6 +83,34 @@ public class JeuDu31activite extends Activity {
     }
 
     /**
+     * Remet le jeu à son état originel et désactive le bouton restart.
+     * @param v
+     */
+    public void onClickRecommencer(View v)
+    {
+        jeu.recommencer(3);
+        miseAJourImageCarteDejaPiger();
+        mettreAJourImageGauche(null);
+        ordonnerImages();
+        Button btnmiser = (Button) this.findViewById(this.getBaseContext().getResources().getIdentifier("btnMiser"
+                , "id", this.getBaseContext().getPackageName()));
+        btnmiser.setClickable(true);
+        TextView lblArgent = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblArgent"
+                , "id", this.getBaseContext().getPackageName()));
+        lblArgent.setText(String.valueOf(jeu.idJoueur.getMonnaie()));
+        TextView lblIndication = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblIndications"
+                , "id", this.getBaseContext().getPackageName()));
+        lblIndication.setText("Mettez une mise");
+        ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("imgRecommencer"
+                , "id", this.getBaseContext().getPackageName()));
+        img.setClickable(false);
+        for(int i=1;i<7;i++) {
+            img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("CarteEnemi" + i
+                    , "id", this.getBaseContext().getPackageName()));
+            img.setImageResource(R.drawable.back);
+        }
+    }
+    /**
      * Ordonne les images selon leur place dans les mains du joueur.
      */
     public void ordonnerImages()
@@ -87,7 +122,9 @@ public class JeuDu31activite extends Activity {
         for(int i=2;i<5;i++) {
             img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("CarteJouer" + i
                     , "id", this.getBaseContext().getPackageName()));
-            img.setImageResource(jeu.trouverIdCarte(jeu.lstJoueurs.get(0).avoirLaMain().get(i-2).nom));
+            for(int a=0;a<jeu.lstJoueurs.size();a++)
+            if(jeu.lstJoueurs.get(a).nom==jeu.idJoueur.getNom())
+            img.setImageResource(jeu.trouverIdCarte(jeu.lstJoueurs.get(a).avoirLaMain().get(i-2).nom));
         }
     }
 
@@ -173,24 +210,63 @@ public class JeuDu31activite extends Activity {
     }
 
     /**
-     * Instructions pour le calcul de fin de manche etp our recommencer.
+     * Instructions pour le calcul de fin de manche et pour recommencer.
      */
     public void procedureFinDeManche()
     {
-        jeu.détermineGagnant();
-        jeu.déterminePerdant();
         joueurHumanFin();
-        Toast.makeText(getApplicationContext(), getString(R.string.pyramide_partieterminer), Toast.LENGTH_LONG).show();
-        jeu.recommencer(3);
-        miseAJourImageCarteDejaPiger();
-        mettreAJourImageGauche(null);
+        jeu.détermineGagnant();
+        afficherFin();
+        jeu.déterminePerdant();
+        ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("imgRecommencer"
+                , "id", this.getBaseContext().getPackageName()));
+        img.setClickable(true);
+        TextView lblIndication = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblIndications"
+                , "id", this.getBaseContext().getPackageName()));
+        lblIndication.setText("Appuyez sur recommencer");
+
+    }
+
+    /**
+     * S'occupe de l'affichage final des cartes pour les 3 joueurs.
+     */
+    public void afficherFin()
+    {
+        boolean joueurPerd=true;
+        for(JoueurDu31 joueur : jeu.lstGagnants) {
+            if (joueur.nom.contains("ordinateur")) {
+                ImageView img;
+
+                switch (Character.getNumericValue(joueur.nom.substring(10, 11).charAt(0))) {
+                    case 1:
+                        for (int i = 1; i < 4; i++) {
+                            img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("CarteEnemi" + i
+                                    , "id", this.getBaseContext().getPackageName()));
+                            img.setImageResource(jeu.trouverIdCarte(joueur.jeuEnMain.get(i - 1).nom));
+                        }
+                        break;
+                    case 2:
+                        for (int i = 4; i < 7; i++) {
+                            img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("CarteEnemi" + i
+                                    , "id", this.getBaseContext().getPackageName()));
+                            img.setImageResource(jeu.trouverIdCarte(joueur.jeuEnMain.get(i - 4).nom));
+                        }
+                        break;
+                }
+            }
+            if(joueur.nom.contains(jeu.idJoueur.getNom())) {
+                Toast.makeText(getApplicationContext(), getString(R.string.blackjack_gagnier)
+                        , Toast.LENGTH_LONG).show();
+                joueurPerd=false;
+            }
+        }
+
+        if(joueurPerd)
+        {
+            Toast.makeText(getApplicationContext(), getString(R.string.blackjack_perdu)
+                    , Toast.LENGTH_LONG).show();
+        }
         ordonnerImages();
-        Button btnmiser = (Button) this.findViewById(this.getBaseContext().getResources().getIdentifier("btnMiser"
-                , "id", this.getBaseContext().getPackageName()));
-        btnmiser.setClickable(true);
-        TextView lblArgent = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblArgent"
-                , "id", this.getBaseContext().getPackageName()));
-        lblArgent.setText(String.valueOf(jeu.idJoueur.getMonnaie()));
     }
     /**
      * Remet disponible les actions du joueur.
@@ -303,6 +379,9 @@ public class JeuDu31activite extends Activity {
             Button btnmiser = (Button) this.findViewById(this.getBaseContext().getResources().getIdentifier("btnMiser"
                     , "id", this.getBaseContext().getPackageName()));
             btnmiser.setClickable(false);
+            TextView lblIndication = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblIndications"
+                    , "id", this.getBaseContext().getPackageName()));
+            lblIndication.setText("Jouez");
         }
     }
 }

@@ -11,8 +11,25 @@
     android:background="@drawable/blackjackbackground">
 
     <TableLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imgRecommencer"
+                    android:layout_gravity="left|bottom"
+                    android:src="@drawable/restart"
+                    android:onClick="onClickRecommencer" />/>
+
+            </FrameLayout>
+        </TableRow>
         <TableRow>
             <ImageView
                 android:src="@drawable/back"
@@ -124,9 +141,23 @@
                 android:id="@+id/btnMiser"/>
 
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblIndications"
+                android:layout_column="2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Argent:"
+                android:id="@+id/lblTxtArgent"
+                android:layout_column="4" />
 
             <TextView
                 android:layout_width="wrap_content"

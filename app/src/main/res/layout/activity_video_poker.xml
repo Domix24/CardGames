@@ -9,9 +9,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/pokerbackground">
 
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:src="@drawable/pokergrid"
+        android:onClick="onGridClick"
+        android:id="@+id/grille"
+        />
+
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/table">
         <TableRow
             android:layout_gravity="left">
 
@@ -20,7 +30,9 @@
                 android:layout_height="50dp"
                 android:layout_width="50dp"
                 android:layout_column="5"
+                android:id="@+id/btnAfficher"
                 android:text="@string/poker_affichergrille"
+                android:onClick="onAfficherClick"
                 />
         </TableRow>
         <TableRow
@@ -33,7 +45,7 @@
             android:layout_marginRight="5dp">
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_height="110dp"
                 android:id="@+id/imgVideo1"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
@@ -47,7 +59,7 @@
                 android:padding="5dp" />
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_height="110dp"
                 android:id="@+id/imgVideo2"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
@@ -60,7 +72,7 @@
                 android:padding="5dp" />
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_height="110dp"
                 android:id="@+id/imgVideo3"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
@@ -72,7 +84,7 @@
                 android:padding="5dp" />
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_height="110dp"
                 android:id="@+id/imgVideo4"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
@@ -84,7 +96,7 @@
                 android:padding="5dp" />
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_height="110dp"
                 android:id="@+id/imgVideo5"
                 android:layout_column="1"
                 android:src="@drawable/spades_a"
@@ -117,14 +129,17 @@
                 android:layout_span="1"
                 android:onClick="onMiserClick" />
 
+            <NumberPicker
+                android:id="@+id/nbpMise"
+                android:layout_width="40dp"
+                android:layout_height="130dp"/>
             <TextView
                 android:text="Argent:"
                 android:id="@+id/lblArgent"
-                android:layout_column="1"/>
-            <TextView
-                android:text="5"
-                android:id="@+id/lblMise"
-                android:layout_column="1"/>
+                android:layout_column="1"
+                android:textSize="20dp"
+                />
+
             </TableRow>
     </TableLayout>
 </RelativeLayout>

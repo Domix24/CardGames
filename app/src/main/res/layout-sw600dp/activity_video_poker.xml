@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center">
             <ImageView
-                android:layout_width="150dp"
+                android:layout_width="110dp"
                 android:layout_height="200dp"
                 android:id="@+id/imgVideo1"
                 android:layout_span="1"
@@ -31,33 +31,41 @@
                 android:onClick="onCardVideoClick"
                 android:padding="5dp" />
             <ImageView
-                android:layout_width="150dp"
+                android:layout_width="110dp"
                 android:layout_height="200dp"
                 android:id="@+id/imgVideo2"
                 android:src="@drawable/spades_a"
                 android:onClick="onCardVideoClick"
                 android:padding="5dp" />
             <ImageView
-                android:layout_width="150dp"
+                android:layout_width="110dp"
                 android:layout_height="200dp"
                 android:id="@+id/imgVideo3"
                 android:src="@drawable/spades_a"
                 android:onClick="onCardVideoClick"
                 android:padding="5dp" />
             <ImageView
-                android:layout_width="150dp"
+                android:layout_width="110dp"
                 android:layout_height="200dp"
                 android:id="@+id/imgVideo4"
                 android:src="@drawable/spades_a"
                 android:onClick="onCardVideoClick"
                 android:padding="5dp" />
             <ImageView
-                android:layout_width="150dp"
+                android:layout_width="110dp"
                 android:layout_height="200dp"
                 android:id="@+id/imgVideo5"
                 android:src="@drawable/spades_a"
                 android:onClick="onCardVideoClick"
                 android:padding="5dp" />
+            <TextView
+                android:text="Mise:"
+                android:textSize="20dp"
+                />
+            <NumberPicker
+                android:id="@+id/nbpMise"
+                android:layout_width="100dp"
+                android:layout_height="200dp"/>
             </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -84,10 +92,9 @@
                 android:onClick="onMiserClick" />
             <TextView
                 android:text="Argent:"
+                android:textSize="20dp"
                 android:id="@+id/lblArgent"/>
-            <TextView
-                android:text="5"
-                android:id="@+id/lblMise"/>
+
             </TableRow>
 
     </TableLayout>

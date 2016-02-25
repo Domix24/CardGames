@@ -82,7 +82,8 @@ public class pyramideActivity extends Activity {
      * @param v Vue qui déclenche l'event
      */
     public void OnClickStock(View v) {
-        if (nbpMise.getVisibility() == View.INVISIBLE) { // Ne jouer que si la mise a été faite
+        if (nbpMise.getVisibility() == View.INVISIBLE && // Ne jouer que si la mise a été faite
+                partieTerminée == false) {
             jeuDePyramide.envoyerCarteAuWaste();
 
             if (jeuDePyramide.vérifierFinPartie() == true) {
@@ -90,7 +91,7 @@ public class pyramideActivity extends Activity {
                 partieGagnée = jeuDePyramide.vérifierPartieGagnée();
                 if (partieGagnée == true) {
                     // La mise gagnée sera différente depandant du nombre de fois que le stock a été traversé
-                    switch (jeuDePyramide.getNombreStock()) {
+                    switch (jeuDePyramide.getNbTourStock()) {
                         case 0 :
                             pyramideMises.gagner(1);
                             break;
@@ -118,7 +119,8 @@ public class pyramideActivity extends Activity {
      * @param v Objet qui a provoqué l'event
      */
     public void OnClickPyramide(View v) throws IllegalAccessException {
-        if (nbpMise.getVisibility() == View.INVISIBLE) {
+        if (nbpMise.getVisibility() == View.INVISIBLE &&
+                partieTerminée == false) {
             char tempChar;
 
             for (Field f : campos)
@@ -169,7 +171,7 @@ public class pyramideActivity extends Activity {
                 partieTerminée = true;
                 partieGagnée = jeuDePyramide.vérifierPartieGagnée();
                 // La mise gagnée sera différente depandant du nombre de fois que le stock a été traversé
-                switch (jeuDePyramide.getNombreStock()) {
+                switch (jeuDePyramide.getNbTourStock()) {
                     case 0 :
                         pyramideMises.gagner(1);
                         break;

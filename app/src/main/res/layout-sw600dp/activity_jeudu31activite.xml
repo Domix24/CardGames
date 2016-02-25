@@ -146,17 +146,16 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+        </TableRow>
+        <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblIndications"
+            android:layout_column="2" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/lblIndications"
-                android:layout_column="2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Argent:"
                 android:id="@+id/lblTxtArgent"
                 android:layout_column="4" />
 

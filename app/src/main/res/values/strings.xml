@@ -26,6 +26,10 @@
     <string name="solitaire">Solitaire</string>
     <string name="videopoker">Vidéo Poker</string>
     <string name="inconnue">Inconnu</string>
+    <string name="cogner">Un opposant a cogné!</string>
+    <string name="recommencer">Appuyez sur recommencer</string>
+    <string name="jouer">Jouez</string>
+    <string name="misez">Mettez une mise</string>
 
 
     <string name="pyramide_montantTotal">Montant total : </string>

@@ -60,10 +60,13 @@ public class JeuDu31activite extends Activity {
         TextView lblArgent = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblArgent"
                 , "id", this.getBaseContext().getPackageName()));
         lblArgent.setText(String.valueOf(jeu.idJoueur.getMonnaie()));
+        lblArgent = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblTxtArgent"
+                , "id", this.getBaseContext().getPackageName()));
+        lblArgent.setText(getString(R.string.argent));
         ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("imgRecommencer"
                 , "id", this.getBaseContext().getPackageName()));
         img.setClickable(false);
-        lblIndication.setText("Mettez une mise");
+        lblIndication.setText(getString(R.string.misez));
     }
 
     /**
@@ -100,7 +103,7 @@ public class JeuDu31activite extends Activity {
         TextView lblArgent = (TextView) this.findViewById(this.getBaseContext().getResources().getIdentifier("lblArgent"
                 , "id", this.getBaseContext().getPackageName()));
         lblArgent.setText(String.valueOf(jeu.idJoueur.getMonnaie()));
-        lblIndication.setText("Mettez une mise");
+        lblIndication.setText(getString(R.string.miser));
         ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("imgRecommencer"
                 , "id", this.getBaseContext().getPackageName()));
         img.setClickable(false);
@@ -206,7 +209,7 @@ public class JeuDu31activite extends Activity {
                             Button btnCogner = (Button) this.findViewById(this.getBaseContext().getResources().getIdentifier("btnCogner"
                                     , "id", this.getBaseContext().getPackageName()));
                             btnCogner.setClickable(false);
-                            lblIndication.setText("Un opposant a cogné!");
+                            lblIndication.setText(getString(R.string.cogner));
                         }
                 } else {
                     procedureFinDeManche();
@@ -229,7 +232,7 @@ public class JeuDu31activite extends Activity {
         ImageView img = (ImageView) this.findViewById(this.getBaseContext().getResources().getIdentifier("imgRecommencer"
                 , "id", this.getBaseContext().getPackageName()));
         img.setClickable(true);
-        lblIndication.setText("Appuyez sur recommencer");
+        lblIndication.setText(getString(R.string.recommencer));
 
     }
 
@@ -385,7 +388,7 @@ public class JeuDu31activite extends Activity {
             Button btnmiser = (Button) this.findViewById(this.getBaseContext().getResources().getIdentifier("btnMiser"
                     , "id", this.getBaseContext().getPackageName()));
             btnmiser.setClickable(false);
-            lblIndication.setText("Jouez");
+            lblIndication.setText(getString(R.string.jouer));
         }
     }
 }

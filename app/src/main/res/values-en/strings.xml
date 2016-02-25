@@ -26,6 +26,10 @@
     <string name="solitaire">Solitaire</string>
     <string name="videopoker">Video Poker</string>
     <string name="inconnue">Unknown</string>
+    <string name="cogner">An opponent has knock!</string>
+    <string name="recommencer">Press on restart</string>
+    <string name="jouer">Play</string>
+    <string name="misez">Put a bet</string>
 
     <string name="pyramide_montantTotal">Total amount : </string>
     <string name="pyramide_montantMise">Betting amount : </string>

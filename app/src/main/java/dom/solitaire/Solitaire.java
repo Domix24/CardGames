@@ -258,6 +258,10 @@ public class Solitaire extends JeuAvecCartes {
 
     public  boolean avoirGagner()
     {
-        return (foundations[0] == foundations[1] && foundations[1] == foundations[2] && foundations[2] == foundations[3] && foundations[3] != null && foundations[3].numero == 13);
+        if (foundations[0] != null && foundations[1] != null && foundations[2] != null && foundations[3] != null){
+        if (foundations[0].numero == foundations[1].numero && foundations[1].numero == foundations[2].numero && foundations[2].numero == foundations[3].numero && foundations[3].numero >= 13){
+            return true;
+        }}
+        return  false;
     }
 }

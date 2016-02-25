@@ -114,7 +114,7 @@ public class Solitaire extends JeuAvecCartes {
         else if(carte.typeCarte == JeuDeCarte.type.Carre) {
             foundationIndex = 2;
         }
-        else if(carte.typeCarte == JeuDeCarte.type.Trèfle) {
+         else if(carte.typeCarte == JeuDeCarte.type.Trèfle) {
             foundationIndex = 3;
         }
 
@@ -152,10 +152,14 @@ public class Solitaire extends JeuAvecCartes {
             }
         }
 
-        // TODO: déplacement d'un tas de carte...
+        int plusque13 = 0;
+        if (tableau[colonneDepart].size() > 13)
+            plusque13 = tableau[colonneDepart].size() - 13;
+        ligneDepart = ligneDepart + plusque13;
         for(int i = ligneDepart; i < tableau[colonneDepart].size(); i++) {
             tableau[colonneArrivée].add(new CarteColonne(tableau[colonneDepart].get(i).carte, true));
         }
+
 
         int nombre = tableau[colonneDepart].size() - ligneDepart;
         for(int i = 0; i < nombre; i++) {
